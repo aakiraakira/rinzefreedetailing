@@ -64,6 +64,12 @@
             background-color: #FBBF24; /* yellow-500 */
             box-shadow: 0 6px 20px rgba(252, 211, 77, 0.4);
         }
+        .btn-primary:disabled {
+            background-color: #9CA3AF; /* gray-400 */
+            box-shadow: none;
+            cursor: not-allowed;
+            transform: none;
+        }
 
         /* Secondary CTA Button (Light Blue) */
         .btn-secondary {
@@ -108,6 +114,12 @@
             box-shadow: 0 0 15px rgba(252, 211, 77, 0.3);
             outline: none;
         }
+
+        /* --- NEW: Form Validation Error Style --- */
+        .form-input.invalid {
+            border-color: #EF4444; /* red-500 */
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+        }
         
         /* Custom scrollbar */
         ::-webkit-scrollbar {
@@ -124,9 +136,7 @@
             background: #38bdf8;
         }
 
-        /* --- NEW ANIMATION & ACCORDION STYLES --- */
-        
-        /* Scroll-triggered slide-up animation */
+        /* --- NEW: Slide-up Animation --- */
         .slide-up {
             opacity: 0;
             transform: translateY(30px);
@@ -137,22 +147,20 @@
             transform: translateY(0);
         }
 
-        /* Accordion styles for Add-ons */
+        /* --- NEW: Accordion Styles --- */
         .accordion-content {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
         .accordion-toggle .icon-plus {
             transition: transform 0.3s ease;
         }
-        
         .accordion-toggle.open .icon-plus {
             transform: rotate(45deg);
         }
 
-        /* --- NEW ACTIVE NAV STYLES --- */
+        /* --- NEW: Active Nav Styles --- */
         .nav-link-active {
             color: #FCD34D; /* yellow-400 */
             font-weight: 600;
@@ -162,6 +170,55 @@
             background-color: rgba(252, 211, 77, 0.1);
             color: #FCD34D; /* yellow-400 */
             border-left: 4px solid #FCD34D;
+        }
+
+        /* --- NEW: 3-Step Form Stepper Styles --- */
+        .step-indicator {
+            height: 2.5rem; /* 40px */
+            width: 2.5rem; /* 40px */
+            border-radius: 9999px; /* full */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+            border: 2px solid #4B5563; /* gray-600 */
+            color: #9CA3AF; /* gray-400 */
+            transition: all 0.3s ease;
+        }
+        .step-indicator.active {
+            border-color: #22D3EE; /* cyan-400 */
+            background: linear-gradient(to right, #22D3EE, #3B82F6); /* cyan to blue */
+            color: #FFFFFF;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+        }
+        .step-indicator.completed {
+            border-color: #22D3EE;
+            background-color: #22D3EE;
+            color: #111827;
+        }
+        .step-line {
+            height: 2px;
+            background-color: #4B5563; /* gray-600 */
+            transition: all 0.3s ease;
+        }
+        .step-line.completed {
+            background-color: #22D3EE; /* cyan-400 */
+        }
+
+        /* --- NEW: Custom Radio Button Styles --- */
+        .form-radio-label {
+            background-color: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .form-radio-label:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        input[type="radio"]:checked + .form-radio-label {
+            border-color: #FCD34D; /* yellow-400 */
+            background-color: rgba(252, 211, 77, 0.1);
+            box-shadow: 0 0 15px rgba(252, 211, 77, 0.3);
         }
 
     </style>
@@ -222,109 +279,215 @@
 
     <main>
 
-        <section id="contact" class="pt-40 pb-24 bg-gray-900/50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="booking-form-section" class="pt-40 pb-24 bg-gray-900/50">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center slide-up">
-                    <h2 class="text-base font-semibold text-cyan-400 uppercase tracking-wider">Get in Touch</h2>
-                    <p class="mt-2 text-4xl sm:text-5xl font-extrabold text-white tracking-tighter">Ready to Transform Your Vehicle?</p>
+                    <h2 class="text-base font-semibold text-cyan-400 uppercase tracking-wider">Book Your Service</h2>
+                    <p class="mt-2 text-4xl sm:text-5xl font-extrabold text-white tracking-tighter font-display">Let's Get You Scheduled</p>
                 </div>
-                
-                <div class="mt-20 grid grid-cols-1 lg:grid-cols-2 gap-16">
-                    <div class="space-y-10 slide-up">
-                        <div>
-                            <h3 class="text-2xl font-semibold text-white">Contact Information</h3>
-                            <p class="mt-2 text-lg text-gray-400">Contact us today to book your service or ask any questions.</p>
-                        </div>
+
+                <div class="flex items-center w-full max-w-lg mx-auto my-12 slide-up">
+                    <div class="step-indicator active flex-shrink-0" data-step="1">1</div>
+                    <div class="step-line flex-1" data-line="1"></div>
+                    <div class="step-indicator flex-shrink-0" data-step="2">2</div>
+                    <div class="step-line flex-1" data-line="2"></div>
+                    <div class="step-indicator flex-shrink-0" data-step="3">3</div>
+                </div>
+
+                <form id="booking-form" action="#" method="POST" class="glassmorphism rounded-2xl p-8 md:p-12 space-y-8 card-glow-cyan slide-up" style="transition-delay: 150ms;">
+                    
+                    <div class="form-step" data-step="1">
+                        <h3 class="text-2xl font-semibold text-white mb-6 font-display">Step 1: Select Your Service</h3>
                         <div class="space-y-6">
-                            <div class="flex items-start">
-                                <span class="mt-1 text-cyan-400"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg></span>
-                                <div class="ml-4">
-                                    <p class="text-lg font-medium text-white">Phone</p>
-                                    <a href="tel:+1234567890" class="text-lg text-gray-300 hover:text-cyan-400 transition-colors">+1 (234) 567-890</a>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Service Type *</label>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div class="relative">
+                                        <input type="radio" id="service-type-package" name="service-type" value="package" class="sr-only" required>
+                                        <label for="service-type-package" class="form-radio-label flex items-center justify-center p-5 rounded-lg cursor-pointer text-lg font-semibold">
+                                            One-Time Package
+                                        </label>
+                                    </div>
+                                    <div class="relative">
+                                        <input type="radio" id="service-type-plan" name="service-type" value="plan" class="sr-only" required>
+                                        <label for="service-type-plan" class="form-radio-label flex items-center justify-center p-5 rounded-lg cursor-pointer text-lg font-semibold">
+                                            Monthly Plan
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="flex items-start">
-                                <span class="mt-1 text-cyan-400"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg></span>
-                                <div class="ml-4">
-                                    <p class="text-lg font-medium text-white">Email</p>
-                                    <a href="mailto:info@rinzefree.com" class="text-lg text-gray-300 hover:text-cyan-400 transition-colors">info@rinzefree.com</a>
-                                </div>
-                            </div>
-                             <div class="flex items-start">
-                                <span class="mt-1 text-cyan-400"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg></span>
-                                <div class="ml-4">
-                                    <p class="text-lg font-medium text-white">Location</p>
-                                    <p class="text-lg text-gray-300">Your City, State</p>
+                            
+                            <div>
+                                <label for="service" class="block text-sm font-medium text-gray-300">Service Interested In *</label>
+                                <div class="mt-1">
+                                    <select id="service" name="service" required class="form-input block w-full rounded-lg px-4 py-3 text-white">
+                                        <option value="">Select a service</option>
+                                        <optgroup label="Monthly Plans">
+                                            <option value="Silver Plan">Silver Plan</option>
+                                            <option value="Gold Plan">Gold Plan</option>
+                                            <option value="Platinum Plan">Platinum Plan</option>
+                                        </optgroup>
+                                        <optgroup label="Detailing Packages">
+                                            <option value="Essential Detail">Essential Detail</option>
+                                            <option value="Premium Enhancement">Premium Enhancement</option>
+                                            <option value="Ultimate Ceramic">Ultimate Ceramic</option>
+                                        </optgroup>
+                                        <optgroup label="Add-Ons">
+                                            <option value="Engine Bay Detailing">Engine Bay Detailing</option>
+                                            <option value="Glass Coating">Glass Coating</option>
+                                            <option value="Headlight Restoration">Headlight Restoration</option>
+                                            <option value="Fabric Shampoo">Fabric Shampoo</option>
+                                            <option value="Scratch Repair">Scratch Repair</option>
+                                            <option value="5-Year Ceramic">5-Year Ceramic</option>
+                                        </optgroup>
+                                    </select>
                                 </div>
                             </div>
                         </div>
-                         <div>
-                            <h3 class="text-2xl font-semibold text-white">Business Hours</h3>
-                            <div class="mt-4 space-y-2 text-lg text-gray-300">
-                                <p class="flex justify-between"><span>Monday - Friday</span> <span>8:00 AM - 6:00 PM</span></p>
-                                <p class="flex justify-between"><span>Saturday</span> <span>9:00 AM - 5:00 PM</span></p>
-                                <p class="flex justify-between"><span>Sunday</span> <span>By Appointment</span></p>
+                        <div class="mt-10 flex justify-end">
+                            <button type="button" class="btn-primary" data-action="next">Next</button>
+                        </div>
+                    </div>
+
+                    <div class="form-step hidden" data-step="2">
+                        <h3 class="text-2xl font-semibold text-white mb-6 font-display">Step 2: Your Details</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <label for="full-name" class="block text-sm font-medium text-gray-300">Full Name *</label>
+                                <div class="mt-1">
+                                    <input type="text" name="full-name" id="full-name" autocomplete="name" placeholder="John Doe" required class="form-input block w-full rounded-lg px-4 py-3 text-white">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-300">Email Address *</label>
+                                <div class="mt-1">
+                                    <input id="email" name="email" type="email" autocomplete="email" placeholder="john@example.com" required class="form-input block w-full rounded-lg px-4 py-3 text-white">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="phone" class="block text-sm font-medium text-gray-300">Phone Number *</label>
+                                <div class="mt-1">
+                                    <input type="tel" name="phone" id="phone" autocomplete="tel" placeholder="+1 (234) 567-890" required class="form-input block w-full rounded-lg px-4 py-3 text-white">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-10 flex justify-between">
+                            <button type="button" class="btn-secondary" data-action="prev">Previous</button>
+                            <button type="button" class="btn-primary" data-action="next">Next</button>
+                        </div>
+                    </div>
+
+                    <div class="form-step hidden" data-step="3">
+                        <h3 class="text-2xl font-semibold text-white mb-6 font-display">Step 3: Vehicle & Scheduling</h3>
+                        <div class="space-y-6">
+                             <div>
+                                <label for="vehicle-info" class="block text-sm font-medium text-gray-300">Vehicle Make & Model *</label>
+                                <div class="mt-1">
+                                    <input type="text" name="vehicle-info" id="vehicle-info" placeholder="e.g., 2022 Tesla Model Y" required class="form-input block w-full rounded-lg px-4 py-3 text-white">
+                                </div>
+                            </div>
+                             <div>
+                                <label for="preferred-date" class="block text-sm font-medium text-gray-300">Preferred Date *</label>
+                                <div class="mt-1">
+                                    <input type="date" name="preferred-date" id="preferred-date" required class="form-input block w-full rounded-lg px-4 py-3 text-white" min="2025-01-01">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="details" class="block text-sm font-medium text-gray-300">Additional Details</label>
+                                <div class="mt-1">
+                                    <textarea id="details" name="details" rows="4" placeholder="Tell us about your vehicle, location, and any specific concerns..." class="form-input block w-full rounded-lg px-4 py-3 text-white"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-10 flex justify-between">
+                            <button type="button" class="btn-secondary" data-action="prev">Previous</button>
+                            <button type="submit" class="btn-primary">Request Booking</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+        
+        <section id="contact-info" class="py-24">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                 <div class="slide-up">
+                    <h2 class="text-base font-semibold text-cyan-400 uppercase tracking-wider">Contact Us Directly</h2>
+                    <p class="mt-2 text-4xl sm:text-5xl font-extrabold text-white tracking-tighter font-display">Prefer to Book by Phone?</p>
+                    <p class="mt-6 max-w-xl mx-auto text-lg text-gray-300">
+                        No problem. Call us directly or send a message, and we'll get you set up.
+                    </p>
+                </div>
+                <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 text-left slide-up" style="transition-delay: 150ms;">
+                    <div class="glassmorphism rounded-2xl p-8 space-y-6">
+                        <div class="flex items-start">
+                            <span class="mt-1 text-cyan-400"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg></span>
+                            <div class="ml-4">
+                                <p class="text-lg font-medium text-white">Phone</p>
+                                <a href="tel:+1234567890" class="text-lg text-gray-300 hover:text-cyan-400 transition-colors">+1 (234) 567-890</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="mt-1 text-cyan-400"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg></span>
+                            <div class="ml-4">
+                                <p class="text-lg font-medium text-white">Email</p>
+                                <a href="mailto:info@rinzefree.com" class="text-lg text-gray-300 hover:text-cyan-400 transition-colors">info@rinzefree.com</a>
+                            </div>
+                        </div>
+                         <div class="flex items-start">
+                            <span class="mt-1 text-cyan-400"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg></span>
+                            <div class="ml-4">
+                                <p class="text-lg font-medium text-white">Location</p>
+                                <p class="text-lg text-gray-300">Your City, State (Mobile Service)</p>
                             </div>
                         </div>
                     </div>
-                    
-                    <form action="#" method="POST" class="glassmorphism rounded-2xl p-8 space-y-6 card-glow-cyan slide-up" style="transition-delay: 150ms;">
-                        <div>
-                            <label for="full-name" class="block text-sm font-medium text-gray-300">Full Name *</label>
-                            <div class="mt-1">
-                                <input type="text" name="full-name" id="full-name" autocomplete="name" placeholder="John Doe" required class="form-input block w-full rounded-lg px-4 py-3 text-white">
-                            </div>
+                    <div class="glassmorphism rounded-2xl p-8">
+                        <h3 class="text-2xl font-semibold text-white">Business Hours</h3>
+                        <div class="mt-4 space-y-2 text-lg text-gray-300">
+                            <p class="flex justify-between"><span>Monday - Friday</span> <span>8:00 AM - 6:00 PM</span></p>
+                            <p class="flex justify-between"><span>Saturday</span> <span>9:00 AM - 5:00 PM</span></p>
+                            <p class="flex justify-between"><span>Sunday</span> <span>By Appointment</span></p>
                         </div>
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-gray-300">Email Address *</label>
-                            <div class="mt-1">
-                                <input id="email" name="email" type="email" autocomplete="email" placeholder="john@example.com" required class="form-input block w-full rounded-lg px-4 py-3 text-white">
-                            </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="py-24 bg-gray-900/50">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center slide-up">
+                    <h2 class="text-base font-semibold text-cyan-400 uppercase tracking-wider">FAQ</h2>
+                    <p class="mt-2 text-4xl sm:text-5xl font-extrabold text-white tracking-tighter font-display">Booking Questions</p>
+                </div>
+                
+                <div class="mt-16 space-y-4">
+                    <div class="glassmorphism rounded-xl transition-all duration-300 card-glow-cyan-hover slide-up">
+                        <button class="accordion-toggle flex justify-between items-center w-full p-6 text-left">
+                            <h3 class="text-lg font-semibold text-white">Do I need to be home for the service?</h3>
+                            <span class="icon-plus text-cyan-400 text-3xl font-thin">+</span>
+                        </button>
+                        <div class="accordion-content px-6">
+                            <p class="pb-6 text-gray-400">Not at all! As long as we have access to your vehicle (unlocked) and keys for an interior detail, you can go about your day. We can process payment securely over the phone.</p>
                         </div>
-                        <div>
-                            <label for="phone" class="block text-sm font-medium text-gray-300">Phone Number *</label>
-                            <div class="mt-1">
-                                <input type="tel" name="phone" id="phone" autocomplete="tel" placeholder="+1 (234) 567-890" required class="form-input block w-full rounded-lg px-4 py-3 text-white">
-                            </div>
+                    </div>
+                    <div class="glassmorphism rounded-xl transition-all duration-300 card-glow-cyan-hover slide-up" style="transition-delay: 100ms;">
+                        <button class="accordion-toggle flex justify-between items-center w-full p-6 text-left">
+                            <h3 class="text-lg font-semibold text-white">What happens in case of bad weather?</h3>
+                            <span class="icon-plus text-cyan-400 text-3xl font-thin">+</span>
+                        </button>
+                        <div class="accordion-content px-6">
+                            <p class="pb-6 text-gray-400">We monitor the weather closely. If heavy rain or extreme weather is forecasted, we will contact you the day before or the morning of to reschedule for the next available clear day.</p>
                         </div>
-                        <div>
-                            <label for="service" class="block text-sm font-medium text-gray-300">Service Interested In *</label>
-                            <div class="mt-1">
-                                <select id="service" name="service" required class="form-input block w-full rounded-lg px-4 py-3 text-white">
-                                    <option>Select a service</option>
-                                    <optgroup label="Monthly Plans">
-                                        <option value="Silver Plan">Silver Plan</option>
-                                        <option value="Gold Plan">Gold Plan</option>
-                                        <option value="Platinum Plan">Platinum Plan</option>
-                                    </optgroup>
-                                    <optgroup label="Detailing Packages">
-                                        <option value="Essential Detail">Essential Detail</option>
-                                        <option value="Premium Enhancement">Premium Enhancement</option>
-                                        <option value="Ultimate Ceramic">Ultimate Ceramic</option>
-                                    </optgroup>
-                                    <optgroup label="Add-Ons">
-                                        <option value="Engine Bay Detailing">Engine Bay Detailing</option>
-                                        <option value="Glass Coating">Glass Coating</option>
-                                        <option value="Headlight Restoration">Headlight Restoration</option>
-                                        <option value="Fabric Shampoo">Fabric Shampoo</option>
-                                        <option value="Scratch Repair">Scratch Repair</option>
-                                        <option value="5-Year Ceramic">5-Year Ceramic</option>
-                                    </optgroup>
-                                </select>
-                            </div>
+                    </div>
+                    <div class="glassmorphism rounded-xl transition-all duration-300 card-glow-cyan-hover slide-up" style="transition-delay: 200ms;">
+                        <button class="accordion-toggle flex justify-between items-center w-full p-6 text-left">
+                            <h3 class="text-lg font-semibold text-white">How long does the detail take?</h3>
+                            <span class="icon-plus text-cyan-400 text-3xl font-thin">+</span>
+                        </button>
+                        <div class="accordion-content px-6">
+                            <p class="pb-6 text-gray-400">It depends on the service. A maintenance wash can take 1-2 hours, while a full Paint Correction & Ceramic Coating can take 6-8 hours. We will provide an estimated time frame when you book.</p>
                         </div>
-                        <div>
-                            <label for="details" class="block text-sm font-medium text-gray-300">Additional Details</label>
-                            <div class="mt-1">
-                                <textarea id="details" name="details" rows="4" placeholder="Tell us about your vehicle and any specific concerns..." class="form-input block w-full rounded-lg px-4 py-3 text-white"></textarea>
-                            </div>
-                        </div>
-                        <div>
-                            <button type="submit" class="w-full flex justify-center btn-primary">
-                                Send Message
-                            </button>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </section>
@@ -357,12 +520,12 @@
                 <div>
                     <h3 class="text-sm font-semibold text-cyan-400 uppercase tracking-wider">Our Services</h3>
                     <ul class="mt-4 space-y-3">
-                        <li><span class="text-base text-gray-400">Paint Correction</span></li>
-                        <li><span class="text-base text-gray-400">Ceramic Coating</span></li>
-                        <li><span class="text-base text-gray-400">Interior Detailing</span></li>
-                        <li><span class="text-base text-gray-400">Engine Bay Cleaning</span></li>
-                        <li><span class="text-base text-gray-400">Headlight Restoration</span></li>
-                        <li><span class="text-base text-gray-400">Monthly Maintenance</span></li>
+                        <li><a href="pricing.html#packages" class="text-base text-gray-400 hover:text-white transition-colors">Paint Correction</a></li>
+                        <li><a href="pricing.html#packages" class="text-base text-gray-400 hover:text-white transition-colors">Ceramic Coating</a></li>
+                        <li><a href="pricing.html#packages" class="text-base text-gray-400 hover:text-white transition-colors">Interior Detailing</a></li>
+                        <li><a href="pricing.html#add-ons" class="text-base text-gray-400 hover:text-white transition-colors">Engine Bay Cleaning</a></li>
+                        <li><a href="pricing.html#add-ons" class="text-base text-gray-400 hover:text-white transition-colors">Headlight Restoration</a></li>
+                        <li><a href="pricing.html#plans" class="text-base text-gray-400 hover:text-white transition-colors">Monthly Maintenance</a></li>
                     </ul>
                 </div>
 
@@ -388,15 +551,14 @@
             // --- Mobile Menu ---
             const menuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
-            const navLinks = document.querySelectorAll('.mobile-nav-link');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
             menuButton.addEventListener('click', () => {
                 mobileMenu.classList.toggle('hidden');
             });
 
-            navLinks.forEach(link => {
+            mobileNavLinks.forEach(link => {
                 link.addEventListener('click', () => {
-                    // Don't close if it's just a hash link to the same page
                     if (!link.href.includes('#')) {
                          mobileMenu.classList.add('hidden');
                     }
@@ -405,21 +567,17 @@
 
             // --- Accordion Functionality ---
             const accordions = document.querySelectorAll('.accordion-toggle');
-
             accordions.forEach(button => {
                 button.addEventListener('click', () => {
                     const content = button.nextElementSibling;
                     button.classList.toggle('open');
                     
                     if (content.style.maxHeight) {
-                        // Close it
                         content.style.maxHeight = null;
                     } else {
-                        // Open it
                         content.style.maxHeight = content.scrollHeight + 'px';
                     }
                     
-                    // Optional: Close other accordions
                     accordions.forEach(otherButton => {
                         if (otherButton !== button) {
                             otherButton.classList.remove('open');
@@ -440,11 +598,147 @@
                 threshold: 0.1 // Trigger when 10% of the element is visible
             });
 
-            // Observe all elements with the .slide-up class
             document.querySelectorAll('.slide-up').forEach(el => {
                 observer.observe(el);
             });
 
+            // --- NEW: Multi-Step Form Logic ---
+            const stepPanels = document.querySelectorAll('.form-step');
+            const stepIndicators = document.querySelectorAll('.step-indicator');
+            const stepLines = document.querySelectorAll('.step-line');
+            const nextButtons = document.querySelectorAll('[data-action="next"]');
+            const prevButtons = document.querySelectorAll('[data-action="prev"]');
+            
+            let currentStep = 0;
+
+            function showStep(stepIndex) {
+                // Hide all panels
+                stepPanels.forEach((panel, index) => {
+                    panel.classList.toggle('hidden', index !== stepIndex);
+                });
+
+                // Update indicators
+                stepIndicators.forEach((indicator, index) => {
+                    indicator.classList.remove('active', 'completed');
+                    if (index < stepIndex) {
+                        indicator.classList.add('completed');
+                    } else if (index === stepIndex) {
+                        indicator.classList.add('active');
+                    }
+                });
+
+                // Update lines
+                stepLines.forEach((line, index) => {
+                    line.classList.remove('completed');
+                    if (index < stepIndex) {
+                        line.classList.add('completed');
+                    }
+                });
+
+                currentStep = stepIndex;
+            }
+
+            function validateStep(stepIndex) {
+                const currentPanel = stepPanels[stepIndex];
+                const inputs = currentPanel.querySelectorAll('input[required], select[required], textarea[required]');
+                let isValid = true;
+
+                inputs.forEach(input => {
+                    let inputValid = true;
+                    // Check for radio buttons
+                    if (input.type === 'radio') {
+                        const radioGroup = document.getElementsByName(input.name);
+                        inputValid = Array.from(radioGroup).some(radio => radio.checked);
+                    } else {
+                        inputValid = input.checkValidity();
+                    }
+
+
+                    if (!inputValid) {
+                        isValid = false;
+                        if(input.type === 'radio') {
+                            // Highlight radio labels
+                            const radioLabels = currentPanel.querySelectorAll(`label[for^="${input.name}"]`);
+                            radioLabels.forEach(label => label.classList.add('invalid'));
+                        } else {
+                             input.classList.add('invalid');
+                        }
+                       
+                        // Remove invalid class on input
+                        input.addEventListener('input', () => {
+                             if(input.type === 'radio') {
+                                const radioLabels = currentPanel.querySelectorAll(`label[for^="${input.name}"]`);
+                                radioLabels.forEach(label => label.classList.remove('invalid'));
+                             } else {
+                                input.classList.remove('invalid');
+                             }
+                        }, { once: true });
+
+                    } else {
+                        input.classList.remove('invalid');
+                        if(input.type === 'radio') {
+                            const radioLabels = currentPanel.querySelectorAll(`label[for^="${input.name}"]`);
+                            radioLabels.forEach(label => label.classList.remove('invalid'));
+                        }
+                    }
+                });
+
+                return isValid;
+            }
+
+            nextButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    if (validateStep(currentStep)) {
+                        showStep(currentStep + 1);
+                    }
+                });
+            });
+
+            prevButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    showStep(currentStep - 1);
+                });
+            });
+
+            // Handle form submission
+            document.getElementById('booking-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                // Final validation before submit
+                if (validateStep(currentStep)) {
+                    // Disable the submit button to prevent multiple submissions
+                    const submitButton = this.querySelector('button[type="submit"]');
+                    submitButton.disabled = true;
+                    submitButton.textContent = 'Sending...';
+                    
+                    // --- SUBMISSION LOGIC ---
+                    // In a real app, you'd send this data to a server.
+                    // We'll simulate it with a 2-second delay.
+                    console.log('Form data:', new FormData(this));
+                    
+                    setTimeout(() => {
+                        // Show a success message
+                        this.innerHTML = `
+                            <div class="text-center py-10">
+                                <h3 class="text-3xl font-display font-bold text-green-400 mb-4">Booking Request Sent!</h3>
+                                <p class="text-lg text-gray-300">Thank you for your request. We will contact you at the phone number or email you provided within 24 hours to confirm your appointment.</p>
+                                <a href="index.html" class="btn-primary mt-8 inline-block">Back to Home</a>
+                            </div>
+                        `;
+                        // Remove stepper UI
+                        document.querySelector('.flex.items-center.w-full.max-w-lg.mx-auto').innerHTML = '';
+                    }, 2000);
+                }
+            });
+
+            // Set min date for date picker to today
+            const today = new Date().toISOString().split('T')[0];
+            const datePicker = document.getElementById('preferred-date');
+            if (datePicker) {
+                datePicker.setAttribute('min', today);
+            }
+
+            // Initial setup
+            showStep(0);
         });
     </script>
 </body>
