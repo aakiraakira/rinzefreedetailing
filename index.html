@@ -18,7 +18,7 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Unique display font for H1 */
+        /* Unique display font for H1 and all major headings */
         .font-display {
             font-family: 'Orbitron', sans-serif;
         }
@@ -36,6 +36,10 @@
             box-shadow: 0 0 20px rgba(56, 189, 248, 0.3), 0 0 40px rgba(56, 189, 248, 0.2);
         }
         
+        .card-glow-cyan-hover {
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+
         .card-glow-cyan-hover:hover {
             transform: translateY(-4px);
             border-color: rgba(56, 189, 248, 0.7);
@@ -233,15 +237,15 @@
                     Exceptional Care.<br class="hidden sm:block"> Flawless Finish.
                 </h1>
                 <p class="mt-8 text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto">
-                    Professional auto detailing that transforms your vehicle into a showroom masterpiece.
+                    Professional mobile auto detailing that transforms your vehicle into a showroom masterpiece, right at your doorstep.
                 </p>
                 
                 <div class="flex flex-col sm:flex-row justify-center gap-4 mt-12">
-                    <a href="pricing.html" class="btn-primary">
-                        View Packages
+                    <a href="booking.html" class="btn-primary">
+                        Book Your Detail
                     </a>
-                    <a href="pricing.html#plans" class="btn-secondary">
-                        Monthly Plans
+                    <a href="pricing.html" class="btn-secondary">
+                        View Services
                     </a>
                 </div>
             </div>
@@ -255,7 +259,7 @@
                 </div>
                 <div class="slide-up" style="transition-delay: 150ms;">
                     <p class="text-5xl font-extrabold text-cyan-400 text-glow-cyan">5★</p>
-                    <p class="mt-2 text-lg text-gray-300">Rating</p>
+                    <p class="mt-2 text-lg text-gray-300">Google Rating</p>
                 </div>
                 <div class="slide-up" style="transition-delay: 300ms;">
                     <p class="text-5xl font-extrabold text-cyan-400 text-glow-cyan">10+</p>
@@ -264,81 +268,179 @@
             </div>
         </section>
 
+        <section id="why-choose-us" class="py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center slide-up">
+                    <h2 class="text-base font-semibold text-cyan-400 uppercase tracking-wider">Our Promise</h2>
+                    <p class="mt-2 text-4xl sm:text-5xl font-extrabold text-white tracking-tighter font-display">The Rinze Free Difference</p>
+                    <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-300">
+                        We aren't just a car wash. We are automotive care specialists dedicated to perfection.
+                    </p>
+                </div>
+                
+                <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-12">
+                    <div class="text-center slide-up">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-xl bg-gray-800/50 border border-white/10 text-cyan-400 mx-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="mt-6 text-2xl font-semibold text-white">Convenient Mobile Service</h3>
+                        <p class="mt-2 text-gray-400">We come to your home or office. All we need is access to your vehicle.</p>
+                    </div>
+                    <div class="text-center slide-up" style="transition-delay: 150ms;">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-xl bg-gray-800/50 border border-white/10 text-cyan-400 mx-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.917l-2.148 1.68c-2.32.18-4.502-1.026-6.32-2.844s-3.024-4.001-2.844-6.321l1.68-2.147a6 6 0 00.917-3.861l-.477-2.387a2 2 0 00-.547-1.022l-1.405-1.405a2 2 0 00-2.828 0L1 3l1.828 1.828a11 11 0 0017.344 9.172l1.828 1.828a2 2 0 002.828 0l-1.405-1.405z" />
+                            </svg>
+                        </div>
+                        <h3 class="mt-6 text-2xl font-semibold text-white">Premium Products</h3>
+                        <p class="mt-2 text-gray-400">We only use professional-grade, pH-balanced chemicals and premium ceramic coatings.</p>
+                    </div>
+                    <div class="text-center slide-up" style="transition-delay: 300ms;">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-xl bg-gray-800/50 border border-white/10 text-cyan-400 mx-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12 12 0 003 21c0 0 3.055-1.99 8.618-3.04A11.95 11.95 0 0121 12c0-2.176-.62-4.22-1.618-6.016z" />
+                            </svg>
+                        </div>
+                        <h3 class="mt-6 text-2xl font-semibold text-white">Expert Technicians</h3>
+                        <p class="mt-2 text-gray-400">Our certified detailers are masters of their craft with a passion for automotive perfection.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services-overview" class="py-24 bg-gray-900/50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center slide-up">
+                    <h2 class="text-base font-semibold text-cyan-400 uppercase tracking-wider">What We Do</h2>
+                    <p class="mt-2 text-4xl sm:text-5xl font-extrabold text-white tracking-tighter font-display">Our Core Services</p>
+                </div>
+                
+                <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="glassmorphism rounded-2xl p-8 flex flex-col card-glow-cyan-hover slide-up">
+                        <h3 class="text-2xl font-semibold text-white">Interior Detailing</h3>
+                        <p class="mt-2 text-gray-400 flex-grow">Deep clean, shampoo, and condition every surface. We restore your interior to a factory-fresh feel and smell.</p>
+                        <a href="pricing.html#packages" class="mt-6 inline-block text-yellow-400 font-semibold hover:text-yellow-300">Learn More &rarr;</a>
+                    </div>
+                    
+                    <div class="glassmorphism rounded-2xl p-8 flex flex-col card-glow-cyan-hover slide-up" style="transition-delay: 150ms;">
+                        <h3 class="text-2xl font-semibold text-white">Paint Correction</h3>
+                        <p class="mt-2 text-gray-400 flex-grow">Permanently remove swirls, light scratches, and oxidation to reveal a flawless, mirror-like shine.</p>
+                        <a href="pricing.html#packages" class="mt-6 inline-block text-yellow-400 font-semibold hover:text-yellow-300">Learn More &rarr;</a>
+                    </div>
+                    
+                    <div class="glassmorphism rounded-2xl p-8 flex flex-col card-glow-cyan-hover slide-up" style="transition-delay: 300ms;">
+                        <h3 class="text-2xl font-semibold text-white">Ceramic Coatings</h3>
+                        <p class="mt-2 text-gray-400 flex-grow">The ultimate protection. Get 3-5 years of extreme gloss, hydrophobic properties, and defense against the elements.</p>
+                        <a href="pricing.html#packages" class="mt-6 inline-block text-yellow-400 font-semibold hover:text-yellow-300">Learn More &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="py-24">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center slide-up">
+                    <h2 class="text-base font-semibold text-cyan-400 uppercase tracking-wider">Our Process</h2>
+                    <p class="mt-2 text-4xl sm:text-5xl font-extrabold text-white tracking-tighter font-display">Flawless Finish in 3 Steps</p>
+                </div>
+                
+                <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+                    <div class="slide-up">
+                        <div class="relative flex items-center justify-center">
+                            <div class="flex items-center justify-center h-20 w-20 rounded-full bg-cyan-500/10 border-2 border-cyan-500 text-cyan-400">
+                                <span class="font-display text-3xl font-bold">1</span>
+                            </div>
+                        </div>
+                        <h3 class="mt-6 text-2xl font-semibold text-white">Book Your Service</h3>
+                        <p class="mt-2 text-gray-400">Choose your package online or give us a call. Select a time and location that works for you.</p>
+                    </div>
+                    
+                    <div class="slide-up" style="transition-delay: 150ms;">
+                        <div class="relative flex items-center justify-center">
+                            <div class="flex items-center justify-center h-20 w-20 rounded-full bg-cyan-500/10 border-2 border-cyan-500 text-cyan-400">
+                                <span class="font-display text-3xl font-bold">2</span>
+                            </div>
+                        </div>
+                        <h3 class="mt-6 text-2xl font-semibold text-white">We Come To You</h3>
+                        <p class="mt-2 text-gray-400">Our fully-equipped mobile unit arrives at your home or office on schedule, ready to work.</p>
+                    </div>
+                    
+                    <div class="slide-up" style="transition-delay: 300ms;">
+                        <div class="relative flex items-center justify-center">
+                            <div class="flex items-center justify-center h-20 w-20 rounded-full bg-cyan-500/10 border-2 border-cyan-500 text-cyan-400">
+                                <span class="font-display text-3xl font-bold">3</span>
+                            </div>
+                        </div>
+                        <h3 class="mt-6 text-2xl font-semibold text-white">Enjoy Your "New" Car</h3>
+                        <p class="mt-2 text-gray-400">Experience the transformation. Your vehicle will look and feel better than ever, protected from the elements.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
         <section id="gallery" class="py-24 bg-gray-900/50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center slide-up">
                     <h2 class="text-base font-semibold text-cyan-400 uppercase tracking-wider">Our Work</h2>
-                    <p class="mt-2 text-4xl sm:text-5xl font-extrabold text-white tracking-tighter">Before & After</p>
+                    <p class="mt-2 text-4xl sm:text-5xl font-extrabold text-white tracking-tighter font-display">Before & After</s</p>
                     <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-300">
                         See the transformation — from everyday to extraordinary.
                     </p>
                 </div>
                 
                 <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="glassmorphism rounded-xl p-4 slide-up">
+                    <div class="glassmorphism rounded-xl p-4 slide-up card-glow-cyan-hover">
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <span class="text-sm font-bold uppercase text-gray-400 tracking-wider">Before</span>
-                                <div class="mt-2 w-full h-64 rounded-lg bg-gray-700 flex items-center justify-center text-gray-500">
-                                    
-                                </div>
+                                <img src="https://placehold.co/400x300/374151/9ca3af?text=Dull+%26+Dirty" alt="Exterior Before" class="mt-2 w-full h-64 rounded-lg object-cover">
                             </div>
                             <div>
                                 <span class="text-sm font-bold uppercase text-cyan-400 tracking-wider">After</span>
-                                <div class="mt-2 w-full h-64 rounded-lg bg-gray-600 flex items-center justify-center text-white">
-                                    
-                                </div>
+                                <img src="https://placehold.co/400x300/06b6d4/ffffff?text=Deep+Shine" alt="Exterior After" class="mt-2 w-full h-64 rounded-lg object-cover">
                             </div>
                         </div>
                         <p class="text-center mt-4 text-lg font-semibold text-white">Full Exterior Detail</p>
                     </div>
-                    <div class="glassmorphism rounded-xl p-4 slide-up" style="transition-delay: 150ms;">
+                    <div class="glassmorphism rounded-xl p-4 slide-up card-glow-cyan-hover" style="transition-delay: 150ms;">
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <span class="text-sm font-bold uppercase text-gray-400 tracking-wider">Before</span>
-                                <div class="mt-2 w-full h-64 rounded-lg bg-gray-700 flex items-center justify-center text-gray-500">
-                                    
-                                </div>
+                                <img src="https://placehold.co/400x300/374151/9ca3af?text=Swirl+Marks" alt="Paint Before" class="mt-2 w-full h-64 rounded-lg object-cover">
                             </div>
                             <div>
                                 <span class="text-sm font-bold uppercase text-cyan-400 tracking-wider">After</span>
-                                <div class="mt-2 w-full h-64 rounded-lg bg-gray-600 flex items-center justify-center text-white">
-                                    
-                                </div>
+                                <img src="https://placehold.co/400x300/06b6d4/ffffff?text=Mirror+Finish" alt="Paint After" class="mt-2 w-full h-64 rounded-lg object-cover">
                             </div>
                         </div>
                         <p class="text-center mt-4 text-lg font-semibold text-white">Paint Correction</p>
                     </div>
-                    <div class="glassmorphism rounded-xl p-4 slide-up">
+                    <div class="glassmorphism rounded-xl p-4 slide-up card-glow-cyan-hover">
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <span class="text-sm font-bold uppercase text-gray-400 tracking-wider">Before</span>
-                                <div class="mt-2 w-full h-64 rounded-lg bg-gray-700 flex items-center justify-center text-gray-500">
-                                    
-                                </div>
+                                <img src="https://placehold.co/400x300/374151/9ca3af?text=Stained+Seats" alt="Interior Before" class="mt-2 w-full h-64 rounded-lg object-cover">
                             </div>
                             <div>
                                 <span class="text-sm font-bold uppercase text-cyan-400 tracking-wider">After</span>
-                                <div class="mt-2 w-full h-64 rounded-lg bg-gray-600 flex items-center justify-center text-white">
-                                    
-                                </div>
+                                <img src="https://placehold.co/400x300/06b6d4/ffffff?text=Factory+Fresh" alt="Interior After" class="mt-2 w-full h-64 rounded-lg object-cover">
                             </div>
                         </div>
                         <p class="text-center mt-4 text-lg font-semibold text-white">Interior Restoration</p>
                     </div>
-                    <div class="glassmorphism rounded-xl p-4 slide-up" style="transition-delay: 150ms;">
+                    <div class="glassmorphism rounded-xl p-4 slide-up card-glow-cyan-hover" style="transition-delay: 150ms;">
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <span class="text-sm font-bold uppercase text-gray-400 tracking-wider">Before</span>
-                                <div class="mt-2 w-full h-64 rounded-lg bg-gray-700 flex items-center justify-center text-gray-500">
-                                    
-                                </div>
+                                <img src="https://placehold.co/400x300/374151/9ca3af?text=Foggy+Headlight" alt="Headlight Before" class="mt-2 w-full h-64 rounded-lg object-cover">
                             </div>
                             <div>
                                 <span class="text-sm font-bold uppercase text-cyan-400 tracking-wider">After</span>
-                                <div class="mt-2 w-full h-64 rounded-lg bg-gray-600 flex items-center justify-center text-white">
-                                    
-                                </div>
+                                <img src="https://placehold.co/400x300/06b6d4/ffffff?text=Crystal+Clear" alt="Headlight After" class="mt-2 w-full h-64 rounded-lg object-cover">
                             </div>
                         </div>
                         <p class="text-center mt-4 text-lg font-semibold text-white">Headlight Restoration</p>
@@ -351,7 +453,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center slide-up">
                     <h2 class="text-base font-semibold text-cyan-400 uppercase tracking-wider">Client Testimonials</h2>
-                    <p class="mt-2 text-4xl sm:text-5xl font-extrabold text-white tracking-tighter">Don't Just Take Our Word</p>
+                    <p class="mt-2 text-4xl sm:text-5xl font-extrabold text-white tracking-tighter font-display">Don't Just Take Our Word</p>
                     <p class="mt-6 text-xl font-bold text-gray-300">
                         <span class="text-yellow-400">★</span> 4.9/5.0 <span class="text-gray-400 font-medium">from 500+ reviews</span>
                     </p>
@@ -410,6 +512,25 @@
             </div>
         </section>
 
+        <section id="final-cta" class="py-24 bg-gray-900/50">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center glassmorphism rounded-2xl p-12 md:p-16 card-glow-cyan">
+                <div class="slide-up">
+                    <h2 class="text-4xl sm:text-5xl font-extrabold text-white tracking-tighter font-display">Ready for a Flawless Finish?</h2>
+                    <p class="mt-6 max-w-xl mx-auto text-lg text-gray-300">
+                        Give your vehicle the professional care it deserves. Book your mobile detailing service today and experience the Rinze Free difference.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center gap-4 mt-12">
+                        <a href="booking.html" class="btn-primary">
+                            Book Your Detail Now
+                        </a>
+                        <a href="pricing.html" class="btn-secondary">
+                            View All Packages
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer class="bg-gray-950 border-t border-white/10">
@@ -438,12 +559,12 @@
                 <div>
                     <h3 class="text-sm font-semibold text-cyan-400 uppercase tracking-wider">Our Services</h3>
                     <ul class="mt-4 space-y-3">
-                        <li><span class="text-base text-gray-400">Paint Correction</span></li>
-                        <li><span class="text-base text-gray-400">Ceramic Coating</span></li>
-                        <li><span class="text-base text-gray-400">Interior Detailing</span></li>
-                        <li><span class="text-base text-gray-400">Engine Bay Cleaning</span></li>
-                        <li><span class="text-base text-gray-400">Headlight Restoration</span></li>
-                        <li><span class="text-base text-gray-400">Monthly Maintenance</span></li>
+                        <li><a href="pricing.html#packages" class="text-base text-gray-400 hover:text-white transition-colors">Paint Correction</a></li>
+                        <li><a href="pricing.html#packages" class="text-base text-gray-400 hover:text-white transition-colors">Ceramic Coating</a></li>
+                        <li><a href="pricing.html#packages" class="text-base text-gray-400 hover:text-white transition-colors">Interior Detailing</a></li>
+                        <li><a href="pricing.html#add-ons" class="text-base text-gray-400 hover:text-white transition-colors">Engine Bay Cleaning</a></li>
+                        <li><a href="pricing.html#add-ons" class="text-base text-gray-400 hover:text-white transition-colors">Headlight Restoration</a></li>
+                        <li><a href="pricing.html#plans" class="text-base text-gray-400 hover:text-white transition-colors">Monthly Maintenance</a></li>
                     </ul>
                 </div>
 
