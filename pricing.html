@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pricing & Packages - Rinze Free Auto Detailing</title>
+    <!-- FAVICON ADDED -->
+    <link rel="icon" type="image/png" href="https://reputifly.com/wp-content/uploads/2025/11/car-logo.png">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,6 +19,24 @@
             color: #F0F6FC;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            position: relative; /* Needed for the pseudo-element glow */
+            overflow-x: hidden;
+        }
+
+        /* --- BACKGROUND GLOW ADDED --- */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px; 
+            height: 800px;
+            /* Using #8ca3b8 as rgba(140, 163, 184, 0.1) for a 10% opacity glow */
+            background: radial-gradient(circle, rgba(140, 163, 184, 0.1), transparent 70%);
+            filter: blur(100px);
+            z-index: -1; /* Places glow behind all content */
+            pointer-events: none;
         }
 
         /* Unique display font for H1 */
@@ -139,19 +160,6 @@
             transform: translateY(0);
         }
 
-        /* Accordion styles for Add-ons */
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .accordion-toggle .icon-plus {
-            transition: transform 0.3s ease;
-        }
-        .accordion-toggle.open .icon-plus {
-            transform: rotate(45deg);
-        }
-
         /* Active Nav Styles */
         .nav-link-active {
             color: #FCD34D; /* yellow-400 */
@@ -164,53 +172,12 @@
             border-left: 4px solid #FCD34D;
         }
 
-        /* --- NEW: Most Popular Pulse Animation --- */
-        .pulse-yellow {
-            animation: pulse-yellow 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        /* --- ADD-ON CARD PLUS BUTTON --- */
+        .addon-plus-icon {
+            transition: transform 0.3s ease;
         }
-        @keyframes pulse-yellow {
-            0%, 100% {
-                opacity: 1;
-                box-shadow: 0 0 25px rgba(252, 211, 77, 0.4), 0 0 50px rgba(252, 211, 77, 0.3), 0 0 0 4px rgba(252, 211, 77, 0.2);
-            }
-            50% {
-                opacity: .95;
-                box-shadow: 0 0 35px rgba(252, 211, 77, 0.6), 0 0 60px rgba(252, 211, 77, 0.5), 0 0 0 4px rgba(252, 211, 77, 0);
-            }
-        }
-
-        /* --- NEW: Review Marquee --- */
-        .marquee {
-            overflow: hidden;
-            position: relative;
-            white-space: nowrap;
-            mask-image: linear-gradient(to right,
-                transparent 0%,
-                black 10%,
-                black 90%,
-                transparent 100%
-            );
-            -webkit-mask-image: linear-gradient(to right,
-                transparent 0%,
-                black 10%,
-                black 90%,
-                transparent 100%
-            );
-        }
-        .marquee-content {
-            display: inline-block;
-            animation: marquee 40s linear infinite;
-        }
-        .marquee-item {
-            display: inline-block;
-            padding: 1.5rem 2rem;
-            margin: 0 1rem;
-            width: 350px; /* Give items a fixed width */
-            white-space: normal; /* Allow text to wrap */
-        }
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); } /* Loops seamlessly */
+        .addon-plus-icon.rotate-45 {
+            transform: rotate(45deg);
         }
 
     </style>
@@ -227,9 +194,10 @@
                 
                 <div class="hidden md:flex md:items-center md:space-x-8">
                     <a href="index.html" class="text-gray-300 hover:text-white transition-colors duration-200">Home</a>
-                    <a href="pricing.html" class="nav-link-active">Pricing</a>
+                    <a href="#plans" class="text-gray-300 hover:text-white transition-colors duration-200">Plans</a>
+                    <a href="#packages" class="nav-link-active">Packages</a>
                     <a href="index.html#gallery" class="text-gray-300 hover:text-white transition-colors duration-200">Gallery</a>
-                    <a href="booking.html" class="text-gray-300 hover:text-white transition-colors duration-200">Booking</a>
+                    <a href="booking.html" class="text-gray-300 hover:text-white transition-colors duration-200">Contact</a>
                 </div>
                 
                 <div class="hidden md:flex items-center space-x-4">
@@ -254,9 +222,10 @@
         <div id="mobile-menu" class="md:hidden hidden glassmorphism border-t border-white/10">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <a href="index.html" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/10">Home</a>
-                <a href="pricing.html" class="mobile-nav-link mobile-nav-link-active block px-3 py-2 rounded-md text-base font-medium">Pricing</a>
+                <a href="#plans" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/10">Plans</a>
+                <a href="#packages" class="mobile-nav-link mobile-nav-link-active block px-3 py-2 rounded-md text-base font-medium">Packages</a>
                 <a href="index.html#gallery" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/10">Gallery</a>
-                <a href="booking.html" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/10">Booking</a>
+                <a href="booking.html" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/10">Contact</a>
             </div>
             <div class="px-4 pb-4 border-t border-gray-700/50 pt-4 space-y-3">
                 <a href="tel:+6588479753" class="block w-full text-center btn-ghost-cyan text-sm">
@@ -271,123 +240,22 @@
 
     <main>
 
-        <section class="pt-40 pb-20 relative overflow-hidden bg-gray-900/50">
-            <div class="absolute inset-0 z-0">
-                <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-600/10 rounded-full filter blur-3xl opacity-50"></div>
-                <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-yellow-600/10 rounded-full filter blur-3xl opacity-50"></div>
-            </div>
-            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div class="text-center lg:text-left slide-up">
-                    <h1 class="font-display text-5xl sm:text-7xl font-extrabold text-white tracking-tighter">
-                        Our Services & Pricing
-                    </h1>
-                    <p class="mt-8 text-lg sm:text-xl text-gray-300 max-w-xl mx-auto lg:mx-0">
-                        Transparent, up-front pricing for a flawless finish. Find the perfect package or plan for your vehicle.
-                    </p>
-                    <div class="mt-12 flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
-                        <a href="booking.html" class="btn-primary">
-                            Book Your Detail
-                        </a>
-                        <a href="#packages" class="btn-ghost-cyan">
-                            View Packages
-                        </a>
-                    </div>
-                </div>
-                <div class="glassmorphism rounded-2xl p-8 slide-up" style="transition-delay: 150ms;">
-                    <h3 class="text-2xl font-semibold text-white">Estimated Price Guide</h3>
-                    <p class="text-gray-400 mt-2">Prices vary by vehicle size and condition.</p>
-                    <div class="mt-6 space-y-4">
-                        <div class="flex justify-between items-center">
-                            <span class="text-lg text-gray-300">Standard Detail</span>
-                            <span class="text-lg font-bold text-cyan-400">$175+</span>
-                        </div>
-                        <div class="w-full h-px bg-white/10"></div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-lg text-gray-300">Paint Enhancement</span>
-                            <span class="text-lg font-bold text-cyan-400">$325+</span>
-                        </div>
-                        <div class="w-full h-px bg-white/10"></div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-lg text-gray-300">Ceramic Coating</span>
-                            <span class="text-lg font-bold text-cyan-400">$500+</span>
-                        </div>
-                        <div class="w-full h-px bg-white/10"></div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-lg text-gray-300">Monthly Maintenance</span>
-                            <span class="text-lg font-bold text-cyan-400">$120+</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="service-guide" class="py-24">
+        <section id="packages" class="pt-40 py-24 bg-gray-900/50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center slide-up">
-                    <h2 class="text-base font-semibold text-cyan-400 uppercase tracking-wider">Find Your Perfect Service</h2>
-                    <p class="mt-2 text-4xl sm:text-5xl font-extrabold text-white tracking-tighter font-display">Not Sure What You Need?</p>
-                    <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-300">
-                        Select your vehicle's condition to see our top recommendation.
-                    </p>
-                </div>
-                
-                <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="glassmorphism rounded-2xl p-8 flex flex-col text-center items-center card-glow-cyan-hover slide-up">
-                        <div class="flex-shrink-0 flex items-center justify-center h-16 w-16 rounded-xl bg-gray-800/50 border border-white/10 text-yellow-400">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>
-                        </div>
-                        <h3 class="mt-6 text-2xl font-semibold text-white">"It's New & Shiny"</h3>
-                        <p class="mt-2 text-gray-400 flex-grow">Your car is in great shape, and you want to keep it that way with maximum protection.</p>
-                        <div class="mt-6">
-                            <p class="text-sm text-cyan-400 font-medium">WE RECOMMEND</p>
-                            <p class="text-xl font-semibold text-white">Ultimate Ceramic</p>
-                            <a href="#packages" class="mt-4 inline-block btn-secondary text-sm px-6 py-2">View Details</a>
-                        </div>
-                    </div>
-                    
-                    <div class="glassmorphism rounded-2xl p-8 flex flex-col text-center items-center card-glow-cyan-hover slide-up" style="transition-delay: 150ms;">
-                        <div class="flex-shrink-0 flex items-center justify-center h-16 w-16 rounded-xl bg-gray-800/50 border border-white/10 text-cyan-400">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor"><path d="M5.5 16a3.5 3.5 0 01-3.5-3.5V6a1 1 0 011-1h12a1 1 0 011 1v6.5a3.5 3.5 0 01-3.5 3.5h-1V18a1 1 0 11-2 0v-2h-2v2a1 1 0 11-2 0v-2h-1zM4 6v6.5A1.5 1.5 0 005.5 14h9a1.5 1.5 0 001.5-1.5V6H4z" /></svg>
-                        </div>
-                        <h3 class="mt-6 text-2xl font-semibold text-white">"It's My Daily Driver"</h3>
-                        <p class="mt-2 text-gray-400 flex-grow">It's seen some miles and has light swirls or stains. It needs a serious refresh and solid protection.</p>
-                        <div class="mt-6">
-                            <p class="text-sm text-cyan-400 font-medium">WE RECOMMEND</p>
-                            <p class="text-xl font-semibold text-white">Premium Enhancement</p>
-                            <a href="#packages" class="mt-4 inline-block btn-primary text-sm px-6 py-2">View Details</a>
-                        </div>
-                    </div>
-
-                    <div class="glassmorphism rounded-2xl p-8 flex flex-col text-center items-center card-glow-cyan-hover slide-up" style="transition-delay: 300ms;">
-                        <div class="flex-shrink-0 flex items-center justify-center h-16 w-16 rounded-xl bg-gray-800/50 border border-white/10 text-gray-400">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M11.49 3.17c.38-1.56 2.62-1.56 3.02 0l1.29 5.22a1 1 0 00.95.69h5.48c1.64 0 2.3 2.11.98 3.07l-4.43 3.22a1 1 0 00-.36 1.11l1.69 5.22c.48 1.49-1.2 2.72-2.5 1.77l-4.43-3.22a1 1 0 00-1.17 0l-4.43 3.22c-1.3.95-2.98-.28-2.5-1.77l1.69-5.22a1 1 0 00-.36-1.11L.82 12.15c-1.32-.96-.66-3.07.98-3.07h5.48a1 1 0 00.95-.69L9.51 3.17z" clip-rule="evenodd" /></svg>
-                        </div>
-                        <h3 class="mt-6 text-2xl font-semibold text-white">"It Needs a Rescue"</h3>
-                        <p class="mt-2 text-gray-400 flex-grow">It's been a while. It needs a good, deep clean inside and out to feel new again.</p>
-                        <div class="mt-6">
-                            <p class="text-sm text-cyan-400 font-medium">WE RECOMMEND</p>
-                            <p class="text-xl font-semibold text-white">Essential Detail</p>
-                            <a href="#packages" class="mt-4 inline-block btn-secondary text-sm px-6 py-2">View Details</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="packages" class="py-24 bg-gray-900/50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center slide-up">
-                    <h2 class="text-base font-semibold text-cyan-400 uppercase tracking-wider">One-Time Services</h2>
-                    <p class="mt-2 text-4xl sm:text-5xl font-extrabold text-white tracking-tighter font-display">Detailing Packages</p>
+                    <p class="mt-2 text-4xl sm:text-5xl font-extrabold text-white tracking-tighter font-display uppercase">Detailing Packages</p>
                     <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-300">
                         Professional detailing services tailored to your vehicle's needs.
                     </p>
                 </div>
                 
-                <div class="mt-20 grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    <div class="glassmorphism rounded-2xl p-8 flex flex-col transition-all duration-300 card-glow-cyan-hover slide-up">
-                        <h3 class="text-2xl font-semibold text-white">ESSENTIAL</h3>
-                        <p class="mt-1 text-lg font-medium text-cyan-400">Standard Detail</p>
+                <div class="mt-20 grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+                    <!-- ESSENTIAL CARD -->
+                    <div class="glassmorphism rounded-2xl p-8 flex flex-col transition-all duration-300 card-glow-cyan-hover slide-up h-full">
+                        <!-- PILL LABEL STYLED -->
+                        <span class="inline-block bg-gray-300 text-gray-900 text-xs font-bold uppercase px-3 py-1 rounded-full self-start">ESSENTIAL</span>
+                        <!-- FONT AND MARGIN UPDATED -->
+                        <p class="mt-4 font-display text-2xl font-semibold text-white uppercase">Standard Detail</p>
                         <p class="mt-2 text-gray-400">Perfect for regular maintenance and keeping your vehicle pristine.</p>
                         <div class="mt-6">
                             <span class="text-5xl font-extrabold text-white">$175</span>
@@ -404,16 +272,20 @@
                         </ul>
                         <div class="mt-8 pt-8 border-t border-white/10">
                             <p class="text-sm text-gray-400">⏱ 2–3 Hours</p>
+                            <p class="text-sm text-gray-400 mt-2">Crisp, glossy finish with a refreshed interior</p>
                             <a href="booking.html" class="mt-6 block w-full text-center btn-secondary">
                                 Select Package
                             </a>
                         </div>
                     </div>
 
-                    <div class="glassmorphism rounded-2xl p-8 flex flex-col border-2 border-yellow-400 shadow-2xl shadow-yellow-500/10 relative transform lg:scale-105 slide-up pulse-yellow" style="transition-delay: 150ms;">
-                        <span class="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-yellow-400 text-gray-900 text-xs font-bold uppercase px-4 py-1 rounded-full">⭐ Most Popular</span>
-                        <h3 class="text-2xl font-semibold text-white">PREMIUM</h3>
-                        <p class="mt-1 text-lg font-medium text-cyan-400">Enhancement Package</p>
+                    <!-- PREMIUM CARD (LARGER) -->
+                    <div class="glassmorphism rounded-2xl p-8 flex flex-col border-2 border-yellow-400 shadow-2xl shadow-yellow-500/10 relative transform lg:scale-105 slide-up h-full" style="transition-delay: 150ms;">
+                        <span class="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-yellow-400 text-gray-900 text-xs font-bold uppercase px-4 py-1 rounded-full">MOST POPULAR</span>
+                        <!-- PILL LABEL STYLED -->
+                        <span class="inline-block bg-yellow-400 text-gray-900 text-xs font-bold uppercase px-3 py-1 rounded-full self-start mt-5">PREMIUM</span>
+                        <!-- FONT AND MARGIN UPDATED -->
+                        <p class="mt-4 font-display text-2xl font-semibold text-white uppercase">Enhancement Package</p>
                         <p class="mt-2 text-gray-400">For vehicles needing deeper restoration & protection.</p>
                         <div class="mt-6">
                             <span class="text-5xl font-extrabold text-white">$325</span>
@@ -421,23 +293,27 @@
                         <ul class="space-y-3 mt-8 text-gray-300 flex-grow">
                             <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Includes everything from Standard, plus:</li>
                             <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Full decontamination (iron + clay bar)</li>
-                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> 2-Step Paint Correction (removes 80% swirls)</li>
-                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Paint sealant (6–9 months protection)</li>
+                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> 2-Step Paint Correction (removes up to 80% of swirls & light scratches)</li>
+                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Paint sealant (6-9 months protection)</li>
                             <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Wheels deep cleaned & polished</li>
                             <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Engine bay cleaned & dressed</li>
                             <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Fabric shampoo & leather conditioning</li>
+                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Steam-cleaned vents & plastics</li>
+                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Glass polish + rain repellent</li>
                         </ul>
                         <div class="mt-8 pt-8 border-t border-white/10">
-                            <p class="text-sm text-gray-400">⏱ 4–6 Hours</p>
                             <a href="booking.html" class="mt-6 block w-full text-center btn-primary">
                                 Select Package
                             </a>
                         </div>
                     </div>
 
-                    <div class="glassmorphism rounded-2xl p-8 flex flex-col transition-all duration-300 card-glow-cyan-hover slide-up" style="transition-delay: 300ms;">
-                        <h3 class="text-2xl font-semibold text-white">ULTIMATE</h3>
-                        <p class="mt-1 text-lg font-medium text-cyan-400">Executive Ceramic Protection</p>
+                    <!-- ULTIMATE CARD -->
+                    <div class="glassmorphism rounded-2xl p-8 flex flex-col transition-all duration-300 card-glow-cyan-hover slide-up h-full" style="transition-delay: 300ms;">
+                        <!-- PILL LABEL STYLED -->
+                        <span class="inline-block bg-cyan-300 text-gray-900 text-xs font-bold uppercase px-3 py-1 rounded-full self-start">ULTIMATE</span>
+                        <!-- FONT AND MARGIN UPDATED -->
+                        <p class="mt-4 font-display text-2xl font-semibold text-white uppercase">Executive Ceramic Protection</p>
                         <p class="mt-2 text-gray-400">For unmatched shine, depth, & long-term ceramic protection.</p>
                         <div class="mt-6">
                             <span class="text-5xl font-extrabold text-white">$500</span>
@@ -449,9 +325,10 @@
                             <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Wheel sealant & brake dust protection</li>
                             <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Interior deep clean + fabric & leather guard</li>
                             <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Engine bay detailed & hydrophobic dressing</li>
+                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Glass coating for clarity & durability</li>
+                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Complimentary Maintenance Wash (within 30 days)</li>
                         </ul>
                         <div class="mt-8 pt-8 border-t border-white/10">
-                            <p class="text-sm text-gray-400">⏱ 6–8 Hours</p>
                             <a href="booking.html" class="mt-6 block w-full text-center btn-secondary">
                                 Select Package
                             </a>
@@ -464,20 +341,25 @@
         <section id="plans" class="py-24">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center slide-up">
-                    <h2 class="text-base font-semibold text-cyan-400 uppercase tracking-wider">Subscriptions</h2>
-                    <p class="mt-2 text-4xl sm:text-5xl font-extrabold text-white tracking-tighter font-display">Monthly Maintenance Plans</p>
+                    <!-- HEADER TEXT SPLIT AND COLORED -->
+                    <p class="mt-2 text-4xl sm:text-5xl font-extrabold text-white tracking-tighter font-display uppercase">
+                        Monthly Maintenance <span class="text-cyan-400">Plans</span>
+                    </p>
                     <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-300">
                         Keep your ride flawless all year long with our subscription plans.
                     </p>
                 </div>
                 
-                <div class="mt-20 grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    <div class="glassmorphism rounded-2xl p-8 flex flex-col transition-all duration-300 card-glow-cyan-hover slide-up">
+                <div class="mt-20 grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+                    <!-- SILVER PLAN CARD -->
+                    <div class="glassmorphism rounded-2xl p-8 flex flex-col transition-all duration-300 card-glow-cyan-hover slide-up h-full">
                         <div class="flex-shrink-0">
-                            <svg class="h-10 w-10 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.783-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                            <!-- STAR ICON ADDED -->
+                            <svg class="h-10 w-10 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.31h5.4c.566 0 .809.73.358 1.086l-4.37 3.178a.562.562 0 00-.22.518l1.6 5.33c.194.64-.523 1.14-1.06 0L12 15.334a.563.563 0 00-.65 0l-4.707 3.42c-.538.39-1.255-.12-1.06-.76l1.6-5.33a.563.563 0 00-.22-.518l-4.37-3.178c-.45-.356-.208-1.086.358-1.086h5.4a.563.563 0 00.475-.31l2.125-5.111z" />
                             </svg>
-                            <h3 class="text-2xl font-semibold text-white mt-4">SILVER PLAN</h3>
+                            <!-- FONT AND MARGIN UPDATED -->
+                            <h3 class="mt-4 font-display text-2xl font-semibold text-white uppercase">SILVER PLAN</h3>
                         </div>
                         <p class="mt-2 text-gray-400">Perfect for regular upkeep between full details.</p>
                         <div class="mt-6">
@@ -499,13 +381,16 @@
                         </div>
                     </div>
 
-                    <div class="glassmorphism rounded-2xl p-8 flex flex-col border-2 border-yellow-400 shadow-2xl shadow-yellow-500/10 relative transform lg:scale-105 slide-up pulse-yellow" style="transition-delay: 150ms;">
-                        <span class="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-yellow-400 text-gray-900 text-xs font-bold uppercase px-4 py-1 rounded-full">Most Popular</span>
-                        <div class="flex-shrink-0">
-                            <svg class="h-10 w-10 text-yellow-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m16 11.062A23.904 23.904 0 0112 18c-3.183 0-6.22-.62-9-1.745M16 11V9a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m0 5a2 2 0 002 2h4a2 2 0 002-2v-2m0 0V9m0 5v2m0-5H8m8 0h2.5M15 17v2m0-11V4m0 5v-2m0 0H8m0 0h2.5m0 0H6" />
+                    <!-- GOLD PLAN CARD (LARGER) -->
+                    <div class="glassmorphism rounded-2xl p-8 flex flex-col border-2 border-yellow-400 shadow-2xl shadow-yellow-500/10 relative transform lg:scale-105 slide-up h-full" style="transition-delay: 150ms;">
+                        <span class="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-yellow-400 text-gray-900 text-xs font-bold uppercase px-4 py-1 rounded-full">MOST POPULAR</span>
+                        <div class="flex-shrink-0 pt-5">
+                            <!-- CROWN ICON ADDED -->
+                            <svg class="h-10 w-10 text-yellow-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zM3 18h18" />
                             </svg>
-                            <h3 class="text-2xl font-semibold text-white mt-4">GOLD PLAN</h3>
+                            <!-- FONT AND MARGIN UPDATED -->
+                            <h3 class="mt-4 font-display text-2xl font-semibold text-white uppercase">GOLD PLAN</h3>
                         </div>
                         <p class="mt-2 text-gray-400">For that "just detailed" look — always!</p>
                         <div class="mt-6">
@@ -526,12 +411,15 @@
                         </div>
                     </div>
 
-                    <div class="glassmorphism rounded-2xl p-8 flex flex-col transition-all duration-300 card-glow-cyan-hover slide-up" style="transition-delay: 300ms;">
+                    <!-- PLATINUM PLAN CARD -->
+                    <div class="glassmorphism rounded-2xl p-8 flex flex-col transition-all duration-300 card-glow-cyan-hover slide-up h-full" style="transition-delay: 300ms;">
                         <div class="flex-shrink-0">
-                             <svg class="h-10 w-10 text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.354a4 4 0 110 5.292M15 21H9s-1.5-2-1.5-6c0-4.5 4.5-8.5 4.5-8.5s4.5 4 4.5 8.5c0 4-1.5 6-1.5 6zm-3-11.646a4 4 0 010 5.292" />
-                             </svg>
-                            <h3 class="text-2xl font-semibold text-white mt-4">PLATINUM PLAN</h3>
+                             <!-- DIAMOND ICON ADDED -->
+                             <svg class="h-10 w-10 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 2L2 12l10 10 10-10L12 2zM6 12l6-6 6 6-6 6-6-6z" />
+                            </svg>
+                            <!-- FONT AND MARGIN UPDATED -->
+                            <h3 class="mt-4 font-display text-2xl font-semibold text-white uppercase">PLATINUM PLAN</h3>
                         </div>
                         <p class="mt-2 text-gray-400">Ultimate protection & constant perfection.</p>
                         <div class="mt-6">
@@ -559,175 +447,94 @@
             </div>
         </section>
 
-        <section id="review-marquee" class="py-24">
-            <div class="text-center slide-up mb-16">
-                <h2 class="text-base font-semibold text-cyan-400 uppercase tracking-wider">Don't Just Take Our Word</h2>
-                <p class="mt-2 text-4xl sm:text-5xl font-extrabold text-white tracking-tighter font-display">Hear From Our 500+ Happy Clients</p>
-            </div>
-            
-            <div class="marquee slide-up">
-                <div class="marquee-content">
-                    <div class="marquee-item glassmorphism rounded-2xl">
-                        <div class="flex items-center mb-4">
-                            <img class="h-10 w-10 rounded-full object-cover" src="https://placehold.co/48x48/3B82F6/FFFFFF?text=MR&font=inter" alt="Michael Rodriguez">
-                            <div class="ml-3">
-                                <p class="font-semibold text-white">Michael R.</p>
-                                <p class="text-sm text-yellow-400">★★★★★</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-300">"Blown away by the ceramic coating! My car looks better than new."</p>
-                    </div>
-                    <div class="marquee-item glassmorphism rounded-2xl">
-                        <div class="flex items-center mb-4">
-                            <img class="h-10 w-10 rounded-full object-cover" src="https://placehold.co/48x48/EC4899/FFFFFF?text=SJ&font=inter" alt="Sarah Johnson">
-                            <div class="ml-3">
-                                <p class="font-semibold text-white">Sarah J.</p>
-                                <p class="text-sm text-yellow-400">★★★★★</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-300">"The Gold monthly plan is worth every penny. My Tesla always looks showroom-ready."</p>
-                    </div>
-                    <div class="marquee-item glassmorphism rounded-2xl">
-                        <div class="flex items-center mb-4">
-                            <img class="h-10 w-10 rounded-full object-cover" src="https://placehold.co/48x48/F97316/FFFFFF?text=DC&font=inter" alt="David Chen">
-                            <div class="ml-3">
-                                <p class="font-semibold text-white">David C.</p>
-                                <p class="text-sm text-yellow-400">★★★★★</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-300">"The paint correction removed years of swirls. Exceptional work!"</p>
-                    </div>
-                    <div class="marquee-item glassmorphism rounded-2xl">
-                        <div class="flex items-center mb-4">
-                            <img class="h-10 w-10 rounded-full object-cover" src="https://placehold.co/48x48/8B5CF6/FFFFFF?text=EM&font=inter" alt="Emily Martinez">
-                            <div class="ml-3">
-                                <p class="font-semibold text-white">Emily M.</p>
-                                <p class="text-sm text-yellow-400">★★★★★</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-300">"Interior detailing was phenomenal. Removed stains I thought were permanent!"</p>
-                    </div>
-                    <div class="marquee-item glassmorphism rounded-2xl">
-                        <div class="flex items-center mb-4">
-                            <img class="h-10 w-10 rounded-full object-cover" src="https://placehold.co/48x48/10B981/FFFFFF?text=JT&font=inter" alt="James T">
-                            <div class="ml-3">
-                                <p class="font-semibold text-white">James T.</p>
-                                <p class="text-sm text-yellow-400">★★★★★</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-300">"Incredible attention to detail. The mobile service is a game-changer."</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
 
         <section id="add-ons" class="py-24 bg-gray-900/50">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center slide-up">
-                    <h2 class="text-base font-semibold text-cyan-400 uppercase tracking-wider">Customize Your Detail</h2>
-                    <p class="mt-2 text-4xl sm:text-5xl font-extrabold text-white tracking-tighter font-display">Add-On Enhancements</p>
+                    <p class="mt-2 text-4xl sm:text-5xl font-extrabold text-white tracking-tighter font-display uppercase">Add-On Enhancements</p>
                     <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-300">
-                        Complete your perfect detail. Add any of these services to your package or plan.
+                        Customize your detailing experience with premium add-ons.
                     </p>
                 </div>
                 
-                <div class="mt-16 space-y-4">
-                    <div class="glassmorphism rounded-xl transition-all duration-300 card-glow-cyan-hover slide-up">
-                        <button class="accordion-toggle flex justify-between items-center w-full p-6 text-left">
-                            <h3 class="text-lg font-semibold text-white">Engine Bay Detailing</h3>
-                            <div class="flex items-center">
-                                <span class="text-2xl font-bold text-cyan-400 mr-6">$50</span>
-                                <span class="icon-plus text-cyan-400 text-3xl font-thin">+</span>
-                            </div>
-                        </button>
-                        <div class="accordion-content px-6">
-                            <p class="pb-6 text-gray-400">Complete engine compartment cleaning & dressing to restore a factory-fresh look and protect plastics & hoses.</p>
+                <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <!-- Add-on Card 1 -->
+                    <div class="glassmorphism rounded-2xl p-6 flex flex-col h-full slide-up card-glow-cyan-hover">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-semibold text-white">Engine Bay Detailing</h3>
+                            <button class="addon-toggle-button flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full border border-white/20 text-white/50 text-2xl font-thin cursor-pointer" data-target="addon-desc-1">
+                                <span class="addon-plus-icon">+</span>
+                            </button>
                         </div>
+                        <p id="addon-desc-1" class="text-gray-400 text-base mb-6 flex-grow hidden">Complete engine compartment cleaning & dressing.</p>
+                        <span class="text-3xl font-bold text-cyan-400 mt-auto">$50</span>
                     </div>
-                    <div class="glassmorphism rounded-xl transition-all duration-300 card-glow-cyan-hover slide-up" style="transition-delay: 100ms;">
-                        <button class="accordion-toggle flex justify-between items-center w-full p-6 text-left">
-                            <h3 class="text-lg font-semibold text-white">Glass Coating Upgrade</h3>
-                            <div class="flex items-center">
-                                <span class="text-2xl font-bold text-cyan-400 mr-6">$55</span>
-                                <span class="icon-plus text-cyan-400 text-3xl font-thin">+</span>
-                            </div>
-                        </button>
-                        <div class="accordion-content px-6">
-                            <p class="pb-6 text-gray-400">Advanced hydrophobic coating for all exterior glass, dramatically improving visibility in rain and repelling water, dirt, and oil.</p>
+                    
+                    <!-- Add-on Card 2 -->
+                    <div class="glassmorphism rounded-2xl p-6 flex flex-col h-full slide-up card-glow-cyan-hover" style="transition-delay: 100ms;">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-semibold text-white">Glass Coating Upgrade</h3>
+                             <button class="addon-toggle-button flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full border border-white/20 text-white/50 text-2xl font-thin cursor-pointer" data-target="addon-desc-2">
+                                <span class="addon-plus-icon">+</span>
+                            </button>
                         </div>
+                        <p id="addon-desc-2" class="text-gray-400 text-base mb-6 flex-grow hidden">Advanced hydrophobic coating for crystal-clear visibility.</p>
+                        <span class="text-3xl font-bold text-cyan-400 mt-auto">$55</span>
                     </div>
-                    <div class="glassmorphism rounded-xl transition-all duration-300 card-glow-cyan-hover slide-up" style="transition-delay: 200ms;">
-                        <button class="accordion-toggle flex justify-between items-center w-full p-6 text-left">
-                            <h3 class="text-lg font-semibold text-white">Headlight Restoration</h3>
-                            <div class="flex items-center">
-                                <span class="text-2xl font-bold text-cyan-400 mr-6">$60</span>
-                                <span class="icon-plus text-cyan-400 text-3xl font-thin">+</span>
-                            </div>
-                        </button>
-                        <div class="accordion-content px-6">
-                            <p class="pb-6 text-gray-400">Remove oxidation, yellowing, and fogginess from headlights, restoring clarity and light output. Includes a protective sealant.</p>
+
+                    <!-- Add-on Card 3 -->
+                    <div class="glassmorphism rounded-2xl p-6 flex flex-col h-full slide-up card-glow-cyan-hover" style="transition-delay: 200ms;">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-semibold text-white">Headlight Restoration</h3>
+                             <button class="addon-toggle-button flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full border border-white/20 text-white/50 text-2xl font-thin cursor-pointer" data-target="addon-desc-3">
+                                <span class="addon-plus-icon">+</span>
+                            </button>
                         </div>
+                        <p id="addon-desc-3" class="text-gray-400 text-base mb-6 flex-grow hidden">Remove oxidation & restore clarity to foggy headlights.</p>
+                        <span class="text-3xl font-bold text-cyan-400 mt-auto">$60</span>
                     </div>
-                    <div class="glassmorphism rounded-xl transition-all duration-300 card-glow-cyan-hover slide-up" style="transition-delay: 300ms;">
-                        <button class="accordion-toggle flex justify-between items-center w-full p-6 text-left">
-                            <h3 class="text-lg font-semibold text-white">Fabric Shampoo (Full Interior)</h3>
-                            <div class="flex items-center">
-                                <span class="text-2xl font-bold text-cyan-400 mr-6">$65</span>
-                                <span class="icon-plus text-cyan-400 text-3xl font-thin">+</span>
-                            </div>
-                        </button>
-                        <div class="accordion-content px-6">
-                            <p class="pb-6 text-gray-400">Deep clean all fabric surfaces, including seats, carpets, and floor mats, to remove stubborn stains and odors.</p>
+
+                    <!-- Add-on Card 4 -->
+                    <div class="glassmorphism rounded-2xl p-6 flex flex-col h-full slide-up card-glow-cyan-hover" style="transition-delay: 300ms;">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-semibold text-white">Fabric Shampoo (Full Interior)</h3>
+                             <button class="addon-toggle-button flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full border border-white/20 text-white/50 text-2xl font-thin cursor-pointer" data-target="addon-desc-4">
+                                <span class="addon-plus-icon">+</span>
+                            </button>
                         </div>
+                        <p id="addon-desc-4" class="text-gray-400 text-base mb-6 flex-grow hidden">Deep clean all fabric surfaces & remove stubborn stains.</p>
+                        <span class="text-3xl font-bold text-cyan-400 mt-auto">$65</span>
                     </div>
-                    <div class="glassmorphism rounded-xl transition-all duration-300 card-glow-cyan-hover slide-up" style="transition-delay: 400ms;">
-                        <button class="accordion-toggle flex justify-between items-center w-full p-6 text-left">
-                            <h3 class="text-lg font-semibold text-white">Deep Scratch Repair (Per Panel)</h3>
-                            <div class="flex items-center">
-                                <span class="text-2xl font-bold text-cyan-400 mr-6">$50+</span>
-                                <span class="icon-plus text-cyan-400 text-3xl font-thin">+</span>
-                            </div>
-                        </button>
-                        <div class="accordion-content px-6">
-                            <p class="pb-6 text-gray-400">Professional touch-up and polishing for deeper scratches & paint defects. Price varies based on severity. Please consult for a quote.</p>
+
+                    <!-- Add-on Card 5 -->
+                    <div class="glassmorphism rounded-2xl p-6 flex flex-col h-full slide-up card-glow-cyan-hover" style="transition-delay: 400ms;">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-semibold text-white">Deep Scratch Repair (Per Panel)</h3>
+                             <button class="addon-toggle-button flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full border border-white/20 text-white/50 text-2xl font-thin cursor-pointer" data-target="addon-desc-5">
+                                <span class="addon-plus-icon">+</span>
+                            </button>
                         </div>
+                        <p id="addon-desc-5" class="text-gray-400 text-base mb-6 flex-grow hidden">Professional touch-up for deeper scratches & paint defects.</p>
+                        <span class="text-3xl font-bold text-cyan-400 mt-auto">$50+</span>
                     </div>
-                    <div class="glassmorphism rounded-xl transition-all duration-300 card-glow-cyan-hover slide-up" style="transition-delay: 500ms;">
-                        <button class="accordion-toggle flex justify-between items-center w-full p-6 text-left">
-                            <h3 class="text-lg font-semibold text-white">5-Year Ceramic Coating Upgrade</h3>
-                            <div class="flex items-center">
-                                <span class="text-2xl font-bold text-cyan-400 mr-6">$250</span>
-                                <span class="icon-plus text-cyan-400 text-3xl font-thin">+</span>
-                            </div>
-                        </button>
-                        <div class="accordion-content px-6">
-                            <p class="pb-6 text-gray-400">Upgrade your Ultimate Package from a 3-Year to a premium 5-Year professional-grade ceramic coating for maximum durability and gloss.</p>
+
+                    <!-- Add-on Card 6 -->
+                    <div class="glassmorphism rounded-2xl p-6 flex flex-col h-full slide-up card-glow-cyan-hover" style="transition-delay: 500ms;">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-semibold text-white">5-Year Ceramic Coating Upgrade</h3>
+                             <button class="addon-toggle-button flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full border border-white/20 text-white/50 text-2xl font-thin cursor-pointer" data-target="addon-desc-6">
+                                <span class="addon-plus-icon">+</span>
+                            </button>
                         </div>
+                        <p id="addon-desc-6" class="text-gray-400 text-base mb-6 flex-grow hidden">Extended protection with premium ceramic coating technology.</p>
+                        <span class="text-3xl font-bold text-cyan-400 mt-auto">$250</span>
                     </div>
+
                 </div>
             </div>
         </section>
         
-        <section id="final-cta" class="py-24">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center glassmorphism rounded-2xl p-12 md:p-16 card-glow-cyan">
-                <div class="slide-up">
-                    <h2 class="text-4xl sm:text-5xl font-extrabold text-white tracking-tighter font-display">Ready for a Flawless Finish?</h2>
-                    <p class="mt-6 max-w-xl mx-auto text-lg text-gray-300">
-                        Give your vehicle the professional care it deserves. Book your mobile detailing service today and experience the Rinze Free difference.
-                    </p>
-                    <div class="flex flex-col sm:flex-row justify-center gap-4 mt-12">
-                        <a href="booking.html" class="btn-primary">
-                            Book Your Detail Now
-                        </a>
-                        <a href="index.html" class="btn-ghost-cyan">
-                            Back to Home
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
     </main>
 
     <footer class="bg-gray-950 border-t border-white/10">
@@ -797,36 +604,13 @@
                     // Don't close if it's just a hash link to the same page
                     if (!link.href.includes('#')) {
                          mobileMenu.classList.add('hidden');
-                    }
-                });
-            });
-
-            // --- Accordion Functionality ---
-            const accordions = document.querySelectorAll('.accordion-toggle');
-
-            accordions.forEach(button => {
-                button.addEventListener('click', () => {
-                    const content = button.nextElementSibling;
-                    button.classList.toggle('open');
-                    
-                    if (content.style.maxHeight) {
-                        // Close it
-                        content.style.maxHeight = null;
                     } else {
-                        // Open it
-                        content.style.maxHeight = content.scrollHeight + 'px';
+                        // Close for hash links too
+                        mobileMenu.classList.add('hidden');
                     }
-                    
-                    // Optional: Close other accordions
-                    accordions.forEach(otherButton => {
-                        if (otherButton !== button) {
-                            otherButton.classList.remove('open');
-                            otherButton.nextElementSibling.style.maxHeight = null;
-                        }
-                    });
                 });
             });
-            
+
             // --- Slide-up on Scroll Animation ---
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -843,15 +627,23 @@
                 observer.observe(el);
             });
 
-            // --- NEW: Review Marquee Seamless Loop ---
-            const marqueeContent = document.querySelector('.marquee-content');
-            if (marqueeContent) {
-                // Check if content is already duplicated to avoid multiple runs
-                if (marqueeContent.children.length > 5) { // 5 is the original number of items
-                     const originalContent = marqueeContent.innerHTML;
-                     marqueeContent.innerHTML += originalContent; // Duplicate content for seamless loop
-                }
-            }
+            // --- CLICKABLE ADD-ON PLUS BUTTON SCRIPT ---
+            const addonButtons = document.querySelectorAll('.addon-toggle-button');
+
+            addonButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const targetId = button.getAttribute('data-target');
+                    const description = document.getElementById(targetId);
+                    const icon = button.querySelector('.addon-plus-icon');
+
+                    if (description) {
+                        description.classList.toggle('hidden');
+                    }
+                    if (icon) {
+                        icon.classList.toggle('rotate-45');
+                    }
+                });
+            });
 
         });
     </script>
