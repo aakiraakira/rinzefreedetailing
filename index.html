@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rinze Free Auto Detailing - Exceptional Care, Flawless Finish</title>
+    <link rel="icon" href="https://reputifly.com/wp-content/uploads/2025/11/car-logo.png" type="image/png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,10 +13,15 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0D1117;
+            background: radial-gradient(ellipse at top center, #1C2431 0%, #0D1117 70%);
             color: #F0F6FC;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* NEW: Custom Accent Color */
+        .text-accent-blue {
+            color: #8ca3b8;
         }
 
         /* Unique display font for H1 and all major headings */
@@ -93,21 +99,38 @@
 
         /* --- NEW SLICK BUTTON STYLES --- */
         
-        /* Primary CTA Button (Gold/Yellow) */
-        .btn-primary {
-            background-color: #FCD34D; /* yellow-400 */
-            color: #111827; /* gray-900 */
+        /* NEW: Primary CTA Button (Accent Blue) */
+        .btn-primary-accent {
+            background-color: #8ca3b8;
+            color: #111827; /* Dark text */
             font-weight: 600;
             border-radius: 0.5rem;
             padding: 0.75rem 2rem;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 14px rgba(252, 211, 77, 0.3);
+            box-shadow: 0 4px 14px rgba(140, 163, 184, 0.3);
         }
-        .btn-primary:hover {
+        .btn-primary-accent:hover {
             transform: scale(1.05);
-            background-color: #FBBF24; /* yellow-500 */
-            box-shadow: 0 6px 20px rgba(252, 211, 77, 0.4);
+            background-color: #a0b4c8;
+            box-shadow: 0 6px 20px rgba(140, 163, 184, 0.4);
         }
+        
+        /* NEW: Small Primary CTA Button (Accent Blue) */
+        .btn-primary-accent-sm {
+            background-color: #8ca3b8;
+            color: #111827; /* Dark text */
+            font-weight: 600;
+            border-radius: 0.5rem;
+            padding: 0.5rem 1.25rem; /* Smaller padding for header */
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 14px rgba(140, 163, 184, 0.3);
+        }
+        .btn-primary-accent-sm:hover {
+            transform: scale(1.05);
+            background-color: #a0b4c8;
+            box-shadow: 0 6px 20px rgba(140, 163, 184, 0.4);
+        }
+
 
         /* Secondary CTA Button (Light Blue) */
         .btn-secondary {
@@ -125,18 +148,18 @@
             box-shadow: 0 6px 20px rgba(219, 234, 254, 0.4);
         }
 
-        /* Ghost/Tertiary CTA Button (Cyan Border) */
-        .btn-ghost-cyan {
-            color: #22D3EE; /* cyan-400 */
-            border: 1px solid #22D3EE;
+        /* NEW: Large Ghost Button (Accent Blue) */
+        .btn-ghost-accent {
+            color: #8ca3b8;
+            border: 1px solid #8ca3b8;
             font-weight: 600;
             border-radius: 0.5rem;
-            padding: 0.5rem 1.25rem; /* Smaller padding for header */
+            padding: 0.75rem 2rem; /* Matches btn-secondary padding */
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .btn-ghost-cyan:hover {
-            background-color: rgba(34, 211, 238, 0.1);
-            box-shadow: 0 0 15px rgba(34, 211, 238, 0.3);
+        .btn-ghost-accent:hover {
+            background-color: rgba(140, 163, 184, 0.1);
+            box-shadow: 0 0 15px rgba(140, 163, 184, 0.3);
             transform: scale(1.05);
         }
         
@@ -185,23 +208,23 @@
     <header class="fixed top-0 left-0 w-full z-50 glassmorphism">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <a href="index.html" class="flex-shrink-0 flex items-center">
-                    <img class="h-10 w-auto" src="https://reputifly.com/wp-content/uploads/2025/11/car-logo.png" alt="Rinze Free Logo"
-                    onerror="this.onerror=null; this.src='https://placehold.co/100x40/0D1117/FFFFFF?text=RF&font=inter';">
-                </a>
                 
-                <div class="hidden md:flex md:items-center md:space-x-8">
+                <div class="flex-1 flex justify-start">
+                    <a href="index.html" class="flex-shrink-0 flex items-center">
+                        <img class="h-10 w-auto" src="https://reputifly.com/wp-content/uploads/2025/11/car-logo.png" alt="Rinze Free Logo"
+                        onerror="this.onerror=null; this.src='https://placehold.co/100x40/0D1117/FFFFFF?text=RF&font=inter';">
+                    </a>
+                </div>
+                
+                <div class="hidden md:flex md:items-center md:justify-center md:space-x-8 flex-1">
                     <a href="index.html" class="nav-link-active">Home</a>
                     <a href="pricing.html" class="text-gray-300 hover:text-white transition-colors duration-200">Pricing</a>
                     <a href="index.html#gallery" class="text-gray-300 hover:text-white transition-colors duration-200">Gallery</a>
                     <a href="booking.html" class="text-gray-300 hover:text-white transition-colors duration-200">Booking</a>
                 </div>
                 
-                <div class="hidden md:flex items-center space-x-4">
-                    <a href="tel:+6588479753" class="btn-ghost-cyan text-sm">
-                        Call Now
-                    </a>
-                    <a href="https://wa.me/6588479753" target="_blank" class="btn-primary text-sm">
+                <div class="hidden md:flex items-center space-x-4 flex-1 justify-end">
+                    <a href="https://wa.me/6588479753" target="_blank" class="btn-primary-accent-sm text-sm">
                         WhatsApp
                     </a>
                 </div>
@@ -224,10 +247,7 @@
                 <a href="booking.html" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/10">Booking</a>
             </div>
             <div class="px-4 pb-4 border-t border-gray-700/50 pt-4 space-y-3">
-                <a href="tel:+6588479753" class="block w-full text-center btn-ghost-cyan text-sm">
-                    Call Now
-                </a>
-                <a href="https://wa.me/6588479753" target="_blank" class="block w-full text-center btn-primary text-sm">
+                <a href="https://wa.me/6588479753" target="_blank" class="block w-full text-center btn-primary-accent text-sm">
                     WhatsApp
                 </a>
             </div>
@@ -243,8 +263,11 @@
             </div>
             
             <div class="relative z-10 max-w-4xl">
+                <img class="h-24 w-24 mx-auto mb-8" src="https://reputifly.com/wp-content/uploads/2025/11/car-logo.png" alt="Rinze Free Logo"
+                onerror="this.onerror=null; this.src='https://placehold.co/96x96/0D1117/FFFFFF?text=RF&font=inter';">
+
                 <h1 class="font-display text-5xl sm:text-7xl lg:text-8xl font-extrabold text-white tracking-tighter">
-                    Exceptional Care.<br class="hidden sm:block"> <span class="animated-gradient-text">Flawless Finish.</span>
+                    Exceptional Care.<br class="hidden sm:block"> <span style="color: #8ca3b8;">Flawless Finish.</span>
                 </h1>
                 <p class="mt-8 text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto">
                     Professional mobile auto detailing that transforms your vehicle into a showroom masterpiece, right at your doorstep.
@@ -252,27 +275,18 @@
 
                 <div class="flex flex-wrap justify-center gap-3 mt-10">
                     <span class="hero-pill">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-cyan-400" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                        </svg>
                         Premium Products
                     </span>
                     <span class="hero-pill">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-cyan-400" viewBox="0 0 20 20" fill="currentColor">
-                            <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12 12 0 003 21c0 0 3.055-1.99 8.618-3.04A11.95 11.95 0 0121 12c0-2.176-.62-4.22-1.618-6.016z" />
-                        </svg>
                         3-Year Warranty
                     </span>
                     <span class="hero-pill">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-cyan-400" viewBox="0 0 20 20" fill="currentColor">
-                            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18H4a2 2 0 00-2 2v1a1 1 0 001 1h14a1 1 0 001-1v-1a2 2 0 00-2-2z" />
-                        </svg>
                         Expert Detailers
                     </span>
                 </div>
                 
                 <div class="flex flex-col sm:flex-row justify-center gap-4 mt-12">
-                    <a href="booking.html" class="btn-primary">
+                    <a href="booking.html" class="btn-ghost-accent">
                         Book Your Detail
                     </a>
                     <a href="pricing.html" class="btn-secondary">
@@ -302,7 +316,7 @@
         <section id="why-choose-us" class="py-24">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center slide-up">
-                    <h2 class="text-base font-semibold text-cyan-400 uppercase tracking-wider">Our Promise</h2>
+                    <h2 class="text-base font-semibold text-accent-blue uppercase tracking-wider">Our Promise</h2>
                     <p class="mt-2 text-4xl sm:text-5xl font-extrabold text-white tracking-tighter font-display">The Rinze Free Difference</p>
                     <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-300">
                         We aren't just a car wash. We are automotive care specialists dedicated to perfection.
@@ -311,30 +325,14 @@
                 
                 <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-12">
                     <div class="text-center slide-up">
-                        <div class="flex items-center justify-center h-16 w-16 rounded-xl bg-gray-800/50 border border-white/10 text-cyan-400 mx-auto icon-container-hover">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                              <path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10h10m0 0a1 1 0 001 1h3a1 1 0 001-1v-1a1 1 0 00-1-1h-3a1 1 0 00-1 1z" />
-                            </svg>
-                        </div>
                         <h3 class="mt-6 text-2xl font-semibold text-white">Convenient Mobile Service</h3>
                         <p class="mt-2 text-gray-400">We come to your home or office. All we need is access to your vehicle.</p>
                     </div>
                     <div class="text-center slide-up" style="transition-delay: 150ms;">
-                        <div class="flex items-center justify-center h-16 w-16 rounded-xl bg-gray-800/50 border border-white/10 text-cyan-400 mx-auto icon-container-hover">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.293 2.293m0 0l2.293 2.293m-2.293-2.293L8.707 3m2.293 2.293L8.707 7.586m12.586 4.707l-2.293 2.293m0 0l-2.293 2.293m2.293-2.293l2.293 2.293m-2.293-2.293l-2.293-2.293m-2.293 2.293l-2.293 2.293" />
-                            </svg>
-                        </div>
                         <h3 class="mt-6 text-2xl font-semibold text-white">Premium Products</h3>
                         <p class="mt-2 text-gray-400">We only use professional-grade, pH-balanced chemicals and premium ceramic coatings.</p>
                     </div>
                     <div class="text-center slide-up" style="transition-delay: 300ms;">
-                        <div class="flex items-center justify-center h-16 w-16 rounded-xl bg-gray-800/50 border border-white/10 text-cyan-400 mx-auto icon-container-hover">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                            </svg>
-                        </div>
                         <h3 class="mt-6 text-2xl font-semibold text-white">Expert Technicians</h3>
                         <p class="mt-2 text-gray-400">Our certified detailers are masters of their craft with a passion for automotive perfection.</p>
                     </div>
@@ -345,7 +343,7 @@
         <section id="services-overview" class="py-24 bg-gray-900/50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center slide-up">
-                    <h2 class="text-base font-semibold text-cyan-400 uppercase tracking-wider">What We Do</h2>
+                    <h2 class="text-base font-semibold text-accent-blue uppercase tracking-wider">What We Do</h2>
                     <p class="mt-2 text-4xl sm:text-5xl font-extrabold text-white tracking-tighter font-display">Our Core Services</p>
                 </div>
                 
@@ -374,13 +372,13 @@
         <section id="how-it-works" class="py-24">
             <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center slide-up">
-                    <h2 class="text-base font-semibold text-cyan-400 uppercase tracking-wider">Our Process</h2>
+                    <h2 class="text-base font-semibold text-accent-blue uppercase tracking-wider">Our Process</h2>
                     <p class="mt-2 text-4xl sm:text-5xl font-extrabold text-white tracking-tighter font-display">Flawless Finish in 3 Steps</p>
                 </div>
                 
                 <div class="mt-20 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-0">
                     <div class="flex flex-col items-center text-center slide-up max-w-xs">
-                        <div class="flex items-center justify-center h-20 w-20 rounded-full bg-cyan-500/10 border-2 border-cyan-500 text-cyan-400">
+                        <div class="flex items-center justify-center h-20 w-20 rounded-full bg-cyan-500/10 border-2 border-cyan-500 text-accent-blue">
                             <span class="font-display text-3xl font-bold">1</span>
                         </div>
                         <h3 class="mt-6 text-2xl font-semibold text-white">Book Your Service</h3>
@@ -390,7 +388,7 @@
                     <div class="w-full h-0.5 bg-gray-700 md:w-1/4 md:h-0.5 slide-up" style="transition-delay: 100ms;"></div>
 
                     <div class="flex flex-col items-center text-center slide-up max-w-xs" style="transition-delay: 200ms;">
-                        <div class="flex items-center justify-center h-20 w-20 rounded-full bg-cyan-500/10 border-2 border-cyan-500 text-cyan-400">
+                        <div class="flex items-center justify-center h-20 w-20 rounded-full bg-cyan-500/10 border-2 border-cyan-500 text-accent-blue">
                             <span class="font-display text-3xl font-bold">2</span>
                         </div>
                         <h3 class="mt-6 text-2xl font-semibold text-white">We Come To You</h3>
@@ -400,7 +398,7 @@
                     <div class="w-full h-0.5 bg-gray-700 md:w-1/4 md:h-0.5 slide-up" style="transition-delay: 300ms;"></div>
 
                     <div class="flex flex-col items-center text-center slide-up max-w-xs" style="transition-delay: 400ms;">
-                        <div class="flex items-center justify-center h-20 w-20 rounded-full bg-cyan-500/10 border-2 border-cyan-500 text-cyan-400">
+                        <div class="flex items-center justify-center h-20 w-20 rounded-full bg-cyan-500/10 border-2 border-cyan-500 text-accent-blue">
                             <span class="font-display text-3xl font-bold">3</span>
                         </div>
                         <h3 class="mt-6 text-2xl font-semibold text-white">Enjoy Your "New" Car</h3>
@@ -414,7 +412,7 @@
         <section id="gallery" class="py-24 bg-gray-900/50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center slide-up">
-                    <h2 class="text-base font-semibold text-cyan-400 uppercase tracking-wider">Our Work</h2>
+                    <h2 class="text-base font-semibold text-accent-blue uppercase tracking-wider">Our Work</h2>
                     <p class="mt-2 text-4xl sm:text-5xl font-extrabold text-white tracking-tighter font-display">Before & After</p>
                     <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-300">
                         See the transformation — from everyday to extraordinary.
@@ -429,7 +427,7 @@
                                 <img src="https://placehold.co/400x300/374151/9ca3af?text=Dull+%26+Dirty+Exterior" alt="Exterior Before" class="mt-2 w-full h-64 rounded-lg object-cover">
                             </div>
                             <div>
-                                <span class="text-sm font-bold uppercase text-cyan-400 tracking-wider">After</span>
+                                <span class="text-sm font-bold uppercase text-accent-blue tracking-wider">After</span>
                                 <img src="https://placehold.co/400x300/0891b2/ffffff?text=Deep+Exterior+Shine" alt="Exterior After" class="mt-2 w-full h-64 rounded-lg object-cover">
                             </div>
                         </div>
@@ -442,7 +440,7 @@
                                 <img src="https://placehold.co/400x300/374151/9ca3af?text=Paint+Swirl+Marks" alt="Paint Before" class="mt-2 w-full h-64 rounded-lg object-cover">
                             </div>
                             <div>
-                                <span class="text-sm font-bold uppercase text-cyan-400 tracking-wider">After</span>
+                                <span class="text-sm font-bold uppercase text-accent-blue tracking-wider">After</span>
                                 <img src="https://placehold.co/400x300/0891b2/ffffff?text=Mirror+Paint+Finish" alt="Paint After" class="mt-2 w-full h-64 rounded-lg object-cover">
                             </div>
                         </div>
@@ -455,7 +453,7 @@
                                 <img src="https://placehold.co/400x300/374151/9ca3af?text=Stained+Interior+Seats" alt="Interior Before" class="mt-2 w-full h-64 rounded-lg object-cover">
                             </div>
                             <div>
-                                <span class="text-sm font-bold uppercase text-cyan-400 tracking-wider">After</span>
+                                <span class="text-sm font-bold uppercase text-accent-blue tracking-wider">After</span>
                                 <img src="https://placehold.co/400x300/0891b2/ffffff?text=Factory+Fresh+Interior" alt="Interior After" class="mt-2 w-full h-64 rounded-lg object-cover">
                             </div>
                         </div>
@@ -468,7 +466,7 @@
                                 <img src="https://placehold.co/400x300/374151/9ca3af?text=Foggy+Headlight" alt="Headlight Before" class="mt-2 w-full h-64 rounded-lg object-cover">
                             </div>
                             <div>
-                                <span class="text-sm font-bold uppercase text-cyan-400 tracking-wider">After</span>
+                                <span class="text-sm font-bold uppercase text-accent-blue tracking-wider">After</span>
                                 <img src="https://placehold.co/400x300/0891b2/ffffff?text=Crystal+Clear+Headlight" alt="Headlight After" class="mt-2 w-full h-64 rounded-lg object-cover">
                             </div>
                         </div>
@@ -481,7 +479,7 @@
         <section id="testimonials" class="py-24">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center slide-up">
-                    <h2 class="text-base font-semibold text-cyan-400 uppercase tracking-wider">Client Testimonials</h2>
+                    <h2 class="text-base font-semibold text-accent-blue uppercase tracking-wider">Client Testimonials</h2>
                     <p class="mt-2 text-4xl sm:text-5xl font-extrabold text-white tracking-tighter font-display">Don't Just Take Our Word</p>
                     <p class="mt-6 text-xl font-bold text-gray-300">
                         <span class="text-yellow-400">★</span> 4.9/5.0 <span class="text-gray-400 font-medium">from 500+ reviews</span>
@@ -511,7 +509,7 @@
                         </div>
                         <p class="mt-6 text-lg text-gray-300">
                             "The Gold monthly plan is worth every penny. My Tesla always looks showroom-ready, and the team is incredibly professional and reliable."
-                        </p>
+                        </Next>
                     </div>
                     <div class="glassmorphism rounded-2xl p-8 transition-all duration-300 card-glow-cyan-hover slide-up">
                         <div class="flex items-center">
@@ -549,7 +547,7 @@
                         Give your vehicle the professional care it deserves. Book your mobile detailing service today and experience the Rinze Free difference.
                     </p>
                     <div class="flex flex-col sm:flex-row justify-center gap-4 mt-12">
-                        <a href="booking.html" class="btn-primary">
+                        <a href="booking.html" class="btn-ghost-accent">
                             Book Your Detail Now
                         </a>
                         <a href="pricing.html" class="btn-secondary">
@@ -576,7 +574,7 @@
                 </div>
                 
                 <div>
-                    <h3 class="text-sm font-semibold text-cyan-400 uppercase tracking-wider">Quick Links</h3>
+                    <h3 class="text-sm font-semibold text-accent-blue uppercase tracking-wider">Quick Links</h3>
                     <ul class="mt-4 space-y-3">
                         <li><a href="index.html" class="text-base text-gray-400 hover:text-white transition-colors">Home</a></li>
                         <li><a href="pricing.html" class="text-base text-gray-400 hover:text-white transition-colors">Pricing</a></li>
@@ -586,20 +584,20 @@
                 </div>
 
                 <div>
-                    <h3 class="text-sm font-semibold text-cyan-400 uppercase tracking-wider">Our Services</h3>
+                    <h3 class="text-sm font-semibold text-accent-blue uppercase tracking-wider">Our Services</h3>
                     <ul class="mt-4 space-y-3">
                         <li><a href="pricing.html#packages" class="text-base text-gray-400 hover:text-white transition-colors">Paint Correction</a></li>
                         <li><a href="pricing.html#packages" class="text-base text-gray-400 hover:text-white transition-colors">Ceramic Coating</a></li>
                         <li><a href="pricing.html#packages" class="text-base text-gray-400 hover:text-white transition-colors">Interior Detailing</a></li>
                         <li><a href="pricing.html#add-ons" class="text-base text-gray-400 hover:text-white transition-colors">Engine Bay Cleaning</a></li>
-                        <li><a href="pricing.html#add-ons" class="text-base text-gray-400 hover:text-white transition-colors">Headlight Restoration</a></li>
+                        <li><a href="pricing.html#add-ons" classs="text-base text-gray-400 hover:text-white transition-colors">Headlight Restoration</a></li>
                         <li><a href="pricing.html#plans" class="text-base text-gray-400 hover:text-white transition-colors">Monthly Maintenance</a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h3 class="text-sm font-semibold text-cyan-400 uppercase tracking-wider">Contact Us</h3>
-                    <ul class="mt-4 space-y-3 text-base text-gray-400">
+                    <h3 class="text-sm font-semibold text-accent-blue uppercase tracking-wider">Contact Us</h3>
+                    <ul class="mt-4 space-y-3 text-base text-gray-40s00">
                         <li><a href="tel:+6588479753" class="hover:text-white">+65 8847 9753</a></li>
                         <li><a href="mailto:bookings@rinzefree.com" class="hover:text-white">bookings@rinzefree.com</a></li>
                     </ul>
