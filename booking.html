@@ -120,6 +120,10 @@
             border-color: #EF4444; /* red-500 */
             box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
         }
+        .form-radio-label.invalid {
+             border-color: #EF4444; /* red-500 */
+             box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+        }
         
         /* Custom scrollbar */
         ::-webkit-scrollbar {
@@ -221,6 +225,11 @@
             box-shadow: 0 0 15px rgba(252, 211, 77, 0.3);
         }
 
+        /* --- NEW: Service Summary Box Style --- */
+        #service-summary {
+            transition: all 0.3s ease-in-out;
+        }
+
     </style>
 </head>
 <body class="overflow-x-hidden">
@@ -317,32 +326,27 @@
                                 </div>
                             </div>
                             
-                            <div>
+                            <!-- UPDATED: Service Dropdown (now hidden initially) -->
+                            <div id="service-selection-container" class="hidden">
                                 <label for="service" class="block text-sm font-medium text-gray-300">Service Interested In *</label>
                                 <div class="mt-1">
                                     <select id="service" name="service" required class="form-input block w-full rounded-lg px-4 py-3 text-white">
-                                        <option value="">Select a service</option>
-                                        <optgroup label="Monthly Plans">
-                                            <option value="Silver Plan">Silver Plan</option>
-                                            <option value="Gold Plan">Gold Plan</option>
-                                            <option value="Platinum Plan">Platinum Plan</option>
-                                        </optgroup>
-                                        <optgroup label="Detailing Packages">
-                                            <option value="Essential Detail">Essential Detail</option>
-                                            <option value="Premium Enhancement">Premium Enhancement</option>
-                                            <option value="Ultimate Ceramic">Ultimate Ceramic</option>
-                                        </optgroup>
-                                        <optgroup label="Add-Ons">
-                                            <option value="Engine Bay Detailing">Engine Bay Detailing</option>
-                                            <option value="Glass Coating">Glass Coating</option>
-                                            <option value="Headlight Restoration">Headlight Restoration</option>
-                                            <option value="Fabric Shampoo">Fabric Shampoo</option>
-                                            <option value="Scratch Repair">Scratch Repair</option>
-                                            <option value="5-Year Ceramic">5-Year Ceramic</option>
-                                        </optgroup>
+                                        <!-- Options will be dynamically populated by JavaScript -->
+                                        <option value="">Select a service type first</option>
                                     </select>
                                 </div>
                             </div>
+
+                            <!-- NEW: Service Summary Box -->
+                            <div id="service-summary" class="hidden glassmorphism rounded-lg p-4 mt-6 border border-yellow-400 shadow-lg shadow-yellow-500/10">
+                                <h4 class="text-lg font-semibold text-white font-display">Selected Service:</h4>
+                                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mt-2">
+                                    <span id="summary-service-name" class="text-gray-300 text-lg font-medium"></span>
+                                    <span id="summary-service-price" class="text-2xl font-bold text-yellow-400 mt-2 sm:mt-0"></span>
+                                </div>
+                            </div>
+                            <!-- END: Service Summary Box -->
+
                         </div>
                         <div class="mt-10 flex justify-end">
                             <button type="button" class="btn-primary" data-action="next">Next</button>
@@ -539,7 +543,106 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+
+            // --- Service Data ---
+            // Stores all service info. Makes it easy to manage.
+            const servicePriceMap = {
+                // Packages
+                "Classic Detail": "$175",
+                "Enhancement Package": "$325",
+                "Elite Ceramic Protection": "$500",
+                // Plans
+                "Silver Plan": "$120 /month",
+                "Gold Plan": "$225 /month",
+                "Platinum Plan": "$350 /month",
+                // Add-Ons
+                "Engine Bay Detailing": "$50",
+                "Glass Coating Upgrade": "$55",
+                "Headlight Restoration": "$60",
+                "Fabric Shampoo (Full Interior)": "$65",
+                "Deep Scratch Repair (Per Panel)": "$50+",
+                "5-Year Ceramic Coating Upgrade": "$250"
+            };
+
+            const serviceOptions = {
+                package: {
+                    "Detailing Packages": [
+                        "Classic Detail",
+                        "Enhancement Package",
+                        "Elite Ceramic Protection"
+                    ],
+                    "Add-Ons": [
+                        "Engine Bay Detailing",
+                        "Glass Coating Upgrade",
+                        "Headlight Restoration",
+                        "Fabric Shampoo (Full Interior)",
+                        "Deep Scratch Repair (Per Panel)",
+                        "5-Year Ceramic Coating Upgrade"
+                    ]
+                },
+                plan: {
+                    "Monthly Plans": [
+                        "Silver Plan",
+                        "Gold Plan",
+                        "Platinum Plan"
+                    ]
+                }
+            };
+
+            // --- Element References ---
+            const serviceTypeRadios = document.querySelectorAll('input[name="service-type"]');
+            const serviceSelectContainer = document.getElementById('service-selection-container');
+            const serviceSelect = document.getElementById('service');
+            const serviceSummary = document.getElementById('service-summary');
+            const summaryName = document.getElementById('summary-service-name');
+            const summaryPrice = document.getElementById('summary-service-price');
             
+            // --- Helper Functions ---
+
+            /**
+             * Updates the service dropdown based on the selected service type (plan/package)
+             */
+            function updateServiceDropdown(type) {
+                const options = serviceOptions[type];
+                if (!options) {
+                    serviceSelect.innerHTML = '<option value="">Select a service type first</option>';
+                    serviceSelectContainer.classList.add('hidden');
+                    return;
+                }
+
+                serviceSelect.innerHTML = '<option value="">Select a service...</option>'; // Clear existing options
+
+                // Create and append optgroups and options
+                for (const groupName in options) {
+                    const optgroup = document.createElement('optgroup');
+                    optgroup.label = groupName;
+                    options[groupName].forEach(serviceName => {
+                        const option = document.createElement('option');
+                        option.value = serviceName;
+                        option.textContent = serviceName;
+                        optgroup.appendChild(option);
+                    });
+                    serviceSelect.appendChild(optgroup);
+                }
+                
+                serviceSelectContainer.classList.remove('hidden');
+            }
+
+            /**
+             * Updates the service summary box with name and price
+             */
+            function updateServiceSummary(serviceName) {
+                const price = servicePriceMap[serviceName];
+                if (serviceName && price) {
+                    summaryName.textContent = serviceName;
+                    summaryPrice.textContent = price;
+                    serviceSummary.classList.remove('hidden');
+                } else {
+                    serviceSummary.classList.add('hidden');
+                }
+            }
+
+
             // --- Mobile Menu ---
             const menuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
@@ -594,7 +697,7 @@
                 observer.observe(el);
             });
 
-            // --- NEW: Multi-Step Form Logic ---
+            // --- Multi-Step Form Logic ---
             const stepPanels = document.querySelectorAll('.form-step');
             const stepIndicators = document.querySelectorAll('.step-indicator');
             const stepLines = document.querySelectorAll('.step-line');
@@ -707,6 +810,7 @@
                     const formData = new FormData(this);
                     const serviceType = formData.get('service-type');
                     const service = formData.get('service');
+                    const servicePrice = servicePriceMap[service] || 'N/A'; // Get price
                     const fullName = formData.get('full-name');
                     const email = formData.get('email');
                     const phone = formData.get('phone');
@@ -718,6 +822,7 @@
                     let message = `*New Booking Request from ${fullName}*\n\n`;
                     message += `*Service Type:* ${serviceType}\n`;
                     message += `*Service:* ${service}\n`;
+                    message += `*Price:* ${servicePrice}\n\n`;
                     message += `*Name:* ${fullName}\n`;
                     message += `*Email:* ${email}\n`;
                     message += `*Phone:* ${phone}\n`;
@@ -751,8 +856,55 @@
                 datePicker.setAttribute('min', today);
             }
 
+            // --- NEW: Event Listeners for Dynamic Form ---
+
+            // Listen for changes on Service Type radio buttons
+            serviceTypeRadios.forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    const selectedType = e.target.value;
+                    updateServiceDropdown(selectedType);
+                    updateServiceSummary(''); // Clear summary when type changes
+                });
+            });
+
+            // Listen for changes on the Service dropdown
+            serviceSelect.addEventListener('change', (e) => {
+                updateServiceSummary(e.target.value);
+            });
+
+            
+            // --- NEW: Page Load Logic for URL Params ---
+            function checkURLParams() {
+                const params = new URLSearchParams(window.location.search);
+                const service = params.get('service');
+                const type = params.get('type');
+                // const price = params.get('price'); // Price is now handled by the map
+
+                if (type) {
+                    const radio = document.getElementById(`service-type-${type}`);
+                    if (radio) {
+                        radio.checked = true;
+                        // Manually trigger the 'change' event to populate the dropdown
+                        radio.dispatchEvent(new Event('change'));
+                    }
+                }
+
+                if (service && type) {
+                    // We need a slight delay to ensure the dropdown has been populated
+                    // by the radio's change event before we set its value.
+                    setTimeout(() => {
+                        if (Array.from(serviceSelect.options).some(o => o.value === service)) {
+                            serviceSelect.value = service;
+                            // Manually trigger the dropdown's change event
+                            serviceSelect.dispatchEvent(new Event('change'));
+                        }
+                    }, 50); // 50ms is usually enough
+                }
+            }
+
             // Initial setup
             showStep(0);
+            checkURLParams(); // Check for URL params on load
         });
     </script>
 </body>
