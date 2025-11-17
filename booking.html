@@ -2,11 +2,8 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pricing & Packages - Rinze Free Auto Detailing</title>
-    <!-- FAVICON ADDED -->
-    <link rel="icon" type="image/png" href="https://reputifly.com/wp-content/uploads/2025/11/car-logo.png">
-    
+    <meta name="viewport" content="width=device-width, initial-scale-1.0">
+    <title>Book Your Service - Rinze Free Auto Detailing</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,24 +16,6 @@
             color: #F0F6FC;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            position: relative; /* Needed for the pseudo-element glow */
-            overflow-x: hidden;
-        }
-
-        /* --- BACKGROUND GLOW ADDED --- */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 800px; 
-            height: 800px;
-            /* Using #8ca3b8 as rgba(140, 163, 184, 0.1) for a 10% opacity glow */
-            background: radial-gradient(circle, rgba(140, 163, 184, 0.1), transparent 70%);
-            filter: blur(100px);
-            z-index: -1; /* Places glow behind all content */
-            pointer-events: none;
         }
 
         /* Unique display font for H1 */
@@ -57,10 +36,6 @@
             box-shadow: 0 0 20px rgba(56, 189, 248, 0.3), 0 0 40px rgba(56, 189, 248, 0.2);
         }
         
-        .card-glow-cyan-hover {
-            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
-        }
-
         .card-glow-cyan-hover:hover {
             transform: translateY(-4px);
             border-color: rgba(56, 189, 248, 0.7);
@@ -72,22 +47,29 @@
             text-shadow: 0 0 8px rgba(56, 189, 248, 0.7), 0 0 10px rgba(56, 189, 248, 0.5);
         }
 
-        /* --- NEW SLICK BUTTON STYLES --- */
+        /* --- UPDATED SLICK BUTTON STYLES --- */
         
-        /* Primary CTA Button (Gold/Yellow) */
+        /* Primary CTA Button (Blue Gradient) */
         .btn-primary {
-            background-color: #FCD34D; /* yellow-400 */
-            color: #111827; /* gray-900 */
+            background-image: linear-gradient(to right, #22D3EE, #3B82F6); /* cyan-400 to blue-600 */
+            color: #FFFFFF; /* White text */
             font-weight: 600;
             border-radius: 0.5rem;
             padding: 0.75rem 2rem;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 14px rgba(252, 211, 77, 0.3);
+            box-shadow: 0 4px 14px rgba(56, 189, 248, 0.3);
         }
         .btn-primary:hover {
             transform: scale(1.05);
-            background-color: #FBBF24; /* yellow-500 */
-            box-shadow: 0 6px 20px rgba(252, 211, 77, 0.4);
+            background-image: linear-gradient(to right, #38bdf8, #60a5fa); /* Lighter gradient */
+            box-shadow: 0 6px 20px rgba(56, 189, 248, 0.4);
+        }
+        .btn-primary:disabled {
+            background-image: none;
+            background-color: #4B5563; /* gray-600 */
+            box-shadow: none;
+            cursor: not-allowed;
+            transform: none;
         }
 
         /* Secondary CTA Button (Light Blue) */
@@ -129,9 +111,19 @@
         }
         .form-input:focus {
             background-color: rgba(15, 23, 42, 1);
-            border-color: #FCD34D; /* yellow-400 */
-            box-shadow: 0 0 15px rgba(252, 211, 77, 0.3);
+            border-color: #22D3EE; /* cyan-400 */
+            box-shadow: 0 0 15px rgba(34, 211, 238, 0.3);
             outline: none;
+        }
+
+        /* --- NEW: Form Validation Error Style --- */
+        .form-input.invalid {
+            border-color: #EF4444; /* red-500 */
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+        }
+        .form-radio-label.invalid {
+             border-color: #EF4444; /* red-500 */
+             box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
         }
         
         /* Custom scrollbar */
@@ -149,7 +141,7 @@
             background: #38bdf8;
         }
 
-        /* Scroll-triggered slide-up animation */
+        /* --- NEW: Slide-up Animation --- */
         .slide-up {
             opacity: 0;
             transform: translateY(30px);
@@ -160,24 +152,88 @@
             transform: translateY(0);
         }
 
-        /* Active Nav Styles */
-        .nav-link-active {
-            color: #FCD34D; /* yellow-400 */
-            font-weight: 600;
-            text-shadow: 0 0 5px rgba(252, 211, 77, 0.5);
+        /* --- NEW: Accordion Styles --- */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .mobile-nav-link-active {
-            background-color: rgba(252, 211, 77, 0.1);
-            color: #FCD34D; /* yellow-400 */
-            border-left: 4px solid #FCD34D;
-        }
-
-        /* --- ADD-ON CARD PLUS BUTTON --- */
-        .addon-plus-icon {
+        .accordion-toggle .icon-plus {
             transition: transform 0.3s ease;
         }
-        .addon-plus-icon.rotate-45 {
+        .accordion-toggle.open .icon-plus {
             transform: rotate(45deg);
+        }
+
+        /* --- UPDATED: Active Nav Styles --- */
+        .nav-link-active {
+            color: #22D3EE; /* cyan-400 */
+            font-weight: 600;
+            text-shadow: 0 0 5px rgba(34, 211, 238, 0.5);
+        }
+        .mobile-nav-link-active {
+            background-color: rgba(34, 211, 238, 0.1);
+            color: #22D3EE; /* cyan-400 */
+            border-left: 4px solid #22D3EE;
+        }
+
+        /* --- NEW: 3-Step Form Stepper Styles --- */
+        .step-indicator {
+            height: 2.5rem; /* 40px */
+            width: 2.5rem; /* 40px */
+            border-radius: 9999px; /* full */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+            border: 2px solid #4B5563; /* gray-600 */
+            color: #9CA3AF; /* gray-400 */
+            transition: all 0.3s ease;
+        }
+        .step-indicator.active {
+            border-color: #22D3EE; /* cyan-400 */
+            background: linear-gradient(to right, #22D3EE, #3B82F6); /* cyan to blue */
+            color: #FFFFFF;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+        }
+        .step-indicator.completed {
+            border-color: #22D3EE;
+            background-color: #22D3EE;
+            color: #111827;
+        }
+        .step-line {
+            height: 2px;
+            background-color: #4B5563; /* gray-600 */
+            transition: all 0.3s ease;
+        }
+        .step-line.completed {
+            background-color: #22D3EE; /* cyan-400 */
+        }
+
+        /* --- UPDATED: Custom Radio Button Styles --- */
+        .form-radio-label {
+            background-color: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .form-radio-label:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        input[type="radio"]:checked + .form-radio-label {
+            border-color: #22D3EE; /* cyan-400 */
+            background-color: rgba(34, 211, 238, 0.1);
+            box-shadow: 0 0 15px rgba(34, 211, 238, 0.3);
+        }
+
+        /* --- NEW: Service Summary Box Style --- */
+        #service-summary {
+            transition: all 0.3s ease-in-out;
+        }
+        
+        /* --- NEW: Service Description Box Style --- */
+        #service-description-container {
+             transition: all 0.3s ease-in-out;
         }
 
     </style>
@@ -194,14 +250,13 @@
                 
                 <div class="hidden md:flex md:items-center md:space-x-8">
                     <a href="index.html" class="text-gray-300 hover:text-white transition-colors duration-200">Home</a>
-                    <a href="#plans" class="text-gray-300 hover:text-white transition-colors duration-200">Plans</a>
-                    <a href="#packages" class="nav-link-active">Packages</a>
+                    <a href="pricing.html" class="text-gray-300 hover:text-white transition-colors duration-200">Pricing</a>
                     <a href="index.html#gallery" class="text-gray-300 hover:text-white transition-colors duration-200">Gallery</a>
-                    <a href="booking.html" class="text-gray-300 hover:text-white transition-colors duration-200">Contact</a>
+                    <a href="booking.html" class="nav-link-active">Booking</a>
                 </div>
                 
+                <!-- "Call Now" Button Removed -->
                 <div class="hidden md:flex items-center space-x-4">
-                    
                     <a href="https://wa.me/6588479753" target="_blank" class="btn-primary text-sm">
                         WhatsApp
                     </a>
@@ -220,15 +275,12 @@
         <div id="mobile-menu" class="md:hidden hidden glassmorphism border-t border-white/10">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <a href="index.html" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/10">Home</a>
-                <a href="#plans" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/10">Plans</a>
-                <a href="#packages" class="mobile-nav-link mobile-nav-link-active block px-3 py-2 rounded-md text-base font-medium">Packages</a>
+                <a href="pricing.html" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/10">Pricing</a>
                 <a href="index.html#gallery" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/10">Gallery</a>
-                <a href="booking.html" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/10">Contact</a>
+                <a href="booking.html" class="mobile-nav-link mobile-nav-link-active block px-3 py-2 rounded-md text-base font-medium">Booking</a>
             </div>
+            <!-- "Call Now" Button Removed -->
             <div class="px-4 pb-4 border-t border-gray-700/50 pt-4 space-y-3">
-                <a href="tel:+6588479753" class="block w-full text-center btn-ghost-cyan text-sm">
-                    Call Now
-                </a>
                 <a href="https://wa.me/6588479753" target="_blank" class="block w-full text-center btn-primary text-sm">
                     WhatsApp
                 </a>
@@ -238,307 +290,211 @@
 
     <main>
 
-        <section id="packages" class="pt-40 py-24 bg-gray-900/50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="booking-form-section" class="pt-40 pb-24 bg-gray-900/50">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center slide-up">
-                    <p class="mt-2 text-4xl sm:text-5xl font-extrabold text-white tracking-tighter font-display uppercase">Detailing Packages</p>
-                    <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-300">
-                        Professional detailing services tailored to your vehicle's needs.
-                    </p>
+                    <h2 class="text-base font-semibold text-cyan-400 uppercase tracking-wider">Book Your Service</h2>
+                    <p class="mt-2 text-4xl sm:text-5xl font-extrabold text-white tracking-tighter font-display">Let's Get You Scheduled</p>
                 </div>
-                
-                <div class="mt-20 grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-                    <!-- ESSENTIAL CARD -->
-                    <div class="glassmorphism rounded-2xl p-8 flex flex-col transition-all duration-300 card-glow-cyan-hover slide-up h-full">
-                        <!-- PILL LABEL STYLED -->
-                        <span class="inline-block bg-gray-300 text-gray-900 text-xs font-bold uppercase px-3 py-1 rounded-full self-start">ESSENTIAL</span>
-                        <!-- FONT AND MARGIN UPDATED -->
-                        <p class="mt-4 font-display text-2xl font-semibold text-white uppercase">Classic Detail</p>
-                        <p class="mt-2 text-gray-400">Perfect for regular maintenance and keeping your vehicle pristine.</p>
-                        <div class="mt-6">
-                            <span class="text-5xl font-extrabold text-white">$175</span>
-                        </div>
-                        <ul class="space-y-3 mt-8 text-gray-300 flex-grow">
-                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> pH-balanced pre-wash & hand wash</li>
-                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Iron & tar decontamination</li>
-                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Premium hand wax (3-month protection)</li>
-                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Tire cleaning & satin dressing</li>
-                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Interior vacuum + full wipe-down</li>
-                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Dashboard & trim UV protection</li>
-                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Windows, mirrors & door jambs cleaned</li>
-                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Leather seats cleaned & conditioned</li>
-                        </ul>
-                        <div class="mt-8 pt-8 border-t border-white/10">
-                            <p class="text-sm text-gray-400">⏱ 2–3 Hours</p>
-                            <p class="text-sm text-gray-400 mt-2">Crisp, glossy finish with a refreshed interior</p>
-                            <!-- UPDATED LINK -->
-                            <a href="booking.html?service=Classic+Detail&type=package&price=175" class="mt-6 block w-full text-center btn-secondary">
-                                Select Package
-                            </a>
-                        </div>
-                    </div>
 
-                    <!-- PREMIUM CARD (LARGER) -->
-                    <div class="glassmorphism rounded-2xl p-8 flex flex-col border-2 border-yellow-400 shadow-2xl shadow-yellow-500/10 relative transform lg:scale-105 slide-up h-full" style="transition-delay: 150ms;">
-                        <span class="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-yellow-400 text-gray-900 text-xs font-bold uppercase px-4 py-1 rounded-full">MOST POPULAR</span>
-                        <!-- PILL LABEL STYLED -->
-                        <span class="inline-block bg-yellow-400 text-gray-900 text-xs font-bold uppercase px-3 py-1 rounded-full self-start mt-5">PREMIUM</span>
-                        <!-- FONT AND MARGIN UPDATED -->
-                        <p class="mt-4 font-display text-2xl font-semibold text-white uppercase">Enhancement Package</p>
-                        <p class="mt-2 text-gray-400">For vehicles needing deeper restoration & protection.</p>
-                        <div class="mt-6">
-                            <span class="text-5xl font-extrabold text-white">$325</span>
-                        </div>
-                        <ul class="space-y-3 mt-8 text-gray-300 flex-grow">
-                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Includes everything from Classic, plus:</li>
-                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Full decontamination (iron + clay bar)</li>
-                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> 2-Step Paint Correction (removes up to 80% of swirls & light scratches)</li>
-                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Paint sealant (6-9 months protection)</li>
-                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Wheels deep cleaned & polished</li>
-                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Engine bay cleaned & dressed</li>
-                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Fabric shampoo & leather conditioning</li>
-                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Steam-cleaned vents & plastics</li>
-                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Glass polish + rain repellent</li>
-                        </ul>
-                        <div class="mt-8 pt-8 border-t border-white/10">
-                            <!-- UPDATED LINK -->
-                            <a href="booking.html?service=Enhancement+Package&type=package&price=325" class="mt-6 block w-full text-center btn-primary">
-                                Select Package
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- ULTIMATE CARD -->
-                    <div class="glassmorphism rounded-2xl p-8 flex flex-col transition-all duration-300 card-glow-cyan-hover slide-up h-full" style="transition-delay: 300ms;">
-                        <!-- PILL LABEL STYLED -->
-                        <span class="inline-block bg-cyan-300 text-gray-900 text-xs font-bold uppercase px-3 py-1 rounded-full self-start">ULTIMATE</span>
-                        <!-- FONT AND MARGIN UPDATED -->
-                        <p class="mt-4 font-display text-2xl font-semibold text-white uppercase">Elite Ceramic Protection</p>
-                        <p class="mt-2 text-gray-400">For unmatched shine, depth, & long-term ceramic protection.</p>
-                        <div class="mt-6">
-                            <span class="text-5xl font-extrabold text-white">$500</span>
-                        </div>
-                        <ul class="space-y-3 mt-8 text-gray-300 flex-grow">
-                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Includes everything from Enhancement, plus:</li>
-                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Multi-stage paint correction & refinement</li>
-                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> 3-Year Ceramic Coating (paint, glass, wheels)</li>
-                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Wheel sealant & brake dust protection</li>
-                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Interior deep clean + fabric & leather guard</li>
-                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Engine bay detailed & hydrophobic dressing</li>
-                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Glass coating for clarity & durability</li>
-                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Complimentary Maintenance Wash (within 30 days)</li>
-                        </ul>
-                        <div class="mt-8 pt-8 border-t border-white/10">
-                            <!-- UPDATED LINK -->
-                            <a href="booking.html?service=Elite+Ceramic+Protection&type=package&price=500" class="mt-6 block w-full text-center btn-secondary">
-                                Select Package
-                            </a>
-                        </div>
-                    </div>
+                <div class="flex items-center w-full max-w-lg mx-auto my-12 slide-up">
+                    <div class="step-indicator active flex-shrink-0" data-step="1">1</div>
+                    <div class="step-line flex-1" data-line="1"></div>
+                    <div class="step-indicator flex-shrink-0" data-step="2">2</div>
+                    <div class="step-line flex-1" data-line="2"></div>
+                    <div class="step-indicator flex-shrink-0" data-step="3">3</div>
                 </div>
-            </div>
-        </section>
 
-        <section id="plans" class="py-24">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center slide-up">
-                    <!-- HEADER TEXT SPLIT AND COLORED -->
-                    <p class="mt-2 text-4xl sm:text-5xl font-extrabold text-white tracking-tighter font-display uppercase">
-                        Monthly Maintenance <span class="text-cyan-400">Plans</span>
-                    </p>
-                    <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-300">
-                        Keep your ride flawless all year long with our subscription plans.
-                    </p>
-                </div>
-                
-                <div class="mt-20 grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-                    <!-- SILVER PLAN CARD -->
-                    <div class="glassmorphism rounded-2xl p-8 flex flex-col transition-all duration-300 card-glow-cyan-hover slide-up h-full">
-                        <div class="flex-shrink-0">
-                            <!-- STAR ICON ADDED -->
-                            <svg class="h-10 w-10 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.31h5.4c.566 0 .809.73.358 1.086l-4.37 3.178a.562.562 0 00-.22.518l1.6 5.33c.194.64-.523 1.14-1.06 0L12 15.334a.563.563 0 00-.65 0l-4.707 3.42c-.538.39-1.255-.12-1.06-.76l1.6-5.33a.563.563 0 00-.22-.518l-4.37-3.178c-.45-.356-.208-1.086.358-1.086h5.4a.563.563 0 00.475-.31l2.125-5.111z" />
-                            </svg>
-                            <!-- FONT AND MARGIN UPDATED -->
-                            <h3 class="mt-4 font-display text-2xl font-semibold text-white uppercase">SILVER PLAN</h3>
-                        </div>
-                        <p class="mt-2 text-gray-400">Perfect for regular upkeep between full details.</p>
-                        <div class="mt-6">
-                            <span class="text-5xl font-extrabold text-white">$120</span>
-                            <span class="text-lg font-medium text-gray-400">/month</span>
-                        </div>
-                        <ul class="space-y-3 mt-8 text-gray-300 flex-grow">
-                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> 1 Monthly Maintenance Wash</li>
-                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Foam & contact wash (pH-balanced)</li>
-                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Spray sealant (1-month protection)</li>
-                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Interior vacuum + wipe-down</li>
-                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Tire dressing & window cleaning</li>
-                        </ul>
-                        <div class="mt-8 pt-8 border-t border-white/10">
-                            <p class="text-sm text-gray-400">⏱ 1–1.5 hrs &nbsp;&nbsp; 💰 Save ~$55 monthly</p>
-                            <!-- UPDATED LINK -->
-                            <a href="booking.html?service=Silver+Plan&type=plan&price=120" class="mt-6 block w-full text-center btn-secondary">
-                                Select Plan
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- GOLD PLAN CARD (LARGER) -->
-                    <div class="glassmorphism rounded-2xl p-8 flex flex-col border-2 border-yellow-400 shadow-2xl shadow-yellow-500/10 relative transform lg:scale-105 slide-up h-full" style="transition-delay: 150ms;">
-                        <span class="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-yellow-400 text-gray-900 text-xs font-bold uppercase px-4 py-1 rounded-full">MOST POPULAR</span>
-                        <div class="flex-shrink-0 pt-5">
-                            <!-- CROWN ICON ADDED -->
-                            <svg class="h-10 w-10 text-yellow-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zM3 18h18" />
-                            </svg>
-                            <!-- FONT AND MARGIN UPDATED -->
-                            <h3 class="mt-4 font-display text-2xl font-semibold text-white uppercase">GOLD PLAN</h3>
-                        </div>
-                        <p class="mt-2 text-gray-400">For that "just detailed" look — always!</p>
-                        <div class="mt-6">
-                            <span class="text-5xl font-extrabold text-white">$225</span>
-                            <span class="text-lg font-medium text-gray-400">/month</span>
-                        </div>
-                        <ul class="space-y-3 mt-8 text-gray-300 flex-grow">
-                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> 2 Bi-Weekly Maintenance Details</li>
-                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Light decontamination & wax refresh</li>
-                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Interior vacuum + leather conditioner</li>
-                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Tire dressing, trim & window cleaning</li>
-                        </ul>
-                        <div class="mt-8 pt-8 border-t border-white/10">
-                            <p class="text-sm text-gray-400">⏱ 1.5–2 hrs &nbsp;&nbsp; 💰 Save ~$125 monthly</p>
-                            <!-- UPDATED LINK -->
-                            <a href="booking.html?service=Gold+Plan&type=plan&price=225" class="mt-6 block w-full text-center btn-primary">
-                                Select Plan
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- PLATINUM PLAN CARD -->
-                    <div class="glassmorphism rounded-2xl p-8 flex flex-col transition-all duration-300 card-glow-cyan-hover slide-up h-full" style="transition-delay: 300ms;">
-                        <div class="flex-shrink-0">
-                             <!-- DIAMOND ICON ADDED -->
-                             <svg class="h-10 w-10 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 2L2 12l10 10 10-10L12 2zM6 12l6-6 6 6-6 6-6-6z" />
-                            </svg>
-                            <!-- FONT AND MARGIN UPDATED -->
-                            <h3 class="mt-4 font-display text-2xl font-semibold text-white uppercase">PLATINUM PLAN</h3>
-                        </div>
-                        <p class="mt-2 text-gray-400">Ultimate protection & constant perfection.</p>
-                        <div class="mt-6">
-                            <span class="text-5xl font-extrabold text-white">$350</span>
-                            <span class="text-lg font-medium text-gray-400">/month</span>
-                        </div>
-                        <ul class="space-y-3 mt-8 text-gray-300 flex-grow">
-                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> 4 Weekly Maintenance Details</li>
-                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Spray sealant touch-up</li>
-                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Interior vacuum, wipe-down & fragrance</li>
-                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Tire dressing, glass polish & engine bay dusting</li>
-                            <li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> Priority scheduling + 10% off upgrades</li>
-                        </ul>
-                        <div class="mt-8 pt-8 border-t border-white/10">
-                            <p class="text-sm text-gray-400">⏱ 1–1.5 hrs &nbsp;&nbsp; 💰 Save ~$250+ monthly</p>
-                            <!-- UPDATED LINK -->
-                            <a href="booking.html?service=Platinum+Plan&type=plan&price=350" class="mt-6 block w-full text-center btn-secondary">
-                                Select Plan
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="mt-12 text-center text-gray-400 slide-up">
-                    <p>All plans include: Priority booking, flexible scheduling, premium products & exclusive discounts on ceramic upgrades.</p>
-                </div>
-            </div>
-        </section>
-
-
-        <section id="add-ons" class="py-24 bg-gray-900/50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center slide-up">
-                    <p class="mt-2 text-4xl sm:text-5xl font-extrabold text-white tracking-tighter font-display uppercase">Add-On Enhancements</p>
-                    <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-300">
-                        Customize your detailing experience with premium add-ons.
-                    </p>
-                </div>
-                
-                <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-6">
+                <form id="booking-form" action="#" method="POST" class="glassmorphism rounded-2xl p-8 md:p-12 space-y-8 card-glow-cyan slide-up" style="transition-delay: 150ms;">
                     
-                    <!-- Add-on Card 1 -->
-                    <div class="glassmorphism rounded-2xl p-6 flex flex-col h-full slide-up card-glow-cyan-hover">
-                        <div class="flex justify-between items-start mb-3">
-                            <h3 class="text-xl font-semibold text-white">Engine Bay Detailing</h3>
-                            <button class="addon-toggle-button flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full border border-white/20 text-white/50 text-2xl font-thin cursor-pointer" data-target="addon-desc-1">
-                                <span class="addon-plus-icon">+</span>
-                            </button>
+                    <div class="form-step" data-step="1">
+                        <h3 class="text-2xl font-semibold text-white mb-6 font-display">Step 1: Select Your Service</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Service Type (Optional Filter)</label>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div class="relative">
+                                        <input type="radio" id="service-type-package" name="service-type" value="package" class="sr-only">
+                                        <label for="service-type-package" class="form-radio-label flex items-center justify-center p-5 rounded-lg cursor-pointer text-lg font-semibold">
+                                            One-Time Package
+                                        </label>
+                                    </div>
+                                    <div class="relative">
+                                        <input type="radio" id="service-type-plan" name="service-type" value="plan" class="sr-only">
+                                        <label for="service-type-plan" class="form-radio-label flex items-center justify-center p-5 rounded-lg cursor-pointer text-lg font-semibold">
+                                            Monthly Plan
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div id="service-selection-container">
+                                <label for="service" class="block text-sm font-medium text-gray-300">Service Interested In *</label>
+                                <div class="mt-1">
+                                    <select id="service" name="service" required class="form-input block w-full rounded-lg px-4 py-3 text-white">
+                                        <!-- Options will be dynamically populated by JavaScript -->
+                                        <option value="">Select a service...</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Service Summary Box -->
+                            <div id="service-summary" class="hidden glassmorphism rounded-lg p-4 mt-6 border border-cyan-400 shadow-lg shadow-cyan-500/10">
+                                <h4 class="text-lg font-semibold text-white font-display">Selected Service:</h4>
+                                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mt-2">
+                                    <span id="summary-service-name" class="text-gray-300 text-lg font-medium"></span>
+                                    <span id="summary-service-price" class="text-2xl font-bold text-cyan-400 mt-2 sm:mt-0"></span>
+                                </div>
+                            </div>
+                            
+                            <!-- NEW: Service Description Box -->
+                            <div id="service-description-container" class="hidden glassmorphism rounded-lg p-6 mt-4 border border-white/10">
+                                <!-- Content dynamically injected by JS -->
+                            </div>
+                            <!-- END: Service Description Box -->
+
                         </div>
-                        <p id="addon-desc-1" class="text-gray-400 text-base mb-6 flex-grow hidden">Complete engine compartment cleaning & dressing.</p>
-                        <span class="text-3xl font-bold text-cyan-400 mt-auto">$50</span>
-                    </div>
-                    
-                    <!-- Add-on Card 2 -->
-                    <div class="glassmorphism rounded-2xl p-6 flex flex-col h-full slide-up card-glow-cyan-hover" style="transition-delay: 100ms;">
-                        <div class="flex justify-between items-start mb-3">
-                            <h3 class="text-xl font-semibold text-white">Glass Coating Upgrade</h3>
-                             <button class="addon-toggle-button flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full border border-white/20 text-white/50 text-2xl font-thin cursor-pointer" data-target="addon-desc-2">
-                                <span class="addon-plus-icon">+</span>
-                            </button>
+                        <div class="mt-10 flex justify-end">
+                            <button type="button" class="btn-primary" data-action="next">Next</button>
                         </div>
-                        <p id="addon-desc-2" class="text-gray-400 text-base mb-6 flex-grow hidden">Advanced hydrophobic coating for crystal-clear visibility.</p>
-                        <span class="text-3xl font-bold text-cyan-400 mt-auto">$55</span>
                     </div>
 
-                    <!-- Add-on Card 3 -->
-                    <div class="glassmorphism rounded-2xl p-6 flex flex-col h-full slide-up card-glow-cyan-hover" style="transition-delay: 200ms;">
-                        <div class="flex justify-between items-start mb-3">
-                            <h3 class="text-xl font-semibold text-white">Headlight Restoration</h3>
-                             <button class="addon-toggle-button flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full border border-white/20 text-white/50 text-2xl font-thin cursor-pointer" data-target="addon-desc-3">
-                                <span class="addon-plus-icon">+</span>
-                            </button>
+                    <div class="form-step hidden" data-step="2">
+                        <h3 class="text-2xl font-semibold text-white mb-6 font-display">Step 2: Your Details</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <label for="full-name" class="block text-sm font-medium text-gray-300">Full Name *</label>
+                                <div class="mt-1">
+                                    <input type="text" name="full-name" id="full-name" autocomplete="name" placeholder="John Doe" required class="form-input block w-full rounded-lg px-4 py-3 text-white">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-300">Email Address *</label>
+                                <div class="mt-1">
+                                    <input id="email" name="email" type="email" autocomplete="email" placeholder="john@example.com" required class="form-input block w-full rounded-lg px-4 py-3 text-white">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="phone" class="block text-sm font-medium text-gray-300">Phone Number *</label>
+                                <div class="mt-1">
+                                    <input type="tel" name="phone" id="phone" autocomplete="tel" placeholder="+65 8847 9753" required class="form-input block w-full rounded-lg px-4 py-3 text-white">
+                                </div>
+                            </div>
                         </div>
-                        <p id="addon-desc-3" class="text-gray-400 text-base mb-6 flex-grow hidden">Remove oxidation & restore clarity to foggy headlights.</p>
-                        <span class="text-3xl font-bold text-cyan-400 mt-auto">$60</span>
+                        <div class="mt-10 flex justify-between">
+                            <button type="button" class="btn-secondary" data-action="prev">Previous</button>
+                            <button type="button" class="btn-primary" data-action="next">Next</button>
+                        </div>
                     </div>
 
-                    <!-- Add-on Card 4 -->
-                    <div class="glassmorphism rounded-2xl p-6 flex flex-col h-full slide-up card-glow-cyan-hover" style="transition-delay: 300ms;">
-                        <div class="flex justify-between items-start mb-3">
-                            <h3 class="text-xl font-semibold text-white">Fabric Shampoo (Full Interior)</h3>
-                             <button class="addon-toggle-button flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full border border-white/20 text-white/50 text-2xl font-thin cursor-pointer" data-target="addon-desc-4">
-                                <span class="addon-plus-icon">+</span>
-                            </button>
+                    <div class="form-step hidden" data-step="3">
+                        <h3 class="text-2xl font-semibold text-white mb-6 font-display">Step 3: Vehicle & Scheduling</h3>
+                        <div class="space-y-6">
+                             <div>
+                                <label for="vehicle-info" class="block text-sm font-medium text-gray-300">Vehicle Make & Model *</label>
+                                <div class="mt-1">
+                                    <input type="text" name="vehicle-info" id="vehicle-info" placeholder="e.g., 2022 Tesla Model Y" required class="form-input block w-full rounded-lg px-4 py-3 text-white">
+                                </div>
+                            </div>
+                             <div>
+                                <label for="preferred-date" class="block text-sm font-medium text-gray-300">Preferred Date *</label>
+                                <div class="mt-1">
+                                    <input type="date" name="preferred-date" id="preferred-date" required class="form-input block w-full rounded-lg px-4 py-3 text-white" min="2025-01-01">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="details" class="block text-sm font-medium text-gray-300">Additional Details</label>
+                                <div class="mt-1">
+                                    <textarea id="details" name="details" rows="5" placeholder="Please provide any additional details. Good things to include:&#10;- Your full address for our mobile service.&#10;- Any specific problem areas on the car (e.g., &quot;bad stain on passenger seat&quot;, &quot;deep scratch on driver's door&quot;).&#10;- Gate codes or specific parking instructions." class="form-input block w-full rounded-lg px-4 py-3 text-white"></textarea>
+                                </div>
+                            </div>
                         </div>
-                        <p id="addon-desc-4" class="text-gray-400 text-base mb-6 flex-grow hidden">Deep clean all fabric surfaces & remove stubborn stains.</p>
-                        <span class="text-3xl font-bold text-cyan-400 mt-auto">$65</span>
-                    </div>
-
-                    <!-- Add-on Card 5 -->
-                    <div class="glassmorphism rounded-2xl p-6 flex flex-col h-full slide-up card-glow-cyan-hover" style="transition-delay: 400ms;">
-                        <div class="flex justify-between items-start mb-3">
-                            <h3 class="text-xl font-semibold text-white">Deep Scratch Repair (Per Panel)</h3>
-                             <button class="addon-toggle-button flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full border border-white/20 text-white/50 text-2xl font-thin cursor-pointer" data-target="addon-desc-5">
-                                <span class="addon-plus-icon">+</span>
-                            </button>
+                        <div class="mt-10 flex justify-between">
+                            <button type="button" class="btn-secondary" data-action="prev">Previous</button>
+                            <button type="submit" class="btn-primary">Request Booking</button>
                         </div>
-                        <p id="addon-desc-5" class="text-gray-400 text-base mb-6 flex-grow hidden">Professional touch-up for deeper scratches & paint defects.</p>
-                        <span class="text-3xl font-bold text-cyan-400 mt-auto">$50+</span>
                     </div>
-
-                    <!-- Add-on Card 6 -->
-                    <div class="glassmorphism rounded-2xl p-6 flex flex-col h-full slide-up card-glow-cyan-hover" style="transition-delay: 500ms;">
-                        <div class="flex justify-between items-start mb-3">
-                            <h3 class="text-xl font-semibold text-white">5-Year Ceramic Coating Upgrade</h3>
-                             <button class="addon-toggle-button flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full border border-white/20 text-white/50 text-2xl font-thin cursor-pointer" data-target="addon-desc-6">
-                                <span class="addon-plus-icon">+</span>
-                            </button>
-                        </div>
-                        <p id="addon-desc-6" class="text-gray-400 text-base mb-6 flex-grow hidden">Extended protection with premium ceramic coating technology.</p>
-                        <span class="text-3xl font-bold text-cyan-400 mt-auto">$250</span>
-                    </div>
-
-                </div>
+                </form>
             </div>
         </section>
         
+        <section id="contact-info" class="py-24">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                 <div class="slide-up">
+                    <h2 class="text-base font-semibold text-cyan-400 uppercase tracking-wider">Contact Us Directly</h2>
+                    <p class="mt-2 text-4xl sm:text-5xl font-extrabold text-white tracking-tighter font-display">Prefer to Book by Phone?</p>
+                    <p class="mt-6 max-w-xl mx-auto text-lg text-gray-300">
+                        No problem. Call us directly or send a message, and we'll get you set up.
+                    </p>
+                </div>
+                <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 text-left slide-up" style="transition-delay: 150ms;">
+                    <div class="glassmorphism rounded-2xl p-8 space-y-6">
+                        <div class="flex items-start">
+                            <span class="mt-1 text-cyan-400"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg></span>
+                            <div class="ml-4">
+                                <p class="text-lg font-medium text-white">Phone</p>
+                                <a href="tel:+6588479753" class="text-lg text-gray-300 hover:text-cyan-400 transition-colors">+65 8847 9753</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="mt-1 text-cyan-400"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg></span>
+                            <div class="ml-4">
+                                <p class="text-lg font-medium text-white">Email</p>
+                                <a href="mailto:bookings@rinzefree.com" class="text-lg text-gray-300 hover:text-cyan-400 transition-colors">bookings@rinzefree.com</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glassmorphism rounded-2xl p-8">
+                        <h3 class="text-2xl font-semibold text-white">Business Hours</h3>
+                        <div class="mt-4 space-y-2 text-lg text-gray-300">
+                            <p class="flex justify-between"><span>Monday - Friday</span> <span>8:00 AM - 6:00 PM</span></p>
+                            <p class="flex justify-between"><span>Saturday</span> <span>9:00 AM - 5:00 PM</span></p>
+                            <p class="flex justify-between"><span>Sunday</span> <span>By Appointment</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="py-24 bg-gray-900/50">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center slide-up">
+                    <h2 class="text-base font-semibold text-cyan-400 uppercase tracking-wider">FAQ</h2>
+                    <p class="mt-2 text-4xl sm:text-5xl font-extrabold text-white tracking-tighter font-display">Booking Questions</p>
+                </div>
+                
+                <div class="mt-16 space-y-4">
+                    <div class="glassmorphism rounded-xl transition-all duration-300 card-glow-cyan-hover slide-up">
+                        <button class="accordion-toggle flex justify-between items-center w-full p-6 text-left">
+                            <h3 class="text-lg font-semibold text-white">Do I need to be home for the service?</h3>
+                            <span class="icon-plus text-cyan-400 text-3xl font-thin">+</span>
+                        </button>
+                        <div class="accordion-content px-6">
+                            <p class="pb-6 text-gray-400">Not at all! As long as we have access to your vehicle (unlocked) and keys for an interior detail, you can go about your day. We can process payment securely over the phone.</p>
+                        </div>
+                    </div>
+                    <div class="glassmorphism rounded-xl transition-all duration-300 card-glow-cyan-hover slide-up" style="transition-delay: 100ms;">
+                        <button class="accordion-toggle flex justify-between items-center w-full p-6 text-left">
+                            <h3 class="text-lg font-semibold text-white">What happens in case of bad weather?</h3>
+                            <span class="icon-plus text-cyan-400 text-3xl font-thin">+</span>
+                        </button>
+                        <div class="accordion-content px-6">
+                            <p class="pb-6 text-gray-400">We monitor the weather closely. If heavy rain or extreme weather is forecasted, we will contact you the day before or the morning of to reschedule for the next available clear day.</p>
+                        </div>
+                    </div>
+                    <div class="glassmorphism rounded-xl transition-all duration-300 card-glow-cyan-hover slide-up" style="transition-delay: 200ms;">
+                        <button class="accordion-toggle flex justify-between items-center w-full p-6 text-left">
+                            <h3 class="text-lg font-semibold text-white">How long does the detail take?</h3>
+                            <span class="icon-plus text-cyan-400 text-3xl font-thin">+</span>
+                        </button>
+                        <div class="accordion-content px-6">
+                            <p class="pb-6 text-gray-400">It depends on the service. A maintenance wash can take 1-2 hours, while a full Paint Correction & Ceramic Coating can take 6-8 hours. We will provide an estimated time frame when you book.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer class="bg-gray-950 border-t border-white/10">
@@ -593,28 +549,245 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+
+            // --- Service Data ---
+            const servicePriceMap = {
+                // Packages
+                "Classic Detail": "$175",
+                "Enhancement Package": "$325",
+                "Elite Ceramic Protection": "$500",
+                // Plans
+                "Silver Plan": "$120 /month",
+                "Gold Plan": "$225 /month",
+                "Platinum Plan": "$350 /month",
+                // Add-Ons
+                "Engine Bay Detailing": "$50",
+                "Glass Coating Upgrade": "$55",
+                "Headlight Restoration": "$60",
+                "Fabric Shampoo (Full Interior)": "$65",
+                "Deep Scratch Repair (Per Panel)": "$50+",
+                "5-Year Ceramic Coating Upgrade": "$250"
+            };
+
+            // NEW: Service Description Map
+            const serviceDescriptionMap = {
+                "Classic Detail": [
+                    "pH-balanced pre-wash & hand wash",
+                    "Iron & tar decontamination",
+                    "Premium hand wax (3-month protection)",
+                    "Tire cleaning & satin dressing",
+                    "Interior vacuum + full wipe-down",
+                    "Dashboard & trim UV protection",
+                    "Windows, mirrors & door jambs cleaned",
+                    "Leather seats cleaned & conditioned"
+                ],
+                "Enhancement Package": [
+                    "Includes everything from Classic, plus:",
+                    "Full decontamination (iron + clay bar)",
+                    "2-Step Paint Correction (removes up to 80% of swirls & light scratches)",
+                    "Paint sealant (6-9 months protection)",
+                    "Wheels deep cleaned & polished",
+                    "Engine bay cleaned & dressed",
+                    "Fabric shampoo & leather conditioning",
+                    "Steam-cleaned vents & plastics",
+                    "Glass polish + rain repellent"
+                ],
+                "Elite Ceramic Protection": [
+                    "Includes everything from Enhancement, plus:",
+                    "Multi-stage paint correction & refinement",
+                    "3-Year Ceramic Coating (paint, glass, wheels)",
+                    "Wheel sealant & brake dust protection",
+                    "Interior deep clean + fabric & leather guard",
+                    "Engine bay detailed & hydrophobic dressing",
+                    "Glass coating for clarity & durability",
+                    "Complimentary Maintenance Wash (within 30 days)"
+                ],
+                "Silver Plan": [
+                    "1 Monthly Maintenance Wash",
+                    "Foam & contact wash (pH-balanced)",
+                    "Spray sealant (1-month protection)",
+                    "Interior vacuum + wipe-down",
+                    "Tire dressing & window cleaning"
+                ],
+                "Gold Plan": [
+                    "2 Bi-Weekly Maintenance Details",
+                    "Light decontamination & wax refresh",
+                    "Interior vacuum + leather conditioner",
+                    "Tire dressing, trim & window cleaning"
+                ],
+                "Platinum Plan": [
+                    "4 Weekly Maintenance Details",
+                    "Spray sealant touch-up",
+                    "Interior vacuum, wipe-down & fragrance",
+                    "Tire dressing, glass polish & engine bay dusting",
+                    "Priority scheduling + 10% off upgrades"
+                ],
+                "Engine Bay Detailing": "Complete engine compartment cleaning & dressing.",
+                "Glass Coating Upgrade": "Advanced hydrophobic coating for crystal-clear visibility.",
+                "Headlight Restoration": "Remove oxidation & restore clarity to foggy headlights.",
+                "Fabric Shampoo (Full Interior)": "Deep clean all fabric surfaces & remove stubborn stains.",
+                "Deep Scratch Repair (Per Panel)": "Professional touch-up for deeper scratches & paint defects.",
+                "5-Year Ceramic Coating Upgrade": "Extended protection with premium ceramic coating technology."
+            };
+
+            const serviceOptions = {
+                package: {
+                    "Detailing Packages": [
+                        "Classic Detail",
+                        "Enhancement Package",
+                        "Elite Ceramic Protection"
+                    ],
+                    "Add-Ons": [
+                        "Engine Bay Detailing",
+                        "Glass Coating Upgrade",
+                        "Headlight Restoration",
+                        "Fabric Shampoo (Full Interior)",
+                        "Deep Scratch Repair (Per Panel)",
+                        "5-Year Ceramic Coating Upgrade"
+                    ]
+                },
+                plan: {
+                    "Monthly Plans": [
+                        "Silver Plan",
+                        "Gold Plan",
+                        "Platinum Plan"
+                    ]
+                }
+            };
+
+            // --- Element References ---
+            const serviceTypeRadios = document.querySelectorAll('input[name="service-type"]');
+            const serviceSelectContainer = document.getElementById('service-selection-container');
+            const serviceSelect = document.getElementById('service');
+            const serviceSummary = document.getElementById('service-summary');
+            const summaryName = document.getElementById('summary-service-name');
+            const summaryPrice = document.getElementById('summary-service-price');
+            // NEW: Description container
+            const serviceDescriptionContainer = document.getElementById('service-description-container');
             
+            // --- Helper Functions ---
+
+            function updateServiceDropdown(type) {
+                const currentVal = serviceSelect.value; 
+                serviceSelect.innerHTML = '<option value="">Select a service...</option>'; 
+
+                function addOptgroup(groupName, services) {
+                    const optgroup = document.createElement('optgroup');
+                    optgroup.label = groupName;
+                    services.forEach(serviceName => {
+                        const option = document.createElement('option');
+                        option.value = serviceName;
+                        option.textContent = serviceName;
+                        optgroup.appendChild(option);
+                    });
+                    serviceSelect.appendChild(optgroup);
+                }
+
+                if (type === 'package') {
+                    for (const groupName in serviceOptions.package) {
+                        addOptgroup(groupName, serviceOptions.package[groupName]);
+                    }
+                } else if (type === 'plan') {
+                    for (const groupName in serviceOptions.plan) {
+                        addOptgroup(groupName, serviceOptions.plan[groupName]);
+                    }
+                } else {
+                    for (const groupName in serviceOptions.package) {
+                        addOptgroup(groupName, serviceOptions.package[groupName]);
+                    }
+                    for (const groupName in serviceOptions.plan) {
+                        addOptgroup(groupName, serviceOptions.plan[groupName]);
+                    }
+                }
+                
+                if (Array.from(serviceSelect.options).some(o => o.value === currentVal)) {
+                    serviceSelect.value = currentVal;
+                } else {
+                    updateServiceSummary('');
+                    updateServiceDescription(''); // Clear description if service is no longer valid
+                }
+                
+                serviceSelectContainer.classList.remove('hidden'); 
+            }
+
+            function updateServiceSummary(serviceName) {
+                const price = servicePriceMap[serviceName];
+                if (serviceName && price) {
+                    summaryName.textContent = serviceName;
+                    summaryPrice.textContent = price;
+                    serviceSummary.classList.remove('hidden');
+                } else {
+                    serviceSummary.classList.add('hidden');
+                }
+            }
+
+            // NEW: Function to update the service description
+            function updateServiceDescription(serviceName) {
+                const description = serviceDescriptionMap[serviceName];
+                
+                if (description) {
+                    let htmlContent = '<h5 class="text-lg font-semibold text-white mb-3 font-display">What\'s Included:</h5>';
+                    
+                    if (Array.isArray(description)) {
+                        // It's a list (like a package or plan)
+                        htmlContent += '<ul class="space-y-2 text-gray-300">';
+                        description.forEach(item => {
+                            htmlContent += `<li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> ${item}</li>`;
+                        });
+                        htmlContent += '</ul>';
+                    } else {
+                        // It's a single string (like an add-on)
+                        htmlContent += `<p class="text-gray-300">${description}</p>`;
+                    }
+                    
+                    serviceDescriptionContainer.innerHTML = htmlContent;
+                    serviceDescriptionContainer.classList.remove('hidden');
+                } else {
+                    serviceDescriptionContainer.innerHTML = '';
+                    serviceDescriptionContainer.classList.add('hidden');
+                }
+            }
+
+
             // --- Mobile Menu ---
             const menuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
-            const navLinks = document.querySelectorAll('.mobile-nav-link');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
             menuButton.addEventListener('click', () => {
                 mobileMenu.classList.toggle('hidden');
             });
 
-            navLinks.forEach(link => {
+            mobileNavLinks.forEach(link => {
                 link.addEventListener('click', () => {
-                    // Don't close if it's just a hash link to the same page
                     if (!link.href.includes('#')) {
                          mobileMenu.classList.add('hidden');
-                    } else {
-                        // Close for hash links too
-                        mobileMenu.classList.add('hidden');
                     }
                 });
             });
 
+            // --- Accordion Functionality ---
+            const accordions = document.querySelectorAll('.accordion-toggle');
+            accordions.forEach(button => {
+                button.addEventListener('click', () => {
+                    const content = button.nextElementSibling;
+                    button.classList.toggle('open');
+                    
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                    }
+                    
+                    accordions.forEach(otherButton => {
+                        if (otherButton !== button) {
+                            otherButton.classList.remove('open');
+                            otherButton.nextElementSibling.style.maxHeight = null;
+                        }
+                    });
+                });
+            });
+            
             // --- Slide-up on Scroll Animation ---
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -626,29 +799,198 @@
                 threshold: 0.1 // Trigger when 10% of the element is visible
             });
 
-            // Observe all elements with the .slide-up class
             document.querySelectorAll('.slide-up').forEach(el => {
                 observer.observe(el);
             });
 
-            // --- CLICKABLE ADD-ON PLUS BUTTON SCRIPT ---
-            const addonButtons = document.querySelectorAll('.addon-toggle-button');
+            // --- Multi-Step Form Logic ---
+            const stepPanels = document.querySelectorAll('.form-step');
+            const stepIndicators = document.querySelectorAll('.step-indicator');
+            const stepLines = document.querySelectorAll('.step-line');
+            const nextButtons = document.querySelectorAll('[data-action="next"]');
+            const prevButtons = document.querySelectorAll('[data-action="prev"]');
+            
+            let currentStep = 0;
 
-            addonButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const targetId = button.getAttribute('data-target');
-                    const description = document.getElementById(targetId);
-                    const icon = button.querySelector('.addon-plus-icon');
-
-                    if (description) {
-                        description.classList.toggle('hidden');
+            function showStep(stepIndex) {
+                stepPanels.forEach((panel, index) => {
+                    panel.classList.toggle('hidden', index !== stepIndex);
+                });
+                stepIndicators.forEach((indicator, index) => {
+                    indicator.classList.remove('active', 'completed');
+                    if (index < stepIndex) {
+                        indicator.classList.add('completed');
+                    } else if (index === stepIndex) {
+                        indicator.classList.add('active');
                     }
-                    if (icon) {
-                        icon.classList.toggle('rotate-45');
+                });
+                stepLines.forEach((line, index) => {
+                    line.classList.remove('completed');
+                    if (index < stepIndex) {
+                        line.classList.add('completed');
+                    }
+                });
+                currentStep = stepIndex;
+            }
+
+            function validateStep(stepIndex) {
+                const currentPanel = stepPanels[stepIndex];
+                const inputs = currentPanel.querySelectorAll('input[required], select[required], textarea[required]');
+                let isValid = true;
+
+                inputs.forEach(input => {
+                    let inputValid = true;
+                    if (input.type === 'radio' && input.required) {
+                        const radioGroup = document.getElementsByName(input.name);
+                        inputValid = Array.from(radioGroup).some(radio => radio.checked);
+                    } else {
+                        inputValid = input.checkValidity();
+                    }
+
+                    if (!inputValid) {
+                        isValid = false;
+                        if(input.type === 'radio') {
+                            const radioLabels = currentPanel.querySelectorAll(`label[for^="${input.name}"]`);
+                            radioLabels.forEach(label => label.classList.add('invalid'));
+                        } else {
+                             input.classList.add('invalid');
+                        }
+                       
+                        input.addEventListener('input', () => {
+                             if(input.type === 'radio') {
+                                const radioLabels = currentPanel.querySelectorAll(`label[for^="${input.name}"]`);
+                                radioLabels.forEach(label => label.classList.remove('invalid'));
+                             } else {
+                                input.classList.remove('invalid');
+                             }
+                        }, { once: true });
+
+                    } else {
+                        input.classList.remove('invalid');
+                        if(input.type === 'radio') {
+                            const radioLabels = currentPanel.querySelectorAll(`label[for^="${input.name}"]`);
+                            radioLabels.forEach(label => label.classList.remove('invalid'));
+                        }
+                    }
+                });
+                return isValid;
+            }
+
+            nextButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    if (validateStep(currentStep)) {
+                        showStep(currentStep + 1);
                     }
                 });
             });
 
+            prevButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    showStep(currentStep - 1);
+                });
+            });
+
+            document.getElementById('booking-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                if (validateStep(currentStep)) {
+                    const submitButton = this.querySelector('button[type="submit"]');
+                    submitButton.disabled = true;
+                    submitButton.textContent = 'Sending...';
+                    
+                    const formData = new FormData(this);
+                    const serviceType = formData.get('service-type') || 'Not specified'; 
+                    const service = formData.get('service');
+                    const servicePrice = servicePriceMap[service] || 'N/A'; 
+                    const fullName = formData.get('full-name');
+                    const email = formData.get('email');
+                    const phone = formData.get('phone');
+                    const vehicleInfo = formData.get('vehicle-info');
+                    const preferredDate = formData.get('preferred-date');
+                    const details = formData.get('details');
+
+                    // NEW: Get description details
+                    const serviceDesc = serviceDescriptionMap[service];
+                    let descriptionText = "";
+                    if (Array.isArray(serviceDesc)) {
+                        descriptionText = serviceDesc.map(item => `\n- ${item}`).join('');
+                    } else {
+                        descriptionText = `\n${serviceDesc}`;
+                    }
+
+                    let message = `*New Booking Request from ${fullName}*\n\n`;
+                    message += `*Service:* ${service}\n`;
+                    message += `*Price:* ${servicePrice}\n`;
+                    message += `*Service Type Filter:* ${serviceType}\n\n`;
+                    message += `*Service Details:*${descriptionText}\n\n`; // Add the full description
+                    message += `*Name:* ${fullName}\n`;
+                    message += `*Email:* ${email}\n`;
+                    message += `*Phone:* ${phone}\n`;
+                    message += `*Vehicle:* ${vehicleInfo}\n`;
+                    message += `*Preferred Date:* ${preferredDate}\n`;
+                    if (details) {
+                        message += `*Details:* ${details}\n`;
+                    }
+                    
+                    const encodedMessage = encodeURIComponent(message);
+                    const whatsappURL = `https://wa.me/6588479753?text=${encodedMessage}`;
+                    
+                    window.location.href = whatsappURL;
+                    
+                    setTimeout(() => {
+                        submitButton.disabled = false;
+                        submitButton.textContent = 'Request Booking';
+                    }, 1000);
+                }
+            });
+
+            const today = new Date().toISOString().split('T')[0];
+            const datePicker = document.getElementById('preferred-date');
+            if (datePicker) {
+                datePicker.setAttribute('min', today);
+            }
+
+            // --- Event Listeners for Dynamic Form ---
+            serviceTypeRadios.forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    const selectedType = e.target.value;
+                    updateServiceDropdown(selectedType);
+                });
+            });
+
+            serviceSelect.addEventListener('change', (e) => {
+                const serviceName = e.target.value;
+                updateServiceSummary(serviceName);
+                updateServiceDescription(serviceName); // Call description update
+            });
+
+            
+            function checkURLParams() {
+                const params = new URLSearchParams(window.location.search);
+                const service = params.get('service');
+                const type = params.get('type');
+
+                if (type) {
+                    const radio = document.getElementById(`service-type-${type}`);
+                    if (radio) {
+                        radio.checked = true;
+                        radio.dispatchEvent(new Event('change'));
+                    }
+                }
+
+                if (service) {
+                    setTimeout(() => {
+                        if (Array.from(serviceSelect.options).some(o => o.value === service)) {
+                            serviceSelect.value = service;
+                            serviceSelect.dispatchEvent(new Event('change')); // This now triggers summary and description
+                        }
+                    }, 50); 
+                }
+            }
+
+            // Initial setup
+            showStep(0);
+            updateServiceDropdown(); 
+            checkURLParams(); 
         });
     </script>
 </body>
