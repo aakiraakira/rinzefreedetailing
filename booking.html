@@ -2,7 +2,7 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale-1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Your Service - Rinze Free Auto Detailing</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,7 +47,7 @@
             text-shadow: 0 0 8px rgba(56, 189, 248, 0.7), 0 0 10px rgba(56, 189, 248, 0.5);
         }
 
-        /* --- UPDATED SLICK BUTTON STYLES --- */
+        /* --- BUTTON STYLES --- */
         
         /* Primary CTA Button (Blue Gradient) */
         .btn-primary {
@@ -88,21 +88,6 @@
             box-shadow: 0 6px 20px rgba(219, 234, 254, 0.4);
         }
 
-        /* Ghost/Tertiary CTA Button (Cyan Border) */
-        .btn-ghost-cyan {
-            color: #22D3EE; /* cyan-400 */
-            border: 1px solid #22D3EE;
-            font-weight: 600;
-            border-radius: 0.5rem;
-            padding: 0.5rem 1.25rem; /* Smaller padding for header */
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .btn-ghost-cyan:hover {
-            background-color: rgba(34, 211, 238, 0.1);
-            box-shadow: 0 0 15px rgba(34, 211, 238, 0.3);
-            transform: scale(1.05);
-        }
-        
         /* Custom Form Input Styles */
         .form-input {
             background-color: rgba(15, 23, 42, 0.7);
@@ -116,12 +101,12 @@
             outline: none;
         }
 
-        /* --- NEW: Form Validation Error Style --- */
+        /* --- Form Validation Error Style --- */
         .form-input.invalid {
             border-color: #EF4444; /* red-500 */
             box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
         }
-        .form-radio-label.invalid {
+        .form-radio-label.invalid, .form-checkbox-label.invalid {
              border-color: #EF4444; /* red-500 */
              box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
         }
@@ -141,7 +126,7 @@
             background: #38bdf8;
         }
 
-        /* --- NEW: Slide-up Animation --- */
+        /* --- Slide-up Animation --- */
         .slide-up {
             opacity: 0;
             transform: translateY(30px);
@@ -152,7 +137,7 @@
             transform: translateY(0);
         }
 
-        /* --- NEW: Accordion Styles --- */
+        /* --- Accordion Styles --- */
         .accordion-content {
             max-height: 0;
             overflow: hidden;
@@ -165,7 +150,7 @@
             transform: rotate(45deg);
         }
 
-        /* --- UPDATED: Active Nav Styles --- */
+        /* --- Active Nav Styles --- */
         .nav-link-active {
             color: #22D3EE; /* cyan-400 */
             font-weight: 600;
@@ -177,7 +162,7 @@
             border-left: 4px solid #22D3EE;
         }
 
-        /* --- NEW: 3-Step Form Stepper Styles --- */
+        /* --- Stepper Styles (Updated for 4 Steps) --- */
         .step-indicator {
             height: 2.5rem; /* 40px */
             width: 2.5rem; /* 40px */
@@ -211,27 +196,46 @@
             background-color: #22D3EE; /* cyan-400 */
         }
 
-        /* --- UPDATED: Custom Radio Button Styles --- */
-        .form-radio-label {
+        /* --- Custom Radio & Checkbox Button Styles --- */
+        .form-radio-label, .form-checkbox-label {
             background-color: rgba(15, 23, 42, 0.7);
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
         }
-        .form-radio-label:hover {
+        .form-radio-label:hover, .form-checkbox-label:hover {
             border-color: rgba(255, 255, 255, 0.3);
         }
+        
+        /* Radio Checked State */
         input[type="radio"]:checked + .form-radio-label {
             border-color: #22D3EE; /* cyan-400 */
             background-color: rgba(34, 211, 238, 0.1);
             box-shadow: 0 0 15px rgba(34, 211, 238, 0.3);
         }
 
-        /* --- NEW: Service Summary Box Style --- */
-        #service-summary {
+        /* Checkbox Checked State (for Add-ons) */
+        input[type="checkbox"]:checked + .form-checkbox-label {
+            border-color: #22D3EE; /* cyan-400 */
+            background-color: rgba(34, 211, 238, 0.1);
+            box-shadow: 0 0 15px rgba(34, 211, 238, 0.3);
+            position: relative;
+        }
+        /* Add checkmark indicator for checkboxes */
+        input[type="checkbox"]:checked + .form-checkbox-label::after {
+            content: '✓';
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: #22D3EE;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* --- Box Styles --- */
+        #service-summary, #total-summary {
             transition: all 0.3s ease-in-out;
         }
         
-        /* --- NEW: Service Description Box Style --- */
         #service-description-container {
              transition: all 0.3s ease-in-out;
         }
@@ -255,7 +259,6 @@
                     <a href="booking.html" class="nav-link-active">Booking</a>
                 </div>
                 
-                <!-- "Call Now" Button Removed -->
                 <div class="hidden md:flex items-center space-x-4">
                     <a href="https://wa.me/6588479753" target="_blank" class="btn-primary text-sm">
                         WhatsApp
@@ -279,7 +282,6 @@
                 <a href="index.html#gallery" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/10">Gallery</a>
                 <a href="booking.html" class="mobile-nav-link mobile-nav-link-active block px-3 py-2 rounded-md text-base font-medium">Booking</a>
             </div>
-            <!-- "Call Now" Button Removed -->
             <div class="px-4 pb-4 border-t border-gray-700/50 pt-4 space-y-3">
                 <a href="https://wa.me/6588479753" target="_blank" class="block w-full text-center btn-primary text-sm">
                     WhatsApp
@@ -297,31 +299,33 @@
                     <p class="mt-2 text-4xl sm:text-5xl font-extrabold text-white tracking-tighter font-display">Let's Get You Scheduled</p>
                 </div>
 
-                <div class="flex items-center w-full max-w-lg mx-auto my-12 slide-up">
+                <div class="flex items-center w-full max-w-2xl mx-auto my-12 slide-up">
                     <div class="step-indicator active flex-shrink-0" data-step="1">1</div>
                     <div class="step-line flex-1" data-line="1"></div>
                     <div class="step-indicator flex-shrink-0" data-step="2">2</div>
                     <div class="step-line flex-1" data-line="2"></div>
                     <div class="step-indicator flex-shrink-0" data-step="3">3</div>
+                    <div class="step-line flex-1" data-line="3"></div>
+                    <div class="step-indicator flex-shrink-0" data-step="4">4</div>
                 </div>
 
                 <form id="booking-form" action="#" method="POST" class="glassmorphism rounded-2xl p-8 md:p-12 space-y-8 card-glow-cyan slide-up" style="transition-delay: 150ms;">
                     
                     <div class="form-step" data-step="1">
-                        <h3 class="text-2xl font-semibold text-white mb-6 font-display">Step 1: Select Your Service</h3>
+                        <h3 class="text-2xl font-semibold text-white mb-6 font-display">Step 1: Select Base Service</h3>
                         <div class="space-y-6">
                             <div>
-                                <label class="block text-sm font-medium text-gray-300 mb-2">Service Type (Optional Filter)</label>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Service Type</label>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <div class="relative">
-                                        <input type="radio" id="service-type-package" name="service-type" value="package" class="sr-only">
-                                        <label for="service-type-package" class="form-radio-label flex items-center justify-center p-5 rounded-lg cursor-pointer text-lg font-semibold">
+                                        <input type="radio" id="service-type-package" name="service-type" value="package" class="sr-only" checked>
+                                        <label for="service-type-package" class="form-radio-label flex items-center justify-center p-5 rounded-lg cursor-pointer text-lg font-semibold text-white">
                                             One-Time Package
                                         </label>
                                     </div>
                                     <div class="relative">
                                         <input type="radio" id="service-type-plan" name="service-type" value="plan" class="sr-only">
-                                        <label for="service-type-plan" class="form-radio-label flex items-center justify-center p-5 rounded-lg cursor-pointer text-lg font-semibold">
+                                        <label for="service-type-plan" class="form-radio-label flex items-center justify-center p-5 rounded-lg cursor-pointer text-lg font-semibold text-white">
                                             Monthly Plan
                                         </label>
                                     </div>
@@ -329,38 +333,57 @@
                             </div>
                             
                             <div id="service-selection-container">
-                                <label for="service" class="block text-sm font-medium text-gray-300">Service Interested In *</label>
+                                <label for="service" class="block text-sm font-medium text-gray-300">Select Package/Plan *</label>
                                 <div class="mt-1">
                                     <select id="service" name="service" required class="form-input block w-full rounded-lg px-4 py-3 text-white">
-                                        <!-- Options will be dynamically populated by JavaScript -->
                                         <option value="">Select a service...</option>
-                                    </select>
+                                        </select>
                                 </div>
                             </div>
 
-                            <!-- Service Summary Box -->
                             <div id="service-summary" class="hidden glassmorphism rounded-lg p-4 mt-6 border border-cyan-400 shadow-lg shadow-cyan-500/10">
-                                <h4 class="text-lg font-semibold text-white font-display">Selected Service:</h4>
+                                <h4 class="text-lg font-semibold text-white font-display">Base Service:</h4>
                                 <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mt-2">
                                     <span id="summary-service-name" class="text-gray-300 text-lg font-medium"></span>
                                     <span id="summary-service-price" class="text-2xl font-bold text-cyan-400 mt-2 sm:mt-0"></span>
                                 </div>
                             </div>
                             
-                            <!-- NEW: Service Description Box -->
                             <div id="service-description-container" class="hidden glassmorphism rounded-lg p-6 mt-4 border border-white/10">
-                                <!-- Content dynamically injected by JS -->
-                            </div>
-                            <!-- END: Service Description Box -->
+                                </div>
 
                         </div>
                         <div class="mt-10 flex justify-end">
-                            <button type="button" class="btn-primary" data-action="next">Next</button>
+                            <button type="button" class="btn-primary" data-action="next">Next: Add-ons</button>
                         </div>
                     </div>
 
                     <div class="form-step hidden" data-step="2">
-                        <h3 class="text-2xl font-semibold text-white mb-6 font-display">Step 2: Your Details</h3>
+                        <h3 class="text-2xl font-semibold text-white mb-2 font-display">Step 2: Enhancements</h3>
+                        <p class="text-gray-400 mb-6">Select multiple add-ons to customize your detail.</p>
+                        
+                        <div class="space-y-4" id="addons-container">
+                            </div>
+
+                        <div id="total-summary" class="glassmorphism rounded-lg p-6 mt-8 border border-t-2 border-cyan-400 bg-blue-900/20">
+                            <h4 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">Estimated Total</h4>
+                            <div class="flex justify-between items-end mt-2">
+                                <div class="text-gray-300 text-sm">
+                                    Base: <span id="calc-base-price">$0</span><br>
+                                    Add-ons: <span id="calc-addons-price">$0</span>
+                                </div>
+                                <span id="calc-total-price" class="text-3xl sm:text-4xl font-bold text-white text-glow-cyan">$0</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-10 flex justify-between">
+                            <button type="button" class="btn-secondary" data-action="prev">Previous</button>
+                            <button type="button" class="btn-primary" data-action="next">Next: Details</button>
+                        </div>
+                    </div>
+
+                    <div class="form-step hidden" data-step="3">
+                        <h3 class="text-2xl font-semibold text-white mb-6 font-display">Step 3: Your Details</h3>
                         <div class="space-y-6">
                             <div>
                                 <label for="full-name" class="block text-sm font-medium text-gray-300">Full Name *</label>
@@ -383,12 +406,12 @@
                         </div>
                         <div class="mt-10 flex justify-between">
                             <button type="button" class="btn-secondary" data-action="prev">Previous</button>
-                            <button type="button" class="btn-primary" data-action="next">Next</button>
+                            <button type="button" class="btn-primary" data-action="next">Next: Schedule</button>
                         </div>
                     </div>
 
-                    <div class="form-step hidden" data-step="3">
-                        <h3 class="text-2xl font-semibold text-white mb-6 font-display">Step 3: Vehicle & Scheduling</h3>
+                    <div class="form-step hidden" data-step="4">
+                        <h3 class="text-2xl font-semibold text-white mb-6 font-display">Step 4: Vehicle & Scheduling</h3>
                         <div class="space-y-6">
                              <div>
                                 <label for="vehicle-info" class="block text-sm font-medium text-gray-300">Vehicle Make & Model *</label>
@@ -405,7 +428,7 @@
                             <div>
                                 <label for="details" class="block text-sm font-medium text-gray-300">Additional Details</label>
                                 <div class="mt-1">
-                                    <textarea id="details" name="details" rows="5" placeholder="Please provide any additional details. Good things to include:&#10;- Your full address for our mobile service.&#10;- Any specific problem areas on the car (e.g., &quot;bad stain on passenger seat&quot;, &quot;deep scratch on driver's door&quot;).&#10;- Gate codes or specific parking instructions." class="form-input block w-full rounded-lg px-4 py-3 text-white"></textarea>
+                                    <textarea id="details" name="details" rows="5" placeholder="Please provide any additional details. Good things to include:&#10;- Your full address for our mobile service.&#10;- Any specific problem areas on the car.&#10;- Gate codes or specific parking instructions." class="form-input block w-full rounded-lg px-4 py-3 text-white"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -447,9 +470,14 @@
                     <div class="glassmorphism rounded-2xl p-8">
                         <h3 class="text-2xl font-semibold text-white">Business Hours</h3>
                         <div class="mt-4 space-y-2 text-lg text-gray-300">
-                            <p class="flex justify-between"><span>Monday - Friday</span> <span>8:00 AM - 6:00 PM</span></p>
-                            <p class="flex justify-between"><span>Saturday</span> <span>9:00 AM - 5:00 PM</span></p>
-                            <p class="flex justify-between"><span>Sunday</span> <span>By Appointment</span></p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <span class="w-3 h-3 rounded-full bg-green-500 mr-3 animate-pulse"></span>
+                                    <span>Open 24 Hours</span>
+                                </div>
+                                <span class="font-semibold text-white">7 Days a Week</span>
+                            </div>
+                            <p class="text-sm text-gray-500 mt-2">We are ready whenever you are.</p>
                         </div>
                     </div>
                 </div>
@@ -527,8 +555,6 @@
                         <li><a href="pricing.html#packages" class="text-base text-gray-400 hover:text-white transition-colors">Ceramic Coating</a></li>
                         <li><a href="pricing.html#packages" class="text-base text-gray-400 hover:text-white transition-colors">Interior Detailing</a></li>
                         <li><a href="pricing.html#add-ons" class="text-base text-gray-400 hover:text-white transition-colors">Engine Bay Cleaning</a></li>
-                        <li><a href="pricing.html#add-ons" class="text-base text-gray-400 hover:text-white transition-colors">Headlight Restoration</a></li>
-                        <li><a href="pricing.html#plans" class="text-base text-gray-400 hover:text-white transition-colors">Monthly Maintenance</a></li>
                     </ul>
                 </div>
 
@@ -537,6 +563,7 @@
                     <ul class="mt-4 space-y-3 text-base text-gray-400">
                         <li><a href="tel:+6588479753" class="hover:text-white">+65 8847 9753</a></li>
                         <li><a href="mailto:bookings@rinzefree.com" class="hover:text-white">bookings@rinzefree.com</a></li>
+                        <li class="text-green-400">Open 24 Hours / 7 Days</li>
                     </ul>
                 </div>
             </div>
@@ -550,7 +577,9 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
-            // --- Service Data ---
+            // --- Data Definitions ---
+            
+            // Base Prices for Calculation
             const servicePriceMap = {
                 // Packages
                 "Classic Detail": "$175",
@@ -559,17 +588,19 @@
                 // Plans
                 "Silver Plan": "$120 /month",
                 "Gold Plan": "$225 /month",
-                "Platinum Plan": "$350 /month",
-                // Add-Ons
-                "Engine Bay Detailing": "$50",
-                "Glass Coating Upgrade": "$55",
-                "Headlight Restoration": "$60",
-                "Fabric Shampoo (Full Interior)": "$65",
-                "Deep Scratch Repair (Per Panel)": "$50+",
-                "5-Year Ceramic Coating Upgrade": "$250"
+                "Platinum Plan": "$350 /month"
             };
 
-            // NEW: Service Description Map
+            // Separate Add-on Data
+            const addOnsData = [
+                { name: "Engine Bay Detailing", price: "$50", priceVal: 50 },
+                { name: "Glass Coating Upgrade", price: "$55", priceVal: 55 },
+                { name: "Headlight Restoration", price: "$60", priceVal: 60 },
+                { name: "Fabric Shampoo (Full Interior)", price: "$65", priceVal: 65 },
+                { name: "Deep Scratch Repair (Per Panel)", price: "$50+", priceVal: 50 }, // Base price for calc
+                { name: "5-Year Ceramic Coating Upgrade", price: "$250", priceVal: 250 }
+            ];
+
             const serviceDescriptionMap = {
                 "Classic Detail": [
                     "pH-balanced pre-wash & hand wash",
@@ -577,57 +608,41 @@
                     "Premium hand wax (3-month protection)",
                     "Tire cleaning & satin dressing",
                     "Interior vacuum + full wipe-down",
-                    "Dashboard & trim UV protection",
-                    "Windows, mirrors & door jambs cleaned",
                     "Leather seats cleaned & conditioned"
                 ],
                 "Enhancement Package": [
                     "Includes everything from Classic, plus:",
                     "Full decontamination (iron + clay bar)",
-                    "2-Step Paint Correction (removes up to 80% of swirls & light scratches)",
+                    "2-Step Paint Correction (removes 80% swirls)",
                     "Paint sealant (6-9 months protection)",
                     "Wheels deep cleaned & polished",
-                    "Engine bay cleaned & dressed",
-                    "Fabric shampoo & leather conditioning",
-                    "Steam-cleaned vents & plastics",
-                    "Glass polish + rain repellent"
+                    "Engine bay cleaned & dressed"
                 ],
                 "Elite Ceramic Protection": [
                     "Includes everything from Enhancement, plus:",
-                    "Multi-stage paint correction & refinement",
-                    "3-Year Ceramic Coating (paint, glass, wheels)",
+                    "Multi-stage paint correction",
+                    "3-Year Ceramic Coating",
                     "Wheel sealant & brake dust protection",
-                    "Interior deep clean + fabric & leather guard",
-                    "Engine bay detailed & hydrophobic dressing",
-                    "Glass coating for clarity & durability",
-                    "Complimentary Maintenance Wash (within 30 days)"
+                    "Interior deep clean",
+                    "Complimentary Maintenance Wash"
                 ],
                 "Silver Plan": [
                     "1 Monthly Maintenance Wash",
-                    "Foam & contact wash (pH-balanced)",
+                    "Foam & contact wash",
                     "Spray sealant (1-month protection)",
-                    "Interior vacuum + wipe-down",
-                    "Tire dressing & window cleaning"
+                    "Interior vacuum + wipe-down"
                 ],
                 "Gold Plan": [
                     "2 Bi-Weekly Maintenance Details",
                     "Light decontamination & wax refresh",
-                    "Interior vacuum + leather conditioner",
-                    "Tire dressing, trim & window cleaning"
+                    "Interior vacuum + leather conditioner"
                 ],
                 "Platinum Plan": [
                     "4 Weekly Maintenance Details",
                     "Spray sealant touch-up",
                     "Interior vacuum, wipe-down & fragrance",
-                    "Tire dressing, glass polish & engine bay dusting",
-                    "Priority scheduling + 10% off upgrades"
-                ],
-                "Engine Bay Detailing": "Complete engine compartment cleaning & dressing.",
-                "Glass Coating Upgrade": "Advanced hydrophobic coating for crystal-clear visibility.",
-                "Headlight Restoration": "Remove oxidation & restore clarity to foggy headlights.",
-                "Fabric Shampoo (Full Interior)": "Deep clean all fabric surfaces & remove stubborn stains.",
-                "Deep Scratch Repair (Per Panel)": "Professional touch-up for deeper scratches & paint defects.",
-                "5-Year Ceramic Coating Upgrade": "Extended protection with premium ceramic coating technology."
+                    "Priority scheduling"
+                ]
             };
 
             const serviceOptions = {
@@ -636,14 +651,6 @@
                         "Classic Detail",
                         "Enhancement Package",
                         "Elite Ceramic Protection"
-                    ],
-                    "Add-Ons": [
-                        "Engine Bay Detailing",
-                        "Glass Coating Upgrade",
-                        "Headlight Restoration",
-                        "Fabric Shampoo (Full Interior)",
-                        "Deep Scratch Repair (Per Panel)",
-                        "5-Year Ceramic Coating Upgrade"
                     ]
                 },
                 plan: {
@@ -662,11 +669,38 @@
             const serviceSummary = document.getElementById('service-summary');
             const summaryName = document.getElementById('summary-service-name');
             const summaryPrice = document.getElementById('summary-service-price');
-            // NEW: Description container
             const serviceDescriptionContainer = document.getElementById('service-description-container');
+            const addOnsContainer = document.getElementById('addons-container');
             
-            // --- Helper Functions ---
+            // Total Calculation Elements
+            const calcBasePriceEl = document.getElementById('calc-base-price');
+            const calcAddonsPriceEl = document.getElementById('calc-addons-price');
+            const calcTotalPriceEl = document.getElementById('calc-total-price');
 
+            // --- Initialization ---
+
+            // 1. Populate Add-ons in Step 2
+            function renderAddOns() {
+                let html = '';
+                addOnsData.forEach((addon, index) => {
+                    html += `
+                    <div class="relative">
+                        <input type="checkbox" id="addon-${index}" name="addons" value="${addon.name}" data-price="${addon.priceVal}" class="sr-only addon-checkbox">
+                        <label for="addon-${index}" class="form-checkbox-label flex justify-between items-center p-4 rounded-lg cursor-pointer border border-white/10 hover:bg-white/5">
+                            <span class="text-white font-medium">${addon.name}</span>
+                            <span class="text-cyan-400 font-bold">${addon.price}</span>
+                        </label>
+                    </div>`;
+                });
+                addOnsContainer.innerHTML = html;
+                
+                // Add listeners to new checkboxes for total calculation
+                document.querySelectorAll('.addon-checkbox').forEach(cb => {
+                    cb.addEventListener('change', calculateTotal);
+                });
+            }
+
+            // 2. Update Service Dropdown (Step 1)
             function updateServiceDropdown(type) {
                 const currentVal = serviceSelect.value; 
                 serviceSelect.innerHTML = '<option value="">Select a service...</option>'; 
@@ -691,25 +725,17 @@
                     for (const groupName in serviceOptions.plan) {
                         addOptgroup(groupName, serviceOptions.plan[groupName]);
                     }
-                } else {
-                    for (const groupName in serviceOptions.package) {
-                        addOptgroup(groupName, serviceOptions.package[groupName]);
-                    }
-                    for (const groupName in serviceOptions.plan) {
-                        addOptgroup(groupName, serviceOptions.plan[groupName]);
-                    }
                 }
                 
                 if (Array.from(serviceSelect.options).some(o => o.value === currentVal)) {
                     serviceSelect.value = currentVal;
                 } else {
                     updateServiceSummary('');
-                    updateServiceDescription(''); // Clear description if service is no longer valid
+                    updateServiceDescription(''); 
                 }
-                
-                serviceSelectContainer.classList.remove('hidden'); 
             }
 
+            // 3. Update Summaries & Description
             function updateServiceSummary(serviceName) {
                 const price = servicePriceMap[serviceName];
                 if (serviceName && price) {
@@ -719,9 +745,9 @@
                 } else {
                     serviceSummary.classList.add('hidden');
                 }
+                calculateTotal(); // Trigger total calculation
             }
 
-            // NEW: Function to update the service description
             function updateServiceDescription(serviceName) {
                 const description = serviceDescriptionMap[serviceName];
                 
@@ -729,14 +755,12 @@
                     let htmlContent = '<h5 class="text-lg font-semibold text-white mb-3 font-display">What\'s Included:</h5>';
                     
                     if (Array.isArray(description)) {
-                        // It's a list (like a package or plan)
                         htmlContent += '<ul class="space-y-2 text-gray-300">';
                         description.forEach(item => {
                             htmlContent += `<li class="flex items-start"><span class="text-green-400 mt-1 mr-2 flex-shrink-0">&#10003;</span> ${item}</li>`;
                         });
                         htmlContent += '</ul>';
                     } else {
-                        // It's a single string (like an add-on)
                         htmlContent += `<p class="text-gray-300">${description}</p>`;
                     }
                     
@@ -748,68 +772,89 @@
                 }
             }
 
+            // 4. Calculate Total Bill (Step 2)
+            function calculateTotal() {
+                // Get Base Price
+                const serviceName = serviceSelect.value;
+                const priceStr = servicePriceMap[serviceName] || "0";
+                // Extract number from string (e.g. "$120 /month" -> 120)
+                const basePrice = parseInt(priceStr.replace(/[^0-9]/g, '')) || 0;
+                
+                // Get Add-ons Price
+                let addonsTotal = 0;
+                const checkboxes = document.querySelectorAll('.addon-checkbox:checked');
+                checkboxes.forEach(cb => {
+                    addonsTotal += parseFloat(cb.getAttribute('data-price')) || 0;
+                });
 
-            // --- Mobile Menu ---
-            const menuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+                // Update DOM
+                calcBasePriceEl.textContent = '$' + basePrice;
+                calcAddonsPriceEl.textContent = '$' + addonsTotal;
+                
+                // If the selected service is a monthly plan, we format the total differently
+                const isMonthly = priceStr.includes('/month');
+                const total = basePrice + addonsTotal;
+                
+                if(isMonthly && addonsTotal > 0) {
+                    calcTotalPriceEl.innerHTML = `<span class="text-xl">$${total}</span> <span class="text-sm text-gray-400 font-normal">(est. 1st bill)</span>`;
+                } else {
+                    calcTotalPriceEl.textContent = '$' + total;
+                }
+            }
 
-            menuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
+            // --- Event Listeners ---
 
-            mobileNavLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    if (!link.href.includes('#')) {
-                         mobileMenu.classList.add('hidden');
-                    }
+            serviceTypeRadios.forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    updateServiceDropdown(e.target.value);
                 });
             });
 
-            // --- Accordion Functionality ---
-            const accordions = document.querySelectorAll('.accordion-toggle');
-            accordions.forEach(button => {
+            serviceSelect.addEventListener('change', (e) => {
+                const serviceName = e.target.value;
+                updateServiceSummary(serviceName);
+                updateServiceDescription(serviceName);
+            });
+
+            // --- UI Logic (Mobile Menu, Accordions, Animations) ---
+            
+            // Mobile Menu
+            const menuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            menuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+
+            // Accordions
+            document.querySelectorAll('.accordion-toggle').forEach(button => {
                 button.addEventListener('click', () => {
                     const content = button.nextElementSibling;
                     button.classList.toggle('open');
-                    
                     if (content.style.maxHeight) {
                         content.style.maxHeight = null;
                     } else {
                         content.style.maxHeight = content.scrollHeight + 'px';
                     }
-                    
-                    accordions.forEach(otherButton => {
-                        if (otherButton !== button) {
-                            otherButton.classList.remove('open');
-                            otherButton.nextElementSibling.style.maxHeight = null;
+                    // Close others
+                    document.querySelectorAll('.accordion-toggle').forEach(other => {
+                        if (other !== button) {
+                            other.classList.remove('open');
+                            other.nextElementSibling.style.maxHeight = null;
                         }
                     });
                 });
             });
-            
-            // --- Slide-up on Scroll Animation ---
+
+            // Scroll Animation
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
+                    if (entry.isIntersecting) entry.target.classList.add('visible');
                 });
-            }, {
-                threshold: 0.1 // Trigger when 10% of the element is visible
-            });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.slide-up').forEach(el => observer.observe(el));
 
-            document.querySelectorAll('.slide-up').forEach(el => {
-                observer.observe(el);
-            });
-
-            // --- Multi-Step Form Logic ---
+            // --- Multi-Step Form Logic (Updated for 4 Steps) ---
             const stepPanels = document.querySelectorAll('.form-step');
             const stepIndicators = document.querySelectorAll('.step-indicator');
             const stepLines = document.querySelectorAll('.step-line');
-            const nextButtons = document.querySelectorAll('[data-action="next"]');
-            const prevButtons = document.querySelectorAll('[data-action="prev"]');
-            
             let currentStep = 0;
 
             function showStep(stepIndex) {
@@ -835,6 +880,7 @@
 
             function validateStep(stepIndex) {
                 const currentPanel = stepPanels[stepIndex];
+                // Note: Step 2 (Addons) has no required fields, so it passes automatically
                 const inputs = currentPanel.querySelectorAll('input[required], select[required], textarea[required]');
                 let isValid = true;
 
@@ -849,47 +895,28 @@
 
                     if (!inputValid) {
                         isValid = false;
-                        if(input.type === 'radio') {
-                            const radioLabels = currentPanel.querySelectorAll(`label[for^="${input.name}"]`);
-                            radioLabels.forEach(label => label.classList.add('invalid'));
-                        } else {
-                             input.classList.add('invalid');
-                        }
-                       
-                        input.addEventListener('input', () => {
-                             if(input.type === 'radio') {
-                                const radioLabels = currentPanel.querySelectorAll(`label[for^="${input.name}"]`);
-                                radioLabels.forEach(label => label.classList.remove('invalid'));
-                             } else {
-                                input.classList.remove('invalid');
-                             }
-                        }, { once: true });
-
+                        input.classList.add('invalid');
+                        input.addEventListener('input', () => input.classList.remove('invalid'), { once: true });
                     } else {
                         input.classList.remove('invalid');
-                        if(input.type === 'radio') {
-                            const radioLabels = currentPanel.querySelectorAll(`label[for^="${input.name}"]`);
-                            radioLabels.forEach(label => label.classList.remove('invalid'));
-                        }
                     }
                 });
                 return isValid;
             }
 
-            nextButtons.forEach(button => {
+            document.querySelectorAll('[data-action="next"]').forEach(button => {
                 button.addEventListener('click', () => {
-                    if (validateStep(currentStep)) {
-                        showStep(currentStep + 1);
-                    }
+                    if (validateStep(currentStep)) showStep(currentStep + 1);
                 });
             });
 
-            prevButtons.forEach(button => {
+            document.querySelectorAll('[data-action="prev"]').forEach(button => {
                 button.addEventListener('click', () => {
                     showStep(currentStep - 1);
                 });
             });
 
+            // --- Form Submission ---
             document.getElementById('booking-form').addEventListener('submit', function(e) {
                 e.preventDefault();
                 if (validateStep(currentStep)) {
@@ -898,42 +925,44 @@
                     submitButton.textContent = 'Sending...';
                     
                     const formData = new FormData(this);
-                    const serviceType = formData.get('service-type') || 'Not specified'; 
+                    const serviceType = formData.get('service-type');
                     const service = formData.get('service');
                     const servicePrice = servicePriceMap[service] || 'N/A'; 
+                    
+                    // Gather selected add-ons
+                    const selectedAddons = [];
+                    document.querySelectorAll('.addon-checkbox:checked').forEach(cb => {
+                        selectedAddons.push(cb.value);
+                    });
+                    
                     const fullName = formData.get('full-name');
                     const email = formData.get('email');
                     const phone = formData.get('phone');
                     const vehicleInfo = formData.get('vehicle-info');
                     const preferredDate = formData.get('preferred-date');
                     const details = formData.get('details');
-
-                    // NEW: Get description details
-                    const serviceDesc = serviceDescriptionMap[service];
-                    let descriptionText = "";
-                    if (Array.isArray(serviceDesc)) {
-                        descriptionText = serviceDesc.map(item => `\n- ${item}`).join('');
-                    } else {
-                        descriptionText = `\n${serviceDesc}`;
-                    }
+                    const totalEst = document.getElementById('calc-total-price').textContent;
 
                     let message = `*New Booking Request from ${fullName}*\n\n`;
-                    message += `*Service:* ${service}\n`;
-                    message += `*Price:* ${servicePrice}\n`;
-                    message += `*Service Type Filter:* ${serviceType}\n\n`;
-                    message += `*Service Details:*${descriptionText}\n\n`; // Add the full description
-                    message += `*Name:* ${fullName}\n`;
-                    message += `*Email:* ${email}\n`;
-                    message += `*Phone:* ${phone}\n`;
-                    message += `*Vehicle:* ${vehicleInfo}\n`;
-                    message += `*Preferred Date:* ${preferredDate}\n`;
-                    if (details) {
-                        message += `*Details:* ${details}\n`;
+                    message += `*Base Service:* ${service} (${servicePrice})\n`;
+                    
+                    if (selectedAddons.length > 0) {
+                        message += `*Add-ons:* \n- ${selectedAddons.join('\n- ')}\n`;
+                    } else {
+                        message += `*Add-ons:* None selected\n`;
                     }
                     
-                    const encodedMessage = encodeURIComponent(message);
-                    const whatsappURL = `https://wa.me/6588479753?text=${encodedMessage}`;
+                    message += `\n*Estimated Total:* ${totalEst}\n\n`;
                     
+                    message += `*Customer Details:*\n`;
+                    message += `Name: ${fullName}\n`;
+                    message += `Email: ${email}\n`;
+                    message += `Phone: ${phone}\n`;
+                    message += `Vehicle: ${vehicleInfo}\n`;
+                    message += `Date: ${preferredDate}\n`;
+                    if (details) message += `Details: ${details}\n`;
+                    
+                    const whatsappURL = `https://wa.me/6588479753?text=${encodeURIComponent(message)}`;
                     window.location.href = whatsappURL;
                     
                     setTimeout(() => {
@@ -943,54 +972,36 @@
                 }
             });
 
+            // Set Min Date
             const today = new Date().toISOString().split('T')[0];
             const datePicker = document.getElementById('preferred-date');
-            if (datePicker) {
-                datePicker.setAttribute('min', today);
-            }
+            if (datePicker) datePicker.setAttribute('min', today);
 
-            // --- Event Listeners for Dynamic Form ---
-            serviceTypeRadios.forEach(radio => {
-                radio.addEventListener('change', (e) => {
-                    const selectedType = e.target.value;
-                    updateServiceDropdown(selectedType);
-                });
-            });
-
-            serviceSelect.addEventListener('change', (e) => {
-                const serviceName = e.target.value;
-                updateServiceSummary(serviceName);
-                updateServiceDescription(serviceName); // Call description update
-            });
-
-            
-            function checkURLParams() {
-                const params = new URLSearchParams(window.location.search);
-                const service = params.get('service');
-                const type = params.get('type');
-
-                if (type) {
-                    const radio = document.getElementById(`service-type-${type}`);
-                    if (radio) {
-                        radio.checked = true;
-                        radio.dispatchEvent(new Event('change'));
-                    }
-                }
-
-                if (service) {
-                    setTimeout(() => {
-                        if (Array.from(serviceSelect.options).some(o => o.value === service)) {
-                            serviceSelect.value = service;
-                            serviceSelect.dispatchEvent(new Event('change')); // This now triggers summary and description
-                        }
-                    }, 50); 
-                }
-            }
-
-            // Initial setup
+            // Boot up
+            renderAddOns();
             showStep(0);
-            updateServiceDropdown(); 
-            checkURLParams(); 
+            updateServiceDropdown('package'); 
+            
+            // Check URL params & AUTO-SKIP TO STEP 2
+            const params = new URLSearchParams(window.location.search);
+            const serviceParam = params.get('service');
+            if (serviceParam) {
+                setTimeout(() => {
+                   // Simple loop to find which type holds the service
+                   let type = 'package';
+                   for(const grp in serviceOptions.plan) {
+                       if(serviceOptions.plan[grp].includes(serviceParam)) type = 'plan';
+                   }
+                   document.getElementById(`service-type-${type}`).click();
+                   serviceSelect.value = serviceParam;
+                   serviceSelect.dispatchEvent(new Event('change'));
+
+                   // Logic to skip to Step 2 automatically if service is valid
+                   if (serviceSelect.value === serviceParam) {
+                       showStep(1); // 1 = Step 2 (Enhancements)
+                   }
+                }, 100);
+            }
         });
     </script>
 </body>
