@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Your Service - Rinze Free Auto Detailing</title>
+    <link rel="icon" type="image/png" href="https://reputifly.com/wp-content/uploads/2025/11/car-logo.png">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -581,14 +583,20 @@
             
             // Base Prices for Calculation
             const servicePriceMap = {
-                // Packages
+                // Car Packages
                 "Classic Detail": "$175",
                 "Enhancement Package": "$325",
                 "Elite Ceramic Protection": "$500",
-                // Plans
+                // Car Plans
                 "Silver Plan": "$120 /month",
                 "Gold Plan": "$225 /month",
-                "Platinum Plan": "$350 /month"
+                "Platinum Plan": "$350 /month",
+                // Bike Packages
+                "Enhanced Bike Detailing": "$120",
+                // Bike Plans
+                "Silver Bike Plan": "$80 /month",
+                "Gold Bike Plan": "$150 /month",
+                "Platinum Bike Plan": "$280 /month"
             };
 
             // Separate Add-on Data
@@ -602,6 +610,7 @@
             ];
 
             const serviceDescriptionMap = {
+                // Car Services
                 "Classic Detail": [
                     "pH-balanced pre-wash & hand wash",
                     "Iron & tar decontamination",
@@ -642,22 +651,69 @@
                     "Spray sealant touch-up",
                     "Interior vacuum, wipe-down & fragrance",
                     "Priority scheduling"
+                ],
+                // Bike Services
+                "Enhanced Bike Detailing": [
+                    "Foam pre-wash + hand wash",
+                    "Chain clean & lubrication",
+                    "Iron & tar decontamination",
+                    "Engine area degreasing",
+                    "Wheel deep cleaning",
+                    "Plastics, trims & fairings cleaned",
+                    "Light polish for tank & fairings",
+                    "Tyre dressing (non-slip)",
+                    "Seat & controls wipe-down",
+                    "Quick spray sealant (1–2 weeks protection)"
+                ],
+                "Silver Bike Plan": [
+                    "Foam wash + hand wash",
+                    "Chain clean & lube",
+                    "Wheel cleaning",
+                    "Seat & handle area wipe-down",
+                    "Quick spray wax",
+                    "Light bug/tar removal",
+                    "Tyre dressing"
+                ],
+                "Gold Bike Plan": [
+                    "Everything in Silver, plus:",
+                    "Full iron & tar decontamination",
+                    "Engine bay wipe & degrease",
+                    "Plastics & fairings restored",
+                    "Clay towel treatment",
+                    "Premium spray sealant (1 month)"
+                ],
+                "Platinum Bike Plan": [
+                    "Everything in Gold, plus:",
+                    "Light machine polish for tank & fairings",
+                    "Metal parts polishing",
+                    "High-end ceramic spray coating (3–4 months)",
+                    "Deep engine detailing",
+                    "Detailed wheels + brake calipers",
+                    "Full seat & rubber trim treatment"
                 ]
             };
 
             const serviceOptions = {
                 package: {
-                    "Detailing Packages": [
+                    "Car Detailing Packages": [
                         "Classic Detail",
                         "Enhancement Package",
                         "Elite Ceramic Protection"
+                    ],
+                    "Motorcycle Packages": [
+                        "Enhanced Bike Detailing"
                     ]
                 },
                 plan: {
-                    "Monthly Plans": [
+                    "Car Monthly Plans": [
                         "Silver Plan",
                         "Gold Plan",
                         "Platinum Plan"
+                    ],
+                     "Motorcycle Plans": [
+                        "Silver Bike Plan",
+                        "Gold Bike Plan",
+                        "Platinum Bike Plan"
                     ]
                 }
             };
