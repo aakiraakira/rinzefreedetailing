@@ -583,14 +583,14 @@
             
             // Base Prices for Calculation
             const servicePriceMap = {
-                // Car Packages
-                "Classic Detail": "$175",
-                "Enhancement Package": "$325",
-                "Elite Ceramic Protection": "$500",
-                // Car Plans
-                "Silver Plan": "$120 /month",
-                "Gold Plan": "$225 /month",
-                "Platinum Plan": "$350 /month",
+                // Car Packages (UPDATED)
+                "Classic Detail": "$198 NETT",
+                "Enhancement Package": "$248 NETT",
+                "Elite Ceramic Protection": "$588 NETT",
+                // Car Plans (UPDATED)
+                "Silver Plan": "$120 NETT /month",
+                "Gold Plan": "$200 NETT /month",
+                "Platinum Plan": "$350 NETT /month",
                 // Bike Packages
                 "Enhanced Bike Detailing": "$120",
                 // Bike Plans
@@ -625,7 +625,7 @@
                     "2-Step Paint Correction (removes 80% swirls)",
                     "Paint sealant (6-9 months protection)",
                     "Wheels deep cleaned & polished",
-                    "Engine bay cleaned & dressed"
+                    "Detailed interior Grooming" // UPDATED from Engine Bay
                 ],
                 "Elite Ceramic Protection": [
                     "Includes everything from Enhancement, plus:",
@@ -833,7 +833,7 @@
                 // Get Base Price
                 const serviceName = serviceSelect.value;
                 const priceStr = servicePriceMap[serviceName] || "0";
-                // Extract number from string (e.g. "$120 /month" -> 120)
+                // Extract number from string (e.g. "$120 NETT /month" -> 120)
                 const basePrice = parseInt(priceStr.replace(/[^0-9]/g, '')) || 0;
                 
                 // Get Add-ons Price
