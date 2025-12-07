@@ -583,18 +583,18 @@
             
             // Base Prices for Calculation
             const servicePriceMap = {
-                // Car Packages (UPDATED)
+                // Car Packages
                 "Classic Detail": "$198 NETT",
                 "Enhancement Package": "$248 NETT",
                 "Elite Ceramic Protection": "$588 NETT",
-                // Car Plans (UPDATED)
+                // Car Plans
                 "Silver Plan": "$120 NETT /month",
                 "Gold Plan": "$200 NETT /month",
                 "Platinum Plan": "$350 NETT /month",
                 // Bike Packages
                 "Enhanced Bike Detailing": "$120",
                 // Bike Plans
-                "Silver Bike Plan": "$80 /month",
+                "Silver Bike Plan": "$90 /month", // UPDATED: Changed from $80 to $90
                 "Gold Bike Plan": "$150 /month",
                 "Platinum Bike Plan": "$280 /month"
             };
@@ -625,7 +625,7 @@
                     "2-Step Paint Correction (removes 80% swirls)",
                     "Paint sealant (6-9 months protection)",
                     "Wheels deep cleaned & polished",
-                    "Detailed interior Grooming" // UPDATED from Engine Bay
+                    "Detailed interior Grooming" 
                 ],
                 "Elite Ceramic Protection": [
                     "Includes everything from Enhancement, plus:",
@@ -661,7 +661,6 @@
                     "Wheel deep cleaning",
                     "Plastics, trims & fairings cleaned",
                     "Light polish for tank & fairings",
-                    "Tyre dressing (non-slip)",
                     "Seat & controls wipe-down",
                     "Quick spray sealant (1–2 weeks protection)"
                 ],
@@ -671,11 +670,11 @@
                     "Wheel cleaning",
                     "Seat & handle area wipe-down",
                     "Quick spray wax",
-                    "Light bug/tar removal",
-                    "Tyre dressing"
+                    "Light bug/tar removal"
                 ],
                 "Gold Bike Plan": [
                     "Everything in Silver, plus:",
+                    "2 Monthly Maintenance Details", // UPDATED: Added line item
                     "Full iron & tar decontamination",
                     "Engine bay wipe & degrease",
                     "Plastics & fairings restored",
@@ -684,6 +683,7 @@
                 ],
                 "Platinum Bike Plan": [
                     "Everything in Gold, plus:",
+                    "4 Monthly Maintenance Details", // UPDATED: Added line item
                     "Light machine polish for tank & fairings",
                     "Metal parts polishing",
                     "High-end ceramic spray coating (3–4 months)",
